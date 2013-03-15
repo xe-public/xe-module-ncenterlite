@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<lang>
+	<item name="ncenterlite">
+		<value xml:lang="ko"><![CDATA[XE 알림센터 Lite]]></value>
+		<value xml:lang="en"><![CDATA[XE Notification Center Lite]]></value>
+		<value xml:lang="jp"><![CDATA[XE 通知センター Lite]]></value>
+	</item>
+	<item name="ncenterlite_document">
+		<value xml:lang="ko"><![CDATA[글]]></value>
+		<value xml:lang="en"><![CDATA[document]]></value>
+		<value xml:lang="jp"><![CDATA[書き込み]]></value>
+	</item>
+	<item name="ncenterlite_comment">
+		<value xml:lang="ko"><![CDATA[댓글]]></value>
+		<value xml:lang="en"><![CDATA[comment]]></value>
+		<value xml:lang="jp"><![CDATA[コメント]]></value>
+	</item>
+	<item name="ncenterlite_type_message">
+		<value xml:lang="ko"><![CDATA[쪽지]]></value>
+		<value xml:lang="en"><![CDATA[message]]></value>
+		<value xml:lang="jp"><![CDATA[メッセージ]]></value>
+	</item>
+	<item name="ncenterlite_commented">
+		<value xml:lang="ko"><![CDATA[<strong>%s</strong>님이 회원님의 %s에 <strong>"%s" 댓글</strong>을 남겼습니다.]]></value>
+		<value xml:lang="en"><![CDATA[<strong>%s</strong> commented "%s" on your %s.]]></value>
+		<value xml:lang="jp"><![CDATA[<strong>%s</strong>さんがあなたの%sに<strong>「%s」</strong>とコメントしました。]]></value>
+	</item>
+	<item name="ncenterlite_mentioned">
+		<value xml:lang="ko"><![CDATA[<strong>%s</strong>님이 <strong>"%s" %s</strong>에서 회원님을 언급하였습니다.]]></value>
+		<value xml:lang="en"><![CDATA[<strong>%s</strong> mentioned you on <strong>"%s" %s</strong>.]]></value>
+		<value xml:lang="jp"><![CDATA[<strong>%s</strong>さんが<strong>「%s」</strong>%sにあなたをタグ付けしました。]]></value>
+	</item>
+	<item name="ncenterlite_message_string">
+		<value xml:lang="ko"><![CDATA[<strong>%d</strong>개의 읽지 않은 <strong>메시지</strong>가 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[You have <strong>%d</strong> new <strong>message(s)</strong>.]]></value>
+		<value xml:lang="jp"><![CDATA[<strong>%d</strong>件の読んでない<strong>メッセージ</strong>があります。]]></value>
+	</item>
+	<item name="ncenterlite_ago">
+		<value xml:lang="ko"><![CDATA[전]]></value>
+		<value xml:lang="en"><![CDATA[Ago]]></value>
+		<value xml:lang="jp"><![CDATA[前]]></value>
+	</item>
+	<item name="ncenterlite_date" type="array">
+		<item name="0">
+			<value xml:lang="ko"><![CDATA[년]]></value>
+			<value xml:lang="en"><![CDATA[Year]]></value>
+			<value xml:lang="jp"><![CDATA[年]]></value>
+		</item>
+		<item name="1">
+			<value xml:lang="ko"><![CDATA[개월]]></value>
+			<value xml:lang="en"><![CDATA[Month]]></value>
+			<value xml:lang="jp"><![CDATA[ヶ月]]></value>
+		</item>
+		<item name="2">
+			<value xml:lang="ko"><![CDATA[일]]></value>
+			<value xml:lang="en"><![CDATA[Day]]></value>
+			<value xml:lang="jp"><![CDATA[日]]></value>
+		</item>
+		<item name="3">
+			<value xml:lang="ko"><![CDATA[시간]]></value>
+			<value xml:lang="en"><![CDATA[Hour]]></value>
+			<value xml:lang="jp"><![CDATA[時間]]></value>
+		</item>
+		<item name="4">
+			<value xml:lang="ko"><![CDATA[분]]></value>
+			<value xml:lang="en"><![CDATA[Minute]]></value>
+			<value xml:lang="jp"><![CDATA[分]]></value>
+		</item>
+		<item name="5">
+			<value xml:lang="ko"><![CDATA[초]]></value>
+			<value xml:lang="en"><![CDATA[Second]]></value>
+			<value xml:lang="jp"><![CDATA[秒]]></value>
+		</item>
+	</item>
+	<item name="ncenterlite_sir">
+		<value xml:lang="ko"><![CDATA[님]]></value>
+		<value xml:lang="en"><![CDATA[]]></value>
+		<value xml:lang="jp"><![CDATA[さん]]></value>
+	</item>
+	<item name="ncenterlite_message">
+		<value xml:lang="ko"><![CDATA[<strong class="num">%s</strong>개의 알림이 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[you have <strong class="num">%s</strong> notification.]]></value>
+		<value xml:lang="jp"><![CDATA[<strong class="num">%s</strong>件のお知らせがあります。]]></value>
+	</item>
+	<item name="ncenterlite_messages">
+		<value xml:lang="ko"><![CDATA[<strong class="num">%s</strong>개의 알림이 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[you have <strong class="num">%s</strong> notifications.]]></value>
+		<value xml:lang="jp"><![CDATA[<strong class="num">%s</strong>件のお知らせがあります。]]></value>
+	</item>
+	<item name="ncenterlite_delete_all">
+		<value xml:lang="ko"><![CDATA[모두 삭제]]></value>
+		<value xml:lang="en"><![CDATA[delete all]]></value>
+		<value xml:lang="jp"><![CDATA[すべて削除]]></value>
+	</item>
+	<item name="ncenterlite_more">
+		<value xml:lang="ko"><![CDATA[더보기]]></value>
+		<value xml:lang="en"><![CDATA[More]]></value>
+		<value xml:lang="jp"><![CDATA[もっと見る]]></value>
+	</item>
+</lang>
