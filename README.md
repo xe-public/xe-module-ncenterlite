@@ -1,4 +1,4 @@
-XpressEngine(XE) Notifications Center Lite
+XpressEngine(XE) Notification Center Lite
 ==========================================
 
 XE 알림센터의 무료 버전.
