@@ -2,7 +2,7 @@
 <module version="0.2">
 	<title xml:lang="ko">XE 알림센터 Lite</title>
 	<description xml:lang="ko">사이트 사용자간의 커뮤니케이션에 대한 정보를 알려주는 모듈입니다.</description>
-	<version>1.1.1</version>
+	<version>1.1.2</version>
 	<date>2013-03-21</date>
 	<category>content</category>
 	<author email_address="info@xemagazine.com" link="http://xmz.kr/">
