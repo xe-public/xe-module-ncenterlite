@@ -1,4 +1,4 @@
-#nc_container { border-bottom-color:#555; background-color:#333; color:#B0B0B0; filter:alpha(opacity=95); opacity:0.95; -moz-opacity:0.95; }
+#nc_container { border-bottom-color:#555; background-color:#333; color:#B0B0B0; opacity:0.95;}
 #nc_container a { color:#B0B0B0; }
 #nc_container a:hover { color:#B0B0B0; }
 #nc_container strong { color:#F3F3F3; }
