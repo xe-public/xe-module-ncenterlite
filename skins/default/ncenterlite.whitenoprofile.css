@@ -1,9 +1,9 @@
-#nc_container { border-bottom-color:#efefef; background-color:#fff; color:#000; }
+#nc_container { border:1px solid #efefef; background-color:#fff; color:#000; filter:alpha(opacity=95); opacity:0.95; -moz-opacity:0.95; }
 #nc_container a { color:#666; }
 #nc_container a:hover { color:#666; }
 #nc_container strong { color:#000; }
 #nc_container a.notify strong { color:#F60; }
-#nc_container .list { background-color:#fff; filter:alpha(opacity=97); opacity:0.97; -moz-opacity:0.97; }
+#nc_container .list { border:1px solid #efefef; background-color:#fff; filter:alpha(opacity=97); opacity:0.97; -moz-opacity:0.97; }
 #nc_container .list li { border-color:#eee; }
 #nc_container .list li a:hover { background-color: #eee; }
 #nc_container .list span.ago { color:#D4AF37; }

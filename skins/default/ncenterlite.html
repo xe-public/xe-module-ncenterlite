@@ -108,8 +108,8 @@
 	function sc(){
 		var wh = $(window).height();
 		var l = $('#nc_container .list');
-		if(l.height()+28 >= wh) {
-			l.height(wh-28).addClass('listscroll');
+		if(l.height()+100 >= wh) {
+			l.height(wh-98).addClass('listscroll');
 		} else {
 			l.height('auto').removeClass('listscroll');
 		}

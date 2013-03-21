@@ -80,7 +80,8 @@
 
 #nc_container .list {
 	display:none;
-	position:relative;
+	position:absolute;
+	top:30px;
 	left:0;
 	max-width:330px;
 	width:330px;
