@@ -36,4 +36,4 @@ You should have received a copy of the GNU General Public License along with thi
 
 Contributors
 ------------
-KANTSOFT (ikantsoft@…)
+[kantsoft](http://github.com/kantsoft) (ikantsoft@…)
