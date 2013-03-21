@@ -1,19 +1,15 @@
 #nc_container {
 	z-index:99;
 	position:fixed;
-	top:0;
-	left:0;
+	bottom:0;
+	right:0;
 	margin:0;
 	padding:0;
-	width:100%;
-	height:30px;
+	width:330px;
+	height:50px;
 	border-bottom:1px solid;
 	font-size:12px;
 	line-height:15px;
-}
-
-.ncenterlite_block {
-	height:28px;
 }
 
 #nc_container a {
@@ -81,8 +77,8 @@
 #nc_container .list {
 	display:none;
 	position:absolute;
-	top:30px;
 	left:0;
+	bottom:50px;
 	max-width:330px;
 	width:330px;
 	box-sizing:border-box;

@@ -13,7 +13,7 @@ function doDisplaySkinColorset(sel, colorset)
 
 function completeGetSkinColorset(ret_obj, response_tags, params, fo_obj)
 {
-	var sel = get_by_id('fo_ncenterlite').poll_colorset;
+	var sel = get_by_id('fo_ncenterlite').colorset;
 	var length = sel.options.length;
 	var selected_colorset = params['colorset'];
 	for(var i=0;i<length;i++) sel.remove(0);
