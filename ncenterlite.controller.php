@@ -384,16 +384,13 @@ class ncenterliteController extends ncenterlite
 
 			if($logged_info->member_srl != $member_srl)
 			{
-				$origin_srl = $vars->document_srl;
-				$origin_srl = $vars->parent_srl;
-
 				$args = new stdClass();
 				$args->member_srl = abs($member_srl);
 				$args->srl = $vars->document_srl;
 				$args->type = $type;
 				$args->target_type = $this->_TYPE_COMMENT;
 				$args->target_srl = $vars->parent_srl;
-				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $vars->document_srl) . '#comment_'. $vars->parent_srl;
+				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $vars->document_srl, '_comment_srl', $vars->parent_srl) . '#comment_'. $vars->parent_srl;
 				$args->target_summary = cut_str(strip_tags($vars->content), 30);
 				$args->target_nick_name = $logged_info->nick_name;
 				$args->target_email_address = $logged_info->email_address;
@@ -401,6 +398,23 @@ class ncenterliteController extends ncenterlite
 				$args->notify = $this->_getNotifyId($args);
 				$output = $this->_insertNotify($args);
 			}
+		}
+		else if($oModule->act == 'dispKinView' || $oModule->act == 'dispKinIndex')
+		{
+			// 글을 볼 때 알림 제거
+			$oDocumentModel = &getModel('document');
+			$oDocument = $oDocumentModel->getDocument($vars->document_srl);
+			$member_srl = $oDocument->get('member_srl');
+
+			if($logged_info->member_srl == $member_srl)
+			{
+				$args = new stdClass;
+				$args->member_srl = $logged_info->member_srl;
+				$args->srl = $vars->document_srl;
+				$args->type = $this->_TYPE_DOCUMENT;
+				$output = executeQuery('ncenterlite.updateNotifyReadedBySrl', $args);
+			}
+		}
 		else if($oModule->act = 'getKinComments')
 		{
 			// 의견을 펼칠 때 알림 제거
