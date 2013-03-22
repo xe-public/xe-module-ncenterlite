@@ -415,13 +415,13 @@ class ncenterliteController extends ncenterlite
 				$output = executeQuery('ncenterlite.updateNotifyReadedBySrl', $args);
 			}
 		}
-		else if($oModule->act = 'getKinComments')
+		else if($oModule->act == 'getKinComments')
 		{
 			// 의견을 펼칠 때 알림 제거
 			$args = new stdClass;
 			$args->member_srl = $logged_info->member_srl;
-			$args->srl = $vars->parent_srl;
-			$output = executeQuery('ncenterlite.deleteNotifyByTargetSrl', $args);
+			$args->target_srl = $vars->parent_srl;
+			$output = executeQuery('ncenterlite.updateNotifyReadedByTargetSrl', $args);
 		}
 
 		return new Object();
