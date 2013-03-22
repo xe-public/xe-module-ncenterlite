@@ -255,6 +255,9 @@ class ncenterliteController extends ncenterlite
 
 	function triggerAfterModuleHandlerProc(&$oModule)
 	{
+		$vars = Context::getRequestVars();
+		$logged_info = Context::get('logged_info');
+
 		if($oModule->getLayoutFile() == 'popup_layout.html') Context::set('ncenterlite_is_popup', TRUE);
 
 		$oNcenterliteModel = &getModel('ncenterlite');
@@ -361,6 +364,44 @@ class ncenterliteController extends ncenterlite
 			}
 		}
 
+		// 지식인 모듈의 의견
+		// TODO: 코드 분리
+		if($oModule->act == 'procKinInsertComment')
+		{
+			// 글, 댓글 구분
+			$parent_type = ($vars->document_srl == $vars->parent_srl) ? 'DOCUMENT' : 'COMMENT';
+			if($parent_type == 'DOCUMENT') {
+				$oDocumentModel = &getModel('document');
+				$oDocument = $oDocumentModel->getDocument($vars->document_srl);
+				$member_srl = $oDocument->get('member_srl');
+				$type = $this->_TYPE_DOCUMENT;
+			} else {
+				$oCommentModel = &getModel('comment');
+				$oComment = $oCommentModel->getComment($vars->parent_srl);
+				$member_srl = $oComment->get('member_srl');
+				$type = $this->_TYPE_COMMENT;
+			}
+
+			if($logged_info->member_srl != $member_srl)
+			{
+				$origin_srl = $vars->document_srl;
+				$origin_srl = $vars->parent_srl;
+
+				$args = new stdClass();
+				$args->member_srl = abs($member_srl);
+				$args->srl = $vars->document_srl;
+				$args->type = $type;
+				$args->target_type = $this->_TYPE_COMMENT;
+				$args->target_srl = $vars->parent_srl;
+				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $vars->document_srl) . '#comment_'. $vars->parent_srl;
+				$args->target_summary = cut_str(strip_tags($vars->content), 30);
+				$args->target_nick_name = $logged_info->nick_name;
+				$args->target_email_address = $logged_info->email_address;
+				$args->regdate = date('YmdHis');
+				$args->notify = $this->_getNotifyId($args);
+				$output = $this->_insertNotify($args);
+			}
+		}
 
 		return new Object();
 	}
