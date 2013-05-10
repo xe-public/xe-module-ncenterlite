@@ -37,14 +37,26 @@ class ncenterliteAdminView extends ncenterlite
 		$security->encodeHTML('skin_list..title');
 		$security->encodeHTML('colorset_list..name','colorset_list..title');
 
-		$ncenterlite_module_info = $oModuleModel->getModuleInfoXml('ncenterlite');
-		$_ncenterlite_iframe_url = 'http://xmz.kr/index.php?mid=ncenterlite_iframe';
-		$_host_info = urlencode($_SERVER['HTTP_HOST']) . '-NC' . $ncenterlite_module_info->version . '-PHP' . phpversion() . '-XE' . __XE_VERSION__;
-		Context::set('_ncenterlite_iframe_url', $_ncenterlite_iframe_url . '&_host='. $_host_info);
-		Context::set('ncenterlite_module_info', $ncenterlite_module_info);
-
 		$mid_list = $oModuleModel->getMidList(null, array('module_srl', 'mid', 'browser_title', 'module'));
 
 		Context::set('mid_list', $mid_list);
+
+		// 사용환경정보 전송 확인
+		$ncenterlite_module_info = $oModuleModel->getModuleInfoXml('ncenterlite');
+		$agreement_file = FileHandler::getRealPath(sprintf('%s%s.txt', './files/ncenterlite/', $ncenterlite_module_info->version));
+
+		if(file_exists($agreement_file))
+		{
+			$agreement = FileHandler::readFile($agreement_file);
+			Context::set('_ncenterlite_env_agreement', $agreement);
+			if($agreement == 'Y')
+			{
+				$_ncenterlite_iframe_url = 'http://xmz.kr/index.php?mid=ncenterlite_iframe';
+				$_host_info = urlencode($_SERVER['HTTP_HOST']) . '-NC' . $ncenterlite_module_info->version . '-PHP' . phpversion() . '-XE' . __XE_VERSION__;
+				Context::set('_ncenterlite_iframe_url', $_ncenterlite_iframe_url . '&_host='. $_host_info);
+				Context::set('ncenterlite_module_info', $ncenterlite_module_info);
+			}
+		}
+		else Context::set('_ncenterlite_env_agreement', 'NULL');
 	}
 }
