@@ -94,17 +94,8 @@ function completeGetSkinColorset(ret_obj, response_tags, params, fo_obj)
 }) (jQuery);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+function doDummyDataInsert()
+{
+	jQuery.exec_json('ncenterlite.procNcenterliteAdminInsertDummyData', {}, function completeGetDummyInfo(ret_obj){alert(ret_obj.message)});
+}
 

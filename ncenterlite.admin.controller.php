@@ -10,7 +10,7 @@ class ncenterliteAdminController extends ncenterlite
 		$oModuleController = &getController('module');
 
 		$config->use = Context::get('use');
-		
+
 		$config->mention_format = Context::get('mention_format');
 		$config->document_notify = Context::get('document_notify');
 		$config->message_notify = Context::get('message_notify');
@@ -31,6 +31,31 @@ class ncenterliteAdminController extends ncenterlite
 			$returnUrl = Context::get('success_return_url') ? Context::get('success_return_url') : getNotEncodedUrl('', 'module', 'admin', 'act', 'dispNcenterliteAdminConfig');
 			header('location: ' . $returnUrl);
 			return;
+		}
+	}
+
+	/**
+	 * @brief 스킨 테스트를 위한 더미 데이터 생성
+	 **/
+	function procNcenterliteAdminInsertDummyData()
+	{
+		$oNcenterliteController = &getController('ncenterlite');
+		$logged_info = Context::get('logged_info');
+
+		for($i = 1; $i <= 5; $i++)
+		{
+			$args = new stdClass();
+			$args->member_srl = $logged_info->member_srl;
+			$args->srl = 1;
+			$args->target_srl = 1;
+			$args->type = $this->_TYPE_DOCUMENT;
+			$args->target_type = $this->_TYPE_COMMENT;
+			$args->target_url = getUrl('');
+			$args->target_summary = '[*] 시험용 알림입니다' . rand();
+			$args->target_nick_name = $logged_info->nick_name;
+			$args->regdate = date('YmdHis');
+			$args->notify = $oNcenterliteController->_getNotifyId($args);
+			$output = $oNcenterliteController->_insertNotify($args);
 		}
 	}
 }

@@ -107,7 +107,18 @@
 			<button class="x_btn x_btn-primary" type="submit">{$lang->cmd_registration}</button>
 		</div>
 	</div>
+
+	<section class="section">
+		<h1>기타</h1>
+		<div class="x_control-group">
+			<label class="x_control-label">시험용 알림 생성</label>
+			<div class="x_controls">
+				<label><input type="button" name="dummy" onClick="doDummyDataInsert();" class="x_btn" value="더미 데이터 생성"> 스킨 및 모듈 테스트를 위한 시험용 알림 생성</label>
+			</div>
+		</div>
+	</section>
 </form>
+
 
 <p>설치된 알림센터 버전 : Lite v{$ncenterlite_module_info->version}</p>
 <iframe frameborder="0" src="{$_ncenterlite_iframe_url}" style="display:block; margin:10px auto; padding:0; width:90%;border:3px solid #7361d6; border-radius:10px; height:200px; overflow:scroll; "></iframe>

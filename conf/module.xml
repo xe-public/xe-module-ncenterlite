@@ -5,6 +5,7 @@
 	<actions>
 		<action name="dispNcenterliteAdminConfig" type="view" admin_index="true" menu_name="ncenterlite" menu_index="true" />
 		<action name="procNcenterliteAdminInsertConfig" type="controller" ruleset="insertConfig" />
+		<action name="procNcenterliteAdminInsertDummyData" type="controller" />
 
 		<action name="procNcenterliteNotifyRead" type="controller" />
 		<action name="procNcenterliteNotifyReadAll" type="controller" />
