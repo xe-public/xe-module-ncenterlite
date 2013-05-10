@@ -13,7 +13,6 @@
 		<column name="target_email_address" var="target_email_address" />
 		<column name="type" var="type" notnull="notnull" />
 		<column name="target_type" var="target_type" notnull="notnull" />
-		<column name="summary" var="summary" />
 		<column name="target_summary" var="target_summary" />
 		<column name="target_url" var="target_url" notnull="notnull" />
 		<column name="regdate" var="regdate" />
