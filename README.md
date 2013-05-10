@@ -1,4 +1,4 @@
-XpressEngine(XE) Notification Center Lite
+XpressEngine(XE) Notification Center *Lite*
 ==========================================
 
 XE 알림센터의 무료 버전.
@@ -30,7 +30,8 @@ Thanks to
 ---------
 [@yaho1021](https://github.com/yaho1021),
 [@mAKEkr](https://github.com/mAKEkr),
-쓰리공주
+쓰리공주,
+[@qw5414](https://github.com/qw5414)
 
 Copyright (ko)
 ---------------------
