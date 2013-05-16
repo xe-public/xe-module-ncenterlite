@@ -43,7 +43,7 @@ class ncenterliteAdminView extends ncenterlite
 
 		// 사용환경정보 전송 확인
 		$ncenterlite_module_info = $oModuleModel->getModuleInfoXml('ncenterlite');
-		$agreement_file = FileHandler::getRealPath(sprintf('%s%s.txt', './files/ncenterlite/', $ncenterlite_module_info->version));
+		$agreement_file = FileHandler::getRealPath(sprintf('%s%s.txt', './files/cache/ncenterlite-', $ncenterlite_module_info->version));
 
 		if(file_exists($agreement_file))
 		{
