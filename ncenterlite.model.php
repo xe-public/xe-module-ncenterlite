@@ -121,6 +121,7 @@ class ncenterliteModel extends ncenterlite
 			$member_srl = $logged_info->member_srl;
 		}
 
+		$args = new stdClass();
 		$args->member_srl = $member_srl;
 		$args->page = $page ? $page : 1;
 		if($readed) $args->readed = $readed;
