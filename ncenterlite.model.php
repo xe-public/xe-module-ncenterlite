@@ -1,8 +1,4 @@
 <?php
-/**
- * @author XE Magazine <info@xemagazine.com>
- * @link http://xemagazine.com/
- **/
 class ncenterliteModel extends ncenterlite
 {
 	var $config;

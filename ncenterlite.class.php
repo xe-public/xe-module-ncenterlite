@@ -1,8 +1,4 @@
 <?php
-/**
- * @author XE Magazine <info@xemagazine.com>
- * @link http://xemagazine.com/
- **/
 class ncenterlite extends ModuleObject
 {
 	// @@@@@@@@@@ 사용자 커스텀 시작

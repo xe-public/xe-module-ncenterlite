@@ -35,7 +35,7 @@ Thanks to
 
 Copyright (ko)
 ---------------------
-Copyright 2013 XE Magazine.
+Copyright 2013 XE Public.
 
 이 프로그램은 자유 소프트웨어입니다. 소프트웨어의 피양도자는 자유 소프트웨어 재단이 공표한 **GNU 일반 공중 사용 허가서** 2판 또는 그 이후 판을 임의로 선택해서, 그 규정에 따라 프로그램을 개작하거나 재배포할 수 있습니다.
 
@@ -44,7 +44,7 @@ Copyright 2013 XE Magazine.
 
 Copyright (en)
 --------------
-Copyright 2013 XE Magazine.
+Copyright 2013 XE Public.
 
 This program is free software; you can redistribute it and/or modify it under the terms of the **GNU General Public License** as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
