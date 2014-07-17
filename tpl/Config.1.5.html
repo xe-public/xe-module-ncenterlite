@@ -6,26 +6,6 @@
 	<p>{$XE_VALIDATOR_MESSAGE}</p>
 </div>
 
-<div cond="$_ncenterlite_env_agreement == 'NULL'">
-	<form action="./" method="post" class="message info x_clearfix">
-		<input type="hidden" name="module" value="ncenterlite" />
-		<input type="hidden" name="act" value="procNcenterliteAdminEnviromentGatheringAgreement" />
-		<h2><span class="x_label x_label-important">도와주세요!</span> 사용 환경 정보 제공 동의</h2>
-		<p>'알림센터 Lite'는 <a href="http://ko.wikipedia.org/wiki/자유소프트웨어" target="_blank">자유소프트웨어</a>로 제공하고 있습니다.</p>
-		<p>'알림센터 Lite'는 사용자의 버그 보고, 의견 제출을 통해 공동의 힘으로 발전하고 있습니다.<br>'제공 동의'를 선택하면 아래와 같은 항목이 전송되며, 알림센터 Lite의 기능을 개선하는데 참고하겠습니다. 감사합니다.</p>
-		<ul>
-			<li>이 사이트의 도메인</li>
-			<li>알림센터 Lite의 버전</li>
-			<li>XE 버전</li>
-			<li>PHP 버전</li>
-		</ul>
-		<div class="x_pull-right" style="margin-bottom:10px">
-			<button type="submit" name="is_agree" value="Y" class="x_btn x_btn-small x_btn-primary">제공 동의</button>
-			<button type="submit" name="is_agree" value="N" class="x_btn x_btn-small">제공 안 함</button>
-		</div>
-	</form>
-</div>
-
 <form ruleset="insertConfig" action="./" method="post" id="fo_ncenterlite">
 	<input type="hidden" name="module" value="ncenterlite" />
 	<input type="hidden" name="act" value="procNcenterliteAdminInsertConfig" />
@@ -156,8 +136,3 @@
 		<span class="btn"><input type="submit" value="{$lang->cmd_registration}" /></span>
 	</div>
 </form>
-
-<div cond="$_ncenterlite_iframe_url">
-	<p>설치된 알림센터 버전 : Lite v{$ncenterlite_module_info->version}</p>
-	<iframe frameborder="0" src="{$_ncenterlite_iframe_url}" style="display:block; margin:10px auto; padding:0; width:90%;border:3px solid #7361d6; border-radius:10px; height:200px; overflow:scroll; "></iframe>
-</div>
