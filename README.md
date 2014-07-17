@@ -17,13 +17,13 @@ XE 알림센터의 무료 버전.
 
 Author
 ------
-**XE Magazine**
+**XE Public**
 
-* website : http://xmz.kr
-* email : info@xemagazine.com
+* website : https://github.com/xe-public
 
 Contributors
 ------------
+[@bnu](http://github.com/bnu)
 [@kantsoft](http://github.com/kantsoft)
 
 Thanks to
