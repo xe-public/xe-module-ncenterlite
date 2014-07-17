@@ -1,8 +1,4 @@
 <?php
-/**
- * @author XE Magazine <info@xemagazine.com>
- * @link http://xemagazine.com/
- **/
 class ncenterliteAdminController extends ncenterlite
 {
 	function procNcenterliteAdminInsertConfig()
