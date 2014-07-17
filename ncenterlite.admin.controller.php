@@ -14,6 +14,8 @@ class ncenterliteAdminController extends ncenterlite
 		if(!$config->mention_format && !is_array($config->mention_format)) $config->mention_format = array();
 
 		$config->skin = Context::get('skin');
+		$config->mskin = Context::get('mskin');
+		$config->mcolorset = Context::get('mcolorset');
 		$config->colorset = Context::get('colorset');
 		$config->zindex = Context::get('zindex');
 		if(!$config->document_notify) $config->document_notify = 'direct-comment';

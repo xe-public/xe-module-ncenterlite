@@ -114,6 +114,26 @@
 			</div>
 		</div>
 		<div class="x_control-group">
+			<label class="x_control-label">mobile {$lang->mskin}</label>
+			<div class="x_controls">
+				<select name="mskin" onchange="doDisplayMobileSkinColorset(this); return false;">
+					<option loop="$mskin_list => $key, $val" value="{$key}" selected="selected"|cond="$config->mskin == $key">
+						{$val->title} ({htmlspecialchars($key)})
+					</option>
+				</select>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label">mobile {$lang->colorset}</label>
+			<div class="x_controls">
+				<select name="mcolorset_list" id="ncenterlite_colorset">
+					<option loop="$mcolorset_list => $key, $val" value="{$val->name}" selected="selected"|cond="$config->mcolorset == $val->name">
+						{$val->title} ({$val->name})
+					</option>
+				</select>
+			</div>
+		</div>
+		<div class="x_control-group">
 			<label class="x_control-label">알림센터의 z-index</label>
 			<div class="x_controls">
 				<input name="zindex" value="{$config->zindex}" />

@@ -493,20 +493,29 @@ class ncenterliteController extends ncenterlite
 		Context::set('ncenterlite_list', $_output->data);
 		Context::set('ncenterlite_page_navigation', $_output->page_navigation);
 
-		$this->template_path = sprintf('%sskins/%s/', $this->module_path, $config->skin);
-		if(!is_dir($this->template_path)||!$config->skin)
+		if(Mobile::isFromMobilePhone())
 		{
-			$config->skin = 'default';
-			$this->template_path = sprintf('%sskins/%s/',$this->module_path, $config->skin);
+			$this->template_path = sprintf('%sm.skins/%s/', $this->module_path, $config->mskin);
+			if(!is_dir($this->template_path)||!$config->mskin)
+			{
+				$config->mskin = 'default';
+				$this->template_path = sprintf('%sm.skins/%s/',$this->module_path, $config->mskin);
+			}
+		}
+		else
+		{
+			$this->template_path = sprintf('%sskins/%s/', $this->module_path, $config->skin);
+			if(!is_dir($this->template_path)||!$config->skin)
+			{
+				$config->skin = 'default';
+				$this->template_path = sprintf('%sskins/%s/',$this->module_path, $config->skin);
+			}
 		}
 
-		if($config->skin == 'default')
-		{
-			Context::addHtmlFooter('<script type="text/javascript">');
-			if($config->message_notify != 'N') Context::addHtmlFooter('window.xeNotifyMessage = function() {};');
-			Context::addHtmlFooter('(function(){setTimeout(function(){var s = jQuery(document).scrollTop();jQuery(document).scrollTop(s-30);}, 700);})();</script>');
-		}
-
+		Context::addHtmlFooter('<script type="text/javascript">');
+		if($config->message_notify != 'N') Context::addHtmlFooter('window.xeNotifyMessage = function() {};');
+		Context::addHtmlFooter('(function(){setTimeout(function(){var s = jQuery(document).scrollTop();jQuery(document).scrollTop(s-30);}, 700);})();</script>');
+		
 		$this->_addFile();
 		$html = $this->_getTemplate();
 		$output_display = $html . $output_display;
@@ -549,7 +558,14 @@ class ncenterliteController extends ncenterlite
 		$oTemplateHandler = TemplateHandler::getInstance();
 		$result = '';
 
-		$path = sprintf('%sskins/%s/', $this->module_path, $config->skin);
+		if(Mobile::isFromMobilePhone())
+		{
+			$path = sprintf('%sm.skins/%s/', $this->module_path, $config->mskin);
+		}
+		else
+		{
+			$path = sprintf('%sskins/%s/', $this->module_path, $config->skin);
+		}
 		$result = $oTemplateHandler->compile($path, 'ncenterlite.html');
 
 		return $result;
