@@ -616,8 +616,8 @@ class ncenterliteController extends ncenterlite
 	{
 		$args->member_srl = $member_srl;
 		$args->notify = $notify;
-		//$output = executeQuery('ncenterlite.updateNotifyReaded', $args);
-		$output = executeQuery('ncenterlite.deleteNotify', $args);
+		$output = executeQuery('ncenterlite.updateNotifyReaded', $args);
+		//$output = executeQuery('ncenterlite.deleteNotify', $args);
 
 		return $output;
 	}
@@ -626,8 +626,8 @@ class ncenterliteController extends ncenterlite
 	{
 		$args->member_srl = $member_srl;
 		$args->target_srl = $target_srl;
-		//$output = executeQuery('ncenterlite.updateNotifyReadedByTargetSrl', $args);
-		$output = executeQuery('ncenterlite.deleteNotifyByTargetSrl', $args);
+		$output = executeQuery('ncenterlite.updateNotifyReadedByTargetSrl', $args);
+		//$output = executeQuery('ncenterlite.deleteNotifyByTargetSrl', $args);
 
 		return $output;
 	}
@@ -635,8 +635,8 @@ class ncenterliteController extends ncenterlite
 	function updateNotifyReadAll($member_srl)
 	{
 		$args->member_srl = $member_srl;
-		//$output = executeQuery('ncenterlite.updateNotifyReadedAll', $args);
-		$output = executeQuery('ncenterlite.deleteNotifyByMemberSrl', $args);
+		$output = executeQuery('ncenterlite.updateNotifyReadedAll', $args);
+		//$output = executeQuery('ncenterlite.deleteNotifyByMemberSrl', $args);
 
 		return $ouptut;
 	}
