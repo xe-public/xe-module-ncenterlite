@@ -11,6 +11,8 @@ class ncenterliteAdminController extends ncenterlite
 		$config->document_notify = Context::get('document_notify');
 		$config->message_notify = Context::get('message_notify');
 		$config->hide_module_srls = Context::get('hide_module_srls');
+		$config->document_module_srls = context::get('document_module_srls');
+		$config->document_format = Context::get('document_format');
 		if(!$config->mention_format && !is_array($config->mention_format)) $config->mention_format = array();
 
 		$config->skin = Context::get('skin');

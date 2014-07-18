@@ -45,6 +45,25 @@
 			</div>
 		</div>
 		<div class="x_control-group">
+			<label class="x_control-label">새글 알림 설정</label>
+			<div class="x_controls">
+				<label class="x_inline"><input type="radio" name="document_format" value="Y" checked="checked"|cond="$config->document_format == 'Y'" /> 새글 알림을 사용</label>
+				<label class="x_inline"><input type="radio" name="document_format" value="N" checked="checked"|cond="$config->document_format == 'N'" /> 새글 알림을 사용하지 않음</label>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label">Document 알림 설정</label>
+			<div class="x_controls">
+				<p class="x_help-block">선택한 페이지에서만 새글 알림을 받습니다.</p>
+				<div loop="$mid_list => $mid, $item">
+					<label>
+						<input type="checkbox" value="{$item->module_srl}" name="document_module_srls[]" checked="checked"|cond="in_array($item->module_srl, $config->document_module_srls)" />
+						<strong>{$item->browser_title}</strong> ({$item->mid} / {strtoupper($item->module)})
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="x_control-group">
 			<label class="x_control-label">댓글 알림 설정</label>
 			<div class="x_controls">
 				<label class="x_inline"><input type="radio" name="document_notify" value="all-comment" checked="checked"|cond="$config->document_notify == 'all-comment'" /> 글쓴이에게 모든 댓글 알림</label>

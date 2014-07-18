@@ -21,23 +21,22 @@ class ncenterliteController extends ncenterlite
 
 		if($this->_isDisable()) return;
 
-		$oNcenterliteModel = &getModel('ncenterlite');
+		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
 		if($config->use != 'Y') return new Object();
 
 		$content = strip_tags($obj->title . ' ' . $obj->content);
 
 		$mention_targets = $this->_getMentionTarget($content);
-		if(!$mention_targets || !count($mention_targets)) return new Object();
 
-		$oDocumentModel = &getModel('document');
+		$oDocumentModel = getModel('document');
 		$document_srl = $obj->document_srl;
 		$oDocument = $oDocumentModel->getDocument($document_srl);
 		$module_info = $oModuleModel->getModuleInfoByDocumentSrl($document_srl);
 
 		$member_srl = $oDocument->get('member_srl');
 
-		$oMemberModel = &getModel('member');
+		$oMemberModel = getModel('member');
 		$member_output = $this->getMemberTotal();
 		if(!$member_output->toBool()) return $member_output;
 		if(!$member_output->data) break;
@@ -68,8 +67,9 @@ class ncenterliteController extends ncenterlite
 				$output = $this->_insertNotify($args, $is_anonymous);
 			}
 		}
-		else
+		elseif(!$mention_targets && in_array($module_info->module_srl, $config->document_module_srls))
 		{
+			if($config->document_format == 'N') return new Object();
 			foreach($members_data as $key => $val)
 			{
 				//if($member_srl == $val->member_srl) return new Object();
@@ -92,6 +92,10 @@ class ncenterliteController extends ncenterlite
 		return new Object();
 	}
 
+	function getMemberTotal()
+	{
+		return executeQuery('ncenterlite.getMemberTotals');
+	}
 
 	function triggerAfterInsertComment(&$obj)
 	{
