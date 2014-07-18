@@ -23,6 +23,7 @@ Author
 
 Contributors
 ------------
+[@qw5414](http://github.com/qw5414)
 [@bnu](http://github.com/bnu)
 [@kantsoft](http://github.com/kantsoft)
 
@@ -31,7 +32,8 @@ Thanks to
 [@yaho1021](https://github.com/yaho1021),
 [@mAKEkr](https://github.com/mAKEkr),
 쓰리공주,
-[@qw5414](https://github.com/qw5414)
+[@qw5414](https://github.com/qw5414),
+[@hansim](https://github.com/hansim)
 
 Copyright (ko)
 ---------------------
