@@ -69,6 +69,11 @@ class ncenterlite extends ModuleObject
 			return true;
 		}
 
+		if(!$oDB->isColumnExists('ncenterlite_notify', 'target_browser'))
+		{
+			return true;
+		}
+
 		return false;
 	}
 
@@ -92,6 +97,11 @@ class ncenterlite extends ModuleObject
 			$oDB->addIndex('ncenterlite_notify', 'idx_readed', array('readed'));
 			$oDB->addIndex('ncenterlite_notify', 'idx_member_srl', array('member_srl'));
 			$oDB->addIndex('ncenterlite_notify', 'idx_regdate', array('regdate'));
+		}
+
+		if(!$oDB->isColumnExists('ncenterlite_notify','target_browser'))
+		{
+			$oDB->addColumn('ncenterlite_notify', 'target_browser', 'varchar', 50, true);
 		}
 
 		return new Object(0, 'success_updated');

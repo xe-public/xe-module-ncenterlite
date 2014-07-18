@@ -17,6 +17,8 @@ class ncenterliteController extends ncenterlite
 
 	function triggerAfterInsertDocument(&$obj)
 	{
+		$oModuleModel = getModel('module');
+
 		if($this->_isDisable()) return;
 
 		$oNcenterliteModel = &getModel('ncenterlite');
@@ -28,26 +30,65 @@ class ncenterliteController extends ncenterlite
 		$mention_targets = $this->_getMentionTarget($content);
 		if(!$mention_targets || !count($mention_targets)) return new Object();
 
+		$oDocumentModel = &getModel('document');
+		$document_srl = $obj->document_srl;
+		$oDocument = $oDocumentModel->getDocument($document_srl);
+		$module_info = $oModuleModel->getModuleInfoByDocumentSrl($document_srl);
+
+		$member_srl = $oDocument->get('member_srl');
+
+		$oMemberModel = &getModel('member');
+		$member_output = $this->getMemberTotal();
+		if(!$member_output->toBool()) return $member_output;
+		if(!$member_output->data) break;
+		$members_data = $member_output->data;
+
+		$group_list = $oMemberModel->getGroups();
+
 		$is_anonymous = $this->_isAnonymous($this->_TYPE_DOCUMENT, $obj);
 
-		// !TODO 공용 메소드로 분리
-		foreach($mention_targets as $mention_member_srl)
+		if($mention_targets)
 		{
-			$args = new stdClass();
-			$args->member_srl = $mention_member_srl;
-			$args->srl = $obj->document_srl;
-			$args->target_srl = $mention_member_srl;
-			$args->type = $this->_TYPE_DOCUMENT;
-			$args->target_type = $this->_TYPE_MENTION;
-			$args->target_url = getNotEncodedFullUrl('', 'document_srl', $obj->document_srl);
-			$args->target_summary = cut_str(strip_tags($obj->title), 30);
-			$args->target_nick_name = $obj->nick_name;
-			$args->target_email_address = $obj->email_address;
-			$args->regdate = date('YmdHis');
-			$args->notify = $this->_getNotifyId($args);
-			$output = $this->_insertNotify($args, $is_anonymous);
+			// !TODO 공용 메소드로 분리
+			foreach($mention_targets as $mention_member_srl)
+			{
+				$args = new stdClass();
+				$args->member_srl = $mention_member_srl;
+				$args->srl = $obj->document_srl;
+				$args->target_srl = $mention_member_srl;
+				$args->type = $this->_TYPE_DOCUMENT;
+				$args->target_type = $this->_TYPE_MENTION;
+				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $obj->document_srl);
+				$args->target_summary = cut_str(strip_tags($obj->title), 200);
+				$args->target_nick_name = $obj->nick_name;
+				$args->target_email_address = $obj->email_address;
+				$args->regdate = date('YmdHis');
+				$args->target_browser = $module_info->browser_title;
+				$args->notify = $this->_getNotifyId($args);
+				$output = $this->_insertNotify($args, $is_anonymous);
+			}
 		}
-
+		else
+		{
+			foreach($members_data as $key => $val)
+			{
+				//if($member_srl == $val->member_srl) return new Object();
+				$args = new stdClass();
+				$args->member_srl = $val->member_srl;
+				$args->srl = $obj->document_srl;
+				$args->target_srl = $member_srl;
+				$args->type = $this->_TYPE_DOCUMENT;
+				$args->target_type = $this->_TYPE_DOCUMENTS;
+				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $obj->document_srl);
+				$args->target_summary = cut_str(strip_tags($obj->title), 200);
+				$args->target_nick_name = $obj->nick_name;
+				$args->target_email_address = $obj->email_address;
+				$args->regdate = date('YmdHis');
+				$args->target_browser = $module_info->browser_title;
+				$args->notify = $this->_getNotifyId($args);
+				$output = $this->_insertNotify($args, $is_anonymous);
+			}
+		}
 		return new Object();
 	}
 
