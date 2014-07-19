@@ -26,6 +26,7 @@ class ncenterlite extends ModuleObject
 	var $_TYPE_MENTION = 'M';
 	var $_TYPE_MESSAGE = 'E'; // mEssage
 	var $_TYPE_DOCUMENTS = 'P';
+	var $_TYPE_TEST = 'T';
 
 	var $triggers = array(
 		array('comment.insertComment', 'ncenterlite', 'controller', 'triggerAfterInsertComment', 'after'),

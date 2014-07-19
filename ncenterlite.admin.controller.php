@@ -48,8 +48,8 @@ class ncenterliteAdminController extends ncenterlite
 			$args->member_srl = $logged_info->member_srl;
 			$args->srl = 1;
 			$args->target_srl = 1;
-			$args->type = $this->_TYPE_DOCUMENT;
-			$args->target_type = $this->_TYPE_COMMENT;
+			$args->type = $this->_TYPE_TEST;
+			$args->target_type = $this->_TYPE_TEST;
 			$args->target_url = getUrl('');
 			$args->target_summary = '[*] 시험용 알림입니다' . rand();
 			$args->target_nick_name = $logged_info->nick_name;
