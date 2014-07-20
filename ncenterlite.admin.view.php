@@ -4,9 +4,7 @@ class ncenterliteAdminView extends ncenterlite
 	function init()
 	{
 		$this->setTemplatePath($this->module_path.'tpl');
-
 		$this->setTemplateFile(str_replace('dispNcenterliteAdmin', '', $this->act));
-
 	}
 
 	function dispNcenterliteAdminConfig()
