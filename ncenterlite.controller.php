@@ -72,21 +72,28 @@ class ncenterliteController extends ncenterlite
 			if($config->document_format == 'N') return new Object();
 			foreach($members_data as $key => $val)
 			{
-				//if($member_srl == $val->member_srl) return new Object();
-				$args = new stdClass();
-				$args->member_srl = $val->member_srl;
-				$args->srl = $obj->document_srl;
-				$args->target_srl = $member_srl;
-				$args->type = $this->_TYPE_DOCUMENT;
-				$args->target_type = $this->_TYPE_DOCUMENTS;
-				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $obj->document_srl);
-				$args->target_summary = cut_str(strip_tags($obj->title), 200);
-				$args->target_nick_name = $obj->nick_name;
-				$args->target_email_address = $obj->email_address;
-				$args->regdate = date('YmdHis');
-				$args->target_browser = $module_info->browser_title;
-				$args->notify = $this->_getNotifyId($args);
-				$output = $this->_insertNotify($args, $is_anonymous);
+				$member_info = $oMemberModel->getMemberInfoByMemberSrl($val->member_srl);
+
+				if($member_info->last_login < date('YmdHis', strtotime('-30 days'))) continue;
+
+				if($member_info->documentnotiy !== 'YES')
+				{
+					//if($member_srl == $val->member_srl) return new Object();
+					$args = new stdClass();
+					$args->member_srl = $val->member_srl;
+					$args->srl = $obj->document_srl;
+					$args->target_srl = $member_srl;
+					$args->type = $this->_TYPE_DOCUMENT;
+					$args->target_type = $this->_TYPE_DOCUMENTS;
+					$args->target_url = getNotEncodedFullUrl('', 'document_srl', $obj->document_srl);
+					$args->target_summary = cut_str(strip_tags($obj->title), 200);
+					$args->target_nick_name = $obj->nick_name;
+					$args->target_email_address = $obj->email_address;
+					$args->regdate = date('YmdHis');
+					$args->target_browser = $module_info->browser_title;
+					$args->notify = $this->_getNotifyId($args);
+					$output = $this->_insertNotify($args, $is_anonymous);
+				}
 			}
 		}
 		return new Object();
