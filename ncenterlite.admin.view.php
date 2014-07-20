@@ -5,14 +5,8 @@ class ncenterliteAdminView extends ncenterlite
 	{
 		$this->setTemplatePath($this->module_path.'tpl');
 
-		if(version_compare(__ZBXE_VERSION__, '1.7.0', '>='))
-		{
-			$this->setTemplateFile(str_replace('dispNcenterliteAdmin', '', $this->act));
-		}
-		else
-		{
-			$this->setTemplateFile(str_replace('dispNcenterliteAdmin', '', $this->act) . '.1.5');
-		}
+		$this->setTemplateFile(str_replace('dispNcenterliteAdmin', '', $this->act));
+
 	}
 
 	function dispNcenterliteAdminConfig()

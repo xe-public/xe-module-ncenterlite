@@ -35,7 +35,7 @@ class ncenterliteAdminController extends ncenterlite
 	}
 
 	/**
-	 * @brief 스킨 테스트를 위한 더미 데이터 생성
+	 * @brief 스킨 테스트를 위한 더미 데이터 생성 5개 생성
 	 **/
 	function procNcenterliteAdminInsertDummyData()
 	{
@@ -58,6 +58,10 @@ class ncenterliteAdminController extends ncenterlite
 			$output = $oNcenterliteController->_insertNotify($args);
 		}
 	}
+
+	/**
+	 * @brief 모듈 푸시 테스트를 위한 더미 데이터 생성 1개 생성
+	 **/
 	function procNcenterliteAdminInsertPushData()
 	{
 		$oNcenterliteController = getController('ncenterlite');
