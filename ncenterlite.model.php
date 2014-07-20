@@ -67,6 +67,9 @@ class ncenterliteModel extends ncenterlite
 				case 'E':
 					$str = sprintf($lang->ncenterlite_message_string, $v->target_summary);
 				break;
+				case 'T':
+					$str = sprintf('<strong>%s</strong>님! 스킨 테스트 알림을 완료했습니다.', $target_member);
+				break;
 				case 'P':
 					$str = sprintf('<strong>%s</strong>님이 <strong>%s</strong>게시판에 <strong>%s</strong>글을 남겼습니다.', $target_member, $v->target_browser, $v->target_summary);
 				break;
