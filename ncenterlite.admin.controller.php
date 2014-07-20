@@ -58,4 +58,22 @@ class ncenterliteAdminController extends ncenterlite
 			$output = $oNcenterliteController->_insertNotify($args);
 		}
 	}
+	function procNcenterliteAdminInsertPushData()
+	{
+		$oNcenterliteController = getController('ncenterlite');
+		$logged_info = Context::get('logged_info');
+
+		$args = new stdClass();
+		$args->member_srl = $logged_info->member_srl;
+		$args->srl = 1;
+		$args->target_srl = 1;
+		$args->type = $this->_TYPE_DOCUMENT;
+		$args->target_type = $this->_TYPE_COMMENT;
+		$args->target_url = getUrl('');
+		$args->target_summary = '[*] 시험용 알림입니다' . rand();
+		$args->target_nick_name = $logged_info->nick_name;
+		$args->regdate = date('YmdHis');
+		$args->notify = $oNcenterliteController->_getNotifyId($args);
+		$output = $oNcenterliteController->_insertNotify($args);
+	}
 }
