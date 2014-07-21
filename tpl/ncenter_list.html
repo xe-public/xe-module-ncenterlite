@@ -1,0 +1,54 @@
+<load target="js/ncenters_admin.js" />
+<load target="css/ncenter_admin.css" />
+
+<div class="ncenterlite">
+
+<div class="contentA">
+	<div class="expressionPink">{$lang->point_use_list}</div>
+    <table class="inquireTable" border="1" cellspacing="0">
+		<thead>
+			<tr>
+				<th scope="col">보낸사람</th>
+				<th scope="col">받은사람</th>
+				<th scope="col">내용</th>
+				<th scope="col">{$lang->date}</th>
+				<th scope="col">user</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!--@foreach($ncenterlite_list as $no => $val)-->
+			{@
+				$oMemberModel = getModel('member');
+				$member_info = $oMemberModel->getMemberInfoByMemberSrl($val->member_srl);
+			}
+			<tr>
+				<td>{$val->target_nick_name}</td>
+				<td cond="$member_info->member_srl">{$member_info->nick_name}</td> <td cond="!$member_info->member_srl">타겟없음</td>
+				<td>{$val->target_nick_name}</td>
+				<td>{$val->target_member_srl}</td>
+			</tr>
+			<!--@end-->
+			<!--@if(!$ncenterlite_list)-->
+			<tr>
+				<td colspan="8">{$lang->msg_not_exist_data}</td>
+			</tr>
+			<!--@end-->
+		</tbody>
+    </table>
+</div>
+
+<div class="ListNavigation">
+    <div class="pagination">
+        <a href="{getUrl('page','')}" class="prevEnd">{$lang->first_page}</a> 
+        <!--@while($page_no = $page_navigation->getNextPage())-->
+            <!--@if($page == $page_no)-->
+                <strong>{$page_no}</strong> 
+            <!--@else-->
+                <a href="{getUrl('page',$page_no)}">{$page_no}</a>
+            <!--@end-->
+        <!--@end-->
+        <a href="{getUrl('page',$page_navigation->last_page)}" class="nextEnd">{$lang->last_page}</a>
+    </div>
+</div>
+
+</div>

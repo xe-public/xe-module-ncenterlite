@@ -36,4 +36,24 @@ class ncenterliteAdminView extends ncenterlite
 		Context::set('mid_list', $mid_list);
 
 	}
+
+	function dispNcenterliteAdminList()
+	{
+		$oMemberModel = getModel('member');
+
+		$args = new stdClass;
+		$args->page = Context::get('page');
+		$args->list_count = '20';
+		$args->page_count = '10';
+		$output = executeQuery('ncenterlite.getAdminNotifyList', $args);
+
+		Context::set('total_count', $output->page_navigation->total_count);
+		Context::set('total_page', $output->page_navigation->total_page);
+		Context::set('page', $output->page);
+		Context::set('ncenterlite_list', $output->data);
+		Context::set('page_navigation', $output->page_navigation);
+
+		$this->setTemplateFile('ncenter_list');
+	}
+
 }
