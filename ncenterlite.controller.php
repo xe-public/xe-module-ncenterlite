@@ -75,7 +75,7 @@ class ncenterliteController extends ncenterlite
 				$member_info = $oMemberModel->getMemberInfoByMemberSrl($val->member_srl);
 				if($member_info->last_login < date('YmdHis', strtotime('-30 days'))) continue;
 				if($member_info->documentnotify ==='YES') continue;
-				//if($member_srl == $val->member_srl) return new Object();
+				if($member_srl == $val->member_srl) continue;
 				$args = new stdClass();
 				$args->member_srl = $val->member_srl;
 				$args->srl = $obj->document_srl;
@@ -112,6 +112,8 @@ class ncenterliteController extends ncenterlite
 		$notify_member_srl = array();
 
 		$document_srl = $obj->document_srl;
+		$oModuleModel = getModel('module');
+		$module_info = $oModuleModel->getModuleInfoByDocumentSrl($document_srl);
 		$comment_srl = $obj->comment_srl;
 		$parent_srl = $obj->parent_srl;
 		$content = $obj->content;
@@ -136,6 +138,7 @@ class ncenterliteController extends ncenterlite
 			$args->target_nick_name = $obj->nick_name;
 			$args->target_email_address = $obj->email_address;
 			$args->regdate = date('YmdHis');
+			$args->target_browser = $module_info->browser_title;
 			$args->notify = $this->_getNotifyId($args);
 			$output = $this->_insertNotify($args, $is_anonymous);
 			$notify_member_srl[] = $mention_member_srl;
@@ -161,6 +164,7 @@ class ncenterliteController extends ncenterlite
 				$args->target_nick_name = $obj->nick_name;
 				$args->target_email_address = $obj->email_address;
 				$args->regdate = $regdate;
+				$args->target_browser = $module_info->browser_title;
 				$args->notify = $this->_getNotifyId($args);
 				$output = $this->_insertNotify($args, $is_anonymous);
 				$notify_member_srl[] = abs($member_srl);
@@ -187,6 +191,7 @@ class ncenterliteController extends ncenterlite
 				$args->target_nick_name = $obj->nick_name;
 				$args->target_email_address = $obj->email_address;
 				$args->regdate = $regdate;
+				$args->target_browser = $module_info->browser_title;
 				$args->notify = $this->_getNotifyId($args);
 				$output = $this->_insertNotify($args, $is_anonymous);
 			}
