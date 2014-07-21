@@ -28,6 +28,7 @@ class ncenterliteController extends ncenterlite
 		$content = strip_tags($obj->title . ' ' . $obj->content);
 
 		$mention_targets = $this->_getMentionTarget($content);
+		// 여기있던 $mention_targets 관련 주석문은 새글작동에 방해되므로 삭제했음.
 
 		$oDocumentModel = getModel('document');
 		$document_srl = $obj->document_srl;
@@ -46,6 +47,7 @@ class ncenterliteController extends ncenterlite
 
 		$is_anonymous = $this->_isAnonymous($this->_TYPE_DOCUMENT, $obj);
 
+		// 맨션 알림일경우 맨션알림 시작.
 		if($mention_targets)
 		{
 			// !TODO 공용 메소드로 분리
@@ -67,14 +69,19 @@ class ncenterliteController extends ncenterlite
 				$output = $this->_insertNotify($args, $is_anonymous);
 			}
 		}
+		// 맨션알림이 아닐경우 $config->document_module_srls 에 선택된 모듈에서 새글알림 작동
 		elseif(!$mention_targets && in_array($module_info->module_srl, $config->document_module_srls))
 		{
 			if($config->document_format == 'N') return new Object();
 			foreach($members_data as $key => $val)
 			{
+				// 각맴버마다 설정을 위해 member_info호출
 				$member_info = $oMemberModel->getMemberInfoByMemberSrl($val->member_srl);
+				// 알림을 받을 맴버가, 30일간 접속이 없을 경우 패스
 				if($member_info->last_login < date('YmdHis', strtotime('-30 days'))) continue;
+				// 알림을 받을 맴버가 수신거부를 하였을 경우 패스
 				if($member_info->documentnotify ==='YES') continue;
+				// 알림을 받을 맴버가 글작성자일 경우 패스
 				if($member_srl == $val->member_srl) continue;
 				$args = new stdClass();
 				$args->member_srl = $val->member_srl;
@@ -95,6 +102,7 @@ class ncenterliteController extends ncenterlite
 		return new Object();
 	}
 
+	// 전체 맴버 불러들이기.
 	function getMemberTotal()
 	{
 		return executeQuery('ncenterlite.getMemberTotals');
