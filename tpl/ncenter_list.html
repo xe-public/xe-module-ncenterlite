@@ -1,41 +1,38 @@
-<load target="js/ncenters_admin.js" />
 <load target="css/ncenter_admin.css" />
-
-<div class="ncenterlite">
-
-<div class="contentA">
-	<div class="expressionPink">{$lang->point_use_list}</div>
-    <table class="inquireTable" border="1" cellspacing="0">
-		<thead>
-			<tr>
-				<th scope="col">보낸사람</th>
-				<th scope="col">받은사람</th>
-				<th scope="col">내용</th>
-				<th scope="col">{$lang->date}</th>
-				<th scope="col">user</th>
-			</tr>
-		</thead>
-		<tbody>
-			<!--@foreach($ncenterlite_list as $no => $val)-->
-			{@
-				$oMemberModel = getModel('member');
-				$member_info = $oMemberModel->getMemberInfoByMemberSrl($val->member_srl);
-			}
-			<tr>
-				<td>{$val->target_nick_name}</td>
-				<td cond="$member_info->member_srl">{$member_info->nick_name}</td> <td cond="!$member_info->member_srl">타겟없음</td>
-				<td>{$val->target_nick_name}</td>
-				<td>{$val->target_member_srl}</td>
-			</tr>
-			<!--@end-->
-			<!--@if(!$ncenterlite_list)-->
-			<tr>
-				<td colspan="8">{$lang->msg_not_exist_data}</td>
-			</tr>
-			<!--@end-->
-		</tbody>
-    </table>
-</div>
+<include target="header.html" />
+<h1>알림센터 목록</h1>
+<div></div>
+<table class="x_table x_table-striped x_table-hover">
+	<thead>
+		<tr>
+			<th scope="col" class="nowr" style="width:100px;">보낸사람</th>
+			<th scope="col" style="width:100px;">받은사람</th>
+			<th scope="col" style="width:500px;">내용</th>
+			<th scope="col" style="width:50px;">읽음여부</th>
+			<th scope="col" style="width:100px;">{$lang->date}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<!--@foreach($ncenterlite_list as $no => $val)-->
+		{@
+			$oMemberModel = getModel('member');
+			$member_info = $oMemberModel->getMemberInfoByMemberSrl($val->member_srl);
+		}
+		<tr>
+			<td>{$val->target_nick_name}</td>
+			<td cond="$member_info->member_srl">{$member_info->nick_name}</td> <td cond="!$member_info->member_srl">타겟없음</td>
+			<td><a href="{$val->target_url}">{$val->target_summary}</a></td>
+			<td>{$val->readed}</td>
+			<td>{$val->regdate}</td>
+		</tr>
+		<!--@end-->
+		<!--@if(!$ncenterlite_list)-->
+		<tr>
+			<td colspan="8">{$lang->msg_not_exist_data}</td>
+		</tr>
+		<!--@end-->
+	</tbody>
+</table>
 
 <div class="ListNavigation">
     <div class="pagination">
@@ -51,4 +48,3 @@
     </div>
 </div>
 
-</div>
