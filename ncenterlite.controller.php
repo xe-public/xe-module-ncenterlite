@@ -738,7 +738,7 @@ class ncenterliteController extends ncenterlite
 		if($anonymous == TRUE)
 		{
 			// 설정에서 익명 이름이 설정되어 있으면 익명 이름을 설정함. 없을 경우 Anonymous 를 사용한다.
-			if(!$config->anonymous_name && $config->anonymous_name=='')
+			if(!$config->anonymous_name || $config->anonymous_name=='')
 			{
 				$anonymous_name = 'Anonymous';
 			}
