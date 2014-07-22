@@ -26,6 +26,13 @@ class ncenterliteAdminView extends ncenterlite
 		if(!$mskin_list[$config->mskin]) $config->mskin = 'default';
 		Context::set('mcolorset_list', $mskin_list[$config->mskin]->colorset);
 
+		$oLayoutModel = getModel('layout');
+		$layout_list = $oLayoutModel->getLayoutList();
+		Context::set('layout_list', $layout_list);
+
+		$mobile_layout_list = $oLayoutModel->getLayoutList(0,'M');
+		Context::set('mlayout_list', $mobile_layout_list);
+
 		$security = new Security();
 		$security->encodeHTML('config..');
 		$security->encodeHTML('skin_list..title');
