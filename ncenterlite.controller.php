@@ -769,9 +769,6 @@ class ncenterliteController extends ncenterlite
 			$args->target_user_id = '';
 		}
 
-		$oNcenterliteModel = getModel('ncenterlite');
-		$config = $oNcenterliteModel->getConfig();
-
 		$output = executeQuery('ncenterlite.insertNotify', $args);
 
 		if($config->android_format === 'mobilepuls')
