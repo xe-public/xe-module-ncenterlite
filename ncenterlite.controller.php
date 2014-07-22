@@ -730,6 +730,8 @@ class ncenterliteController extends ncenterlite
 
 	function _insertNotify($args, $anonymous = FALSE)
 	{
+		$oNcenterliteModel = getModel('ncenterlite');
+		$config = $oNcenterliteModel->getConfig();
 		// 비회원 노티 제거
 		if($args->member_srl <= 0) return new Object();
 
