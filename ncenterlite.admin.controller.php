@@ -80,4 +80,6 @@ class ncenterliteAdminController extends ncenterlite
 		$args->notify = $oNcenterliteController->_getNotifyId($args);
 		$output = $oNcenterliteController->_insertNotify($args);
 	}
+
+	
 }
