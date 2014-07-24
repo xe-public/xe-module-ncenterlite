@@ -76,18 +76,11 @@ class ncenterliteModel extends ncenterlite
 				case 'P':
 					$str = sprintf('<strong>%s</strong>님이 <strong>%s</strong>게시판에 <strong>%s</strong>글을 남겼습니다.', $target_member, $v->target_browser, $v->target_summary);
 				break;
-			}
-
-			if($config->android_format === 'mobileplus')
-			{
-				switch($v->target_type)
-				{
-					case 'S':
-						$oDocumentModel = getModel('document');
-						$document_info = $oDocumentModel->getDocument($v->srl);
-						$str = $document_info->variables['title'];
-					break;
-				}
+				case 'S':
+					$oDocumentModel = getModel('document');
+					$document_info = $oDocumentModel->getDocument($v->srl);
+					$str = $document_info->variables['title'];
+				break;	
 			}
 
 			$v->text = $str;
