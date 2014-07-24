@@ -2,6 +2,12 @@
 <include target="header.html" />
 <h1>알림센터 목록</h1>
 <div></div>
+
+			<label class="x_control-label">모든DB 삭제</label>
+			<div class="x_controls">
+				<label><a href="{getUrl('module','admin','act','procNcenterliteAdminDeleteNofity')}" class="x_btn x_btn-primary">DB delete</a></label>
+				<p>주의 ! 이 버튼을 클릭하면 최근 알림받은 회원이 모르고 지나칠 수 있습니다. 신중히 눌러주시기 바랍니다.</p>
+			</div>
 <table class="x_table x_table-striped x_table-hover">
 	<thead>
 		<tr>
@@ -33,6 +39,8 @@
 		<!--@end-->
 	</tbody>
 </table>
+
+
 
 <div class="ListNavigation">
     <div class="pagination">

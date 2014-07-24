@@ -82,5 +82,18 @@ class ncenterliteAdminController extends ncenterlite
 		$output = $oNcenterliteController->_insertNotify($args);
 	}
 
+	function procNcenterliteAdminDeleteNofity()
+	{
+		$args = new stdClass;
+		$output = executeQuery('ncenterlite.deleteNotifyAll', $args);
+		
+
+		if(!in_array(Context::getRequestMethod(),array('XMLRPC','JSON')))
+		{
+			$returnUrl = Context::get('success_return_url') ?  Context::get('success_return_url') : getNotEncodedUrl('', 'module', 'admin', 'act', 'dispNcenterliteAdminList');
+			header('location: ' .$returnUrl);
+			return;
+		}
+	}
 	
 }
