@@ -1,14 +1,20 @@
 <load target="css/ncenter_admin.css" />
 <include target="header.html" />
+
+<form ruleset="cleanLogs" action="./" method="post">
+	<fieldset>
+		<legend>디비 삭제</legend>
+		<input type="hidden" name="module" value="ncenterlite" />
+		<input type="hidden" name="act" value="procNcenterliteAdminDeleteNofity" />
+		<button type="submit" class="x_btn">전체 삭제</button>
+		<button type="submit" name="old_date" value="{date('Ymd', strtotime('-1 month'))}" class="x_btn">1달 이전의 디비삭제</button>
+		<p style="margin-top:2px;"> 주의! DB를 삭제할 경우 회원이 알림을 확인하지 못하고 삭제되는 경우가 있으니 신중하게 선택하세요.</p>
+	</fieldset>
+</form>
+
 <h1>알림센터 목록</h1>
 <div></div>
-
-			<label class="x_control-label">모든DB 삭제</label>
-			<div class="x_controls">
-				<label><a href="{getUrl('module','admin','act','procNcenterliteAdminDeleteNofity')}" class="x_btn x_btn-primary">DB delete</a></label>
-				<p>주의 ! 이 버튼을 클릭하면 최근 알림받은 회원이 모르고 지나칠 수 있습니다. 신중히 눌러주시기 바랍니다.</p>
-			</div>
-<table class="x_table x_table-striped x_table-hover">
+<table class="x_table x_table-striped x_table-hover" style="margin-top:20px;">
 	<thead>
 		<tr>
 			<th scope="col" class="nowr" style="width:100px;">보낸사람</th>
@@ -29,7 +35,9 @@
 			<td cond="$member_info->member_srl">{$member_info->nick_name}</td> <td cond="!$member_info->member_srl">타겟없음</td>
 			<td><a href="{$val->target_url}">{$val->target_summary}</a></td>
 			<td>{$val->readed}</td>
-			<td>{$val->regdate}</td>
+			<td>{zdate($val->regdate,"Y-m-d")} </br>
+			{zdate($val->regdate,"H:i:s")}
+			</td>
 		</tr>
 		<!--@end-->
 		<!--@if(!$ncenterlite_list)-->

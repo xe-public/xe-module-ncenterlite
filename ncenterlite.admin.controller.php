@@ -84,7 +84,12 @@ class ncenterliteAdminController extends ncenterlite
 
 	function procNcenterliteAdminDeleteNofity()
 	{
+		$old_date = Context::get('old_date');
 		$args = new stdClass;
+		if($old_date)
+		{
+			$args->old_date = $old_date;
+		}
 		$output = executeQuery('ncenterlite.deleteNotifyAll', $args);
 		if(!$output->toBool())
 		{
