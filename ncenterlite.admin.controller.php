@@ -13,6 +13,7 @@ class ncenterliteAdminController extends ncenterlite
 		$config->hide_module_srls = Context::get('hide_module_srls');
 		$config->document_module_srls = context::get('document_module_srls');
 		$config->document_format = Context::get('document_format');
+		$config->android_format = Context::get('android_format');
 		if(!$config->mention_format && !is_array($config->mention_format)) $config->mention_format = array();
 
 		$config->skin = Context::get('skin');
