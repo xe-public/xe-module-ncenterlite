@@ -6,6 +6,7 @@
 		<action name="dispNcenterliteAdminConfig" type="view" admin_index="true" menu_name="ncenterlite" menu_index="true" />
 		<action name="dispNcenterliteAdminList" type="view" />
 		<action name="procNcenterliteAdminInsertConfig" type="controller" ruleset="insertConfig" />
+		<action name="procNcenterliteAdminDeleteNofity" type="controller" />
 		<action name="procNcenterliteAdminInsertDummyData" type="controller" />
 		<action name="procNcenterliteAdminInsertPushData" type="controller" />
 		<action name="procNcenterliteAdminEnviromentGatheringAgreement" type="controller" />

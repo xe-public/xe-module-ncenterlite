@@ -86,7 +86,13 @@ class ncenterliteAdminController extends ncenterlite
 	{
 		$args = new stdClass;
 		$output = executeQuery('ncenterlite.deleteNotifyAll', $args);
-		
+		if(!$output->toBool())
+		{
+			$oDB->rollback();
+			return $output;
+		}
+
+		$this->setMessage('모든 정보를 삭제하였습니다.');
 
 		if(!in_array(Context::getRequestMethod(),array('XMLRPC','JSON')))
 		{
