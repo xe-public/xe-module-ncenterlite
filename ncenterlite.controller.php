@@ -210,6 +210,10 @@ class ncenterliteController extends ncenterlite
 
 	function triggerBeforeModuleObjectProc(&$oModule)
 	{
+		if(version_compare(__ZBXE_VERSION__, '1.7.4', '>='))
+		{
+			return new Object();
+		}
 		$oNcenterliteModel = &getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
 		$vars = Context::getRequestVars();
@@ -286,6 +290,21 @@ class ncenterliteController extends ncenterlite
 				$output = $this->_insertNotify($args, $is_anonymous);
 			}
 		}
+	}
+
+	function triggerAfterSendMessage(&$trigger_obj)
+	{
+		$args = new stdClass();
+		$args->member_srl = $trigger_obj->receiver_srl;
+		$args->srl = $trigger_obj->receiver_srl;
+		$args->target_srl = $trigger_obj->receiver_srl;
+		$args->type = $this->_TYPE_MESSAGE;
+		$args->target_type = $this->_TYPE_MESSAGE;
+		$args->target_summary = $trigger_obj->title;
+		$args->regdate = date('YmdHis');
+		$args->notify = $this->_getNotifyId($args);
+		$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages');
+		$output = $this->_insertNotify($args, $is_anonymous);
 	}
 
 	function triggerAfterDeleteComment(&$obj)
