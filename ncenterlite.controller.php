@@ -793,7 +793,7 @@ class ncenterliteController extends ncenterlite
 		if($config->android_format === 'mobileplus')
 		{
 			//Edited For MobilePlus
-			ModuleHandler::triggerCall('ncenterlite_insertNotify', 'after', $args);
+			ModuleHandler::triggerCall('ncenterlite._insertNotify', 'after', $args);
 		}
 
 		return $output;
