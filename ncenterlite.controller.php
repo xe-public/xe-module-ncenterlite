@@ -210,7 +210,7 @@ class ncenterliteController extends ncenterlite
 
 	function triggerBeforeModuleObjectProc(&$oModule)
 	{
-		if(version_compare(__ZBXE_VERSION__, '1.7.4', '>='))
+		if(version_compare(__XE_VERSION__, '1.7.4', '>='))
 		{
 			return new Object();
 		}
@@ -793,7 +793,7 @@ class ncenterliteController extends ncenterlite
 		if($config->android_format === 'mobileplus')
 		{
 			//Edited For MobilePlus
-			ModuleHandler::triggerCall('ncenterlite._insertNotify', 'after', $args);
+			ModuleHandler::triggerCall('ncenterlite_insertNotify', 'after', $args);
 		}
 
 		return $output;
