@@ -301,7 +301,8 @@ class ncenterliteController extends ncenterlite
 		{
 			$args->srl = '1';
 		}
-		$args->target_srl = $trigger_obj->receiver_srl;
+		$args->target_srl = $trigger_obj->message_srl;
+		if(!$tigger_obj->message_srl) $args->targe_srl = '1';
 		$args->type = $this->_TYPE_MESSAGE;
 		$args->target_type = $this->_TYPE_MESSAGE;
 		$args->target_summary = $trigger_obj->title;
