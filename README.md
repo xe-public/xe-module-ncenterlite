@@ -14,16 +14,18 @@ XE 알림센터의 무료 버전.
 * 댓글이 작성되면 글 작성자에게 알림
 * 댓글의 댓글이 작성되면 해당 댓글 작성자에게 알림
 * '@닉네임'과 같은 형태로 지정한 회원에게 알림
+* 새로운 글이 올라올 경우 전체회원에게 알림
 
 Author
 ------
-**XE Magazine**
+**XE Public**
 
-* website : http://xmz.kr
-* email : info@xemagazine.com
+* website : https://github.com/xe-public
 
 Contributors
 ------------
+[@qw5414](http://github.com/qw5414)
+[@bnu](http://github.com/bnu)
 [@kantsoft](http://github.com/kantsoft)
 
 Thanks to
@@ -31,11 +33,14 @@ Thanks to
 [@yaho1021](https://github.com/yaho1021),
 [@mAKEkr](https://github.com/mAKEkr),
 쓰리공주,
-[@qw5414](https://github.com/qw5414)
+[@qw5414](https://github.com/qw5414),
+[@hansim](https://github.com/hansim),
+[@SeungYeonYou](https://github.com/SeungYeonYou),
+[@YJSoft](https://github.com/YJSoft)
 
 Copyright (ko)
 ---------------------
-Copyright 2013 XE Magazine.
+Copyright 2013 XE Public.
 
 이 프로그램은 자유 소프트웨어입니다. 소프트웨어의 피양도자는 자유 소프트웨어 재단이 공표한 **GNU 일반 공중 사용 허가서** 2판 또는 그 이후 판을 임의로 선택해서, 그 규정에 따라 프로그램을 개작하거나 재배포할 수 있습니다.
 
@@ -44,7 +49,7 @@ Copyright 2013 XE Magazine.
 
 Copyright (en)
 --------------
-Copyright 2013 XE Magazine.
+Copyright 2013 XE Public.
 
 This program is free software; you can redistribute it and/or modify it under the terms of the **GNU General Public License** as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 

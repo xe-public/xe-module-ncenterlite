@@ -1,0 +1,14 @@
+<div class="x_page-header">
+	<h1>XE 알림센터 Lite</h1>
+</div>
+
+<div class="header4">
+	<ul class="x_nav x_nav-tabs">
+		<li class="x_active"|cond="$act=='dispNcenterliteAdminConfig'"><a href="{getUrl('act','dispNcenterliteAdminConfig')}">환경설정</a></li>
+		<li class="x_active"|cond="$act=='dispNcenterliteAdminList'"><a href="{getUrl('act','dispNcenterliteAdminList')}">알림목록</a></li>
+	</ul>
+</div>
+
+<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>

@@ -1,0 +1,38 @@
+{
+  "name": "XE-Notification-Lite",
+  "version": "1.3.0",
+  "author": "XE Public",
+  "contributors": [
+    {
+      "name": "qw5414",
+      "email": "sosifam@070805.co.kr",
+      "url": "http://sosifam.com/"
+    },
+    {
+      "name": "BNU",
+      "email": "bnufactory@gmail.com"
+    },
+    {
+      "name": "kantsoft",
+      "email": "ikantsoft@gmail.com",
+      "url": "http://github.com/kantsoft"
+    }
+  ],
+  "keywords": ["Notification", "XpressEngine", "XE"],
+  "license": "GNU GPL",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/xe-public/xe-module-ncenterlite.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xe-public/xe-module-ncenterlite/issues"
+  },
+  "devDependencies": {
+    "grunt": ">0.4.0",
+    "grunt-phplint": "0.0.5"
+  },
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "grunt"
+  }
+}

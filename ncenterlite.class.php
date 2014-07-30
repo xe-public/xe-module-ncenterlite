@@ -1,8 +1,4 @@
 <?php
-/**
- * @author XE Magazine <info@xemagazine.com>
- * @link http://xemagazine.com/
- **/
 class ncenterlite extends ModuleObject
 {
 	// @@@@@@@@@@ 사용자 커스텀 시작
@@ -29,6 +25,8 @@ class ncenterlite extends ModuleObject
 	var $_TYPE_DOCUMENT = 'D';
 	var $_TYPE_MENTION = 'M';
 	var $_TYPE_MESSAGE = 'E'; // mEssage
+	var $_TYPE_DOCUMENTS = 'P';
+	var $_TYPE_TEST = 'T';
 
 	var $triggers = array(
 		array('comment.insertComment', 'ncenterlite', 'controller', 'triggerAfterInsertComment', 'after'),
@@ -39,6 +37,7 @@ class ncenterlite extends ModuleObject
 		array('moduleHandler.proc', 'ncenterlite', 'controller', 'triggerAfterModuleHandlerProc', 'after'),
 		array('moduleObject.proc', 'ncenterlite', 'controller', 'triggerBeforeModuleObjectProc', 'before'),
 		array('member.deleteMember', 'ncenterlite', 'controller', 'triggerAfterDeleteMember', 'after'),
+		array('communication.sendMessage', 'ncenterlite', 'controller', 'triggerAfterSendMessage', 'after'),
 	);
 
 	function _isDisable()
@@ -73,6 +72,11 @@ class ncenterlite extends ModuleObject
 			return true;
 		}
 
+		if(!$oDB->isColumnExists('ncenterlite_notify', 'target_browser'))
+		{
+			return true;
+		}
+
 		return false;
 	}
 
@@ -96,6 +100,11 @@ class ncenterlite extends ModuleObject
 			$oDB->addIndex('ncenterlite_notify', 'idx_readed', array('readed'));
 			$oDB->addIndex('ncenterlite_notify', 'idx_member_srl', array('member_srl'));
 			$oDB->addIndex('ncenterlite_notify', 'idx_regdate', array('regdate'));
+		}
+
+		if(!$oDB->isColumnExists('ncenterlite_notify','target_browser'))
+		{
+			$oDB->addColumn('ncenterlite_notify', 'target_browser', 'varchar', 50, true);
 		}
 
 		return new Object(0, 'success_updated');

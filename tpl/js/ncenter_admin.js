@@ -99,3 +99,8 @@ function doDummyDataInsert()
 	jQuery.exec_json('ncenterlite.procNcenterliteAdminInsertDummyData', {}, function completeGetDummyInfo(ret_obj){alert(ret_obj.message)});
 }
 
+function doDummyPushDataInsert()
+{
+	jQuery.exec_json('ncenterlite.procNcenterliteAdminInsertPushData', {}, function completeGetDummyPushInfo(ret_obj){alert(ret_obj.message)});
+}
+

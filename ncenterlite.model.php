@@ -1,8 +1,4 @@
 <?php
-/**
- * @author XE Magazine <info@xemagazine.com>
- * @link http://xemagazine.com/
- **/
 class ncenterliteModel extends ncenterlite
 {
 	var $config;
@@ -33,6 +29,9 @@ class ncenterliteModel extends ncenterlite
 
 	function getMyNotifyList($member_srl=null, $page=1, $readed='N')
 	{
+		$oNcenterliteModel = getModel('ncenterlite');
+		$config = $oNcenterliteModel->getConfig();
+
 		global $lang;
 
 		$output = $this->_getMyNotifyList($member_srl, $page, $readed);
@@ -69,8 +68,26 @@ class ncenterliteModel extends ncenterlite
 				break;
 				// 메시지. 쪽지
 				case 'E':
-					$str = sprintf($lang->ncenterlite_message_string, $v->target_summary);
+					if(version_compare(__XE_VERSION__, '1.7.4', '>='))
+					{
+						$str = sprintf('<strong>%s</strong>님께서 <strong>%s</strong> 메세지를 보내셨습니다.',$target_member, $v->target_summary);
+					}
+					else
+					{
+						$str = sprintf($lang->ncenterlite_message_string, $v->target_summary);
+					}
 				break;
+				case 'T':
+					$str = sprintf('<strong>%s</strong>님! 스킨 테스트 알림을 완료했습니다.', $target_member);
+				break;
+				case 'P':
+					$str = sprintf('<strong>%s</strong>님이 <strong>%s</strong>게시판에 <strong>%s</strong>글을 남겼습니다.', $target_member, $v->target_browser, $v->target_summary);
+				break;
+				case 'S':
+					$oDocumentModel = getModel('document');
+					$document_info = $oDocumentModel->getDocument($v->srl);
+					$str = $document_info->variables['title'];
+				break;	
 			}
 
 			$v->text = $str;

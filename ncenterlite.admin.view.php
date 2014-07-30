@@ -1,22 +1,10 @@
 <?php
-/**
- * @author XE Magazine <info@xemagazine.com>
- * @link http://xemagazine.com/
- **/
 class ncenterliteAdminView extends ncenterlite
 {
 	function init()
 	{
 		$this->setTemplatePath($this->module_path.'tpl');
-
-		if(version_compare(__ZBXE_VERSION__, '1.7.0', '>='))
-		{
-			$this->setTemplateFile(str_replace('dispNcenterliteAdmin', '', $this->act));
-		}
-		else
-		{
-			$this->setTemplateFile(str_replace('dispNcenterliteAdmin', '', $this->act) . '.1.5');
-		}
+		$this->setTemplateFile(str_replace('dispNcenterliteAdmin', '', $this->act));
 	}
 
 	function dispNcenterliteAdminConfig()
@@ -29,8 +17,14 @@ class ncenterliteAdminView extends ncenterlite
 		$skin_list = $oModuleModel->getSkins($this->module_path);
 		Context::set('skin_list', $skin_list);
 
+		$mskin_list = $oModuleModel->getSkins($this->module_path, "m.skins");
+		Context::set('mskin_list', $mskin_list);
+
 		if(!$skin_list[$config->skin]) $config->skin = 'default';
 		Context::set('colorset_list', $skin_list[$config->skin]->colorset);
+
+		if(!$mskin_list[$config->mskin]) $config->mskin = 'default';
+		Context::set('mcolorset_list', $mskin_list[$config->mskin]->colorset);
 
 		$security = new Security();
 		$security->encodeHTML('config..');
@@ -41,22 +35,25 @@ class ncenterliteAdminView extends ncenterlite
 
 		Context::set('mid_list', $mid_list);
 
-		// 사용환경정보 전송 확인
-		$ncenterlite_module_info = $oModuleModel->getModuleInfoXml('ncenterlite');
-		$agreement_file = FileHandler::getRealPath(sprintf('%s%s.txt', './files/ncenterlite/', $ncenterlite_module_info->version));
-
-		if(file_exists($agreement_file))
-		{
-			$agreement = FileHandler::readFile($agreement_file);
-			Context::set('_ncenterlite_env_agreement', $agreement);
-			if($agreement == 'Y')
-			{
-				$_ncenterlite_iframe_url = 'http://xmz.kr/index.php?mid=ncenterlite_iframe';
-				$_host_info = urlencode($_SERVER['HTTP_HOST']) . '-NC' . $ncenterlite_module_info->version . '-PHP' . phpversion() . '-XE' . __XE_VERSION__;
-				Context::set('_ncenterlite_iframe_url', $_ncenterlite_iframe_url . '&_host='. $_host_info);
-				Context::set('ncenterlite_module_info', $ncenterlite_module_info);
-			}
-		}
-		else Context::set('_ncenterlite_env_agreement', 'NULL');
 	}
+
+	function dispNcenterliteAdminList()
+	{
+		$oMemberModel = getModel('member');
+
+		$args = new stdClass;
+		$args->page = Context::get('page');
+		$args->list_count = '20';
+		$args->page_count = '10';
+		$output = executeQuery('ncenterlite.getAdminNotifyList', $args);
+
+		Context::set('total_count', $output->page_navigation->total_count);
+		Context::set('total_page', $output->page_navigation->total_page);
+		Context::set('page', $output->page);
+		Context::set('ncenterlite_list', $output->data);
+		Context::set('page_navigation', $output->page_navigation);
+
+		$this->setTemplateFile('ncenter_list');
+	}
+
 }
