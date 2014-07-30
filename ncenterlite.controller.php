@@ -296,7 +296,11 @@ class ncenterliteController extends ncenterlite
 	{
 		$args = new stdClass();
 		$args->member_srl = $trigger_obj->receiver_srl;
-		$args->srl = $trigger_obj->receiver_srl;
+		$args->srl = $trigger_obj->message_srl;
+		if(!$trigger_obj->message_srl)
+		{
+			$args->srl = '1';
+		}
 		$args->target_srl = $trigger_obj->receiver_srl;
 		$args->type = $this->_TYPE_MESSAGE;
 		$args->target_type = $this->_TYPE_MESSAGE;
@@ -437,6 +441,18 @@ class ncenterliteController extends ncenterlite
 					Context::close();
 					exit;
 				}
+			}
+		}
+		elseif($oModule->act == 'dispCommunicationMessages')
+		{
+			$message_srl = Context::get('message_srl');
+			$logged_info = Context::get('logged_info');
+			if($message_srl)
+			{
+				$args = new stdClass();
+				$args->target_srl = $message_srl;
+				$args->member_srl = $logged_info->member_srl;
+				executeQuery('ncenterlite.updateNotifyReadedByTargetSrl', $args);
 			}
 		}
 

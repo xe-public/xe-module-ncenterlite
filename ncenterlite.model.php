@@ -68,7 +68,14 @@ class ncenterliteModel extends ncenterlite
 				break;
 				// 메시지. 쪽지
 				case 'E':
-					$str = sprintf($lang->ncenterlite_message_string, $v->target_summary);
+					if(version_compare(__XE_VERSION__, '1.7.4', '>='))
+					{
+						$str = sprintf('<strong>%s</strong>님께서 <strong>%s</strong> 메세지를 보내셨습니다.',$target_member, $v->target_summary);
+					}
+					else
+					{
+						$str = sprintf($lang->ncenterlite_message_string, $v->target_summary);
+					}
 				break;
 				case 'T':
 					$str = sprintf('<strong>%s</strong>님! 스킨 테스트 알림을 완료했습니다.', $target_member);
