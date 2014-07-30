@@ -615,7 +615,7 @@ class ncenterliteController extends ncenterlite
 		Context::addHtmlFooter('<script type="text/javascript">');
 		if($config->message_notify != 'N') Context::addHtmlFooter('window.xeNotifyMessage = function() {};');
 		Context::addHtmlFooter('(function(){setTimeout(function(){var s = jQuery(document).scrollTop();jQuery(document).scrollTop(s-30);}, 700);})();</script>');
-		
+
 		$this->_addFile();
 		$html = $this->_getTemplate();
 		$output_display = $html . $output_display;
@@ -807,11 +807,7 @@ class ncenterliteController extends ncenterlite
 
 		$output = executeQuery('ncenterlite.insertNotify', $args);
 
-		if($config->android_format === 'mobileplus')
-		{
-			//Edited For MobilePlus
-			ModuleHandler::triggerCall('ncenterlite._insertNotify', 'after', $args);
-		}
+		ModuleHandler::triggerCall('ncenterlite._insertNotify', 'after', $args);
 
 		return $output;
 	}
