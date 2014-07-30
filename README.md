@@ -14,6 +14,7 @@ XE 알림센터의 무료 버전.
 * 댓글이 작성되면 글 작성자에게 알림
 * 댓글의 댓글이 작성되면 해당 댓글 작성자에게 알림
 * '@닉네임'과 같은 형태로 지정한 회원에게 알림
+* 새로운 글이 올라올 경우 전체회원에게 알림
 
 Author
 ------
@@ -33,7 +34,9 @@ Thanks to
 [@mAKEkr](https://github.com/mAKEkr),
 쓰리공주,
 [@qw5414](https://github.com/qw5414),
-[@hansim](https://github.com/hansim)
+[@hansim](https://github.com/hansim),
+[@SeungYeonYou](https://github.com/SeungYeonYou),
+[@YJSoft](https://github.com/YJSoft)
 
 Copyright (ko)
 ---------------------
