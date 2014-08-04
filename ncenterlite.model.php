@@ -90,7 +90,7 @@ class ncenterliteModel extends ncenterlite
 					}
 					else
 					{
-						$str = sprintf('<strong>%s</strong>님이 <strong>"%s"</strong>글을 남겼습니다.', $target_member, $v->target_browser, $v->target_summary);
+						$str = sprintf('<strong>%s</strong>님이 <strong>"%s"</strong>글을 남겼습니다.', $target_member, $v->target_summary);
 					}
 				break;	
 			}
