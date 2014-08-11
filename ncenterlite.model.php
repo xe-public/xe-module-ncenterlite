@@ -92,7 +92,10 @@ class ncenterliteModel extends ncenterlite
 					{
 						$str = sprintf('<strong>%s</strong>님이 <strong>"%s"</strong>글을 남겼습니다.', $target_member, $v->target_summary);
 					}
-				break;	
+				break;
+				case 'V':
+					$str = sprintf('<strong>%s</strong>님이 <strong>"%s"</strong>글을 추천하였습니다.', $target_member, $v->target_summary);
+				break;
 			}
 
 			$v->text = $str;

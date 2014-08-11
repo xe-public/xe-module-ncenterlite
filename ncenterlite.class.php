@@ -26,6 +26,7 @@ class ncenterlite extends ModuleObject
 	var $_TYPE_MENTION = 'M'; // 멘션
 	var $_TYPE_MESSAGE = 'E'; // 쪽지 mEssage
 	var $_TYPE_DOCUMENTS = 'P'; // 글 작성 알림
+	var $_TYPE_VOTED = 'V'; // 추천글 안내 알림
 	var $_TYPE_TEST = 'T';
 
 	var $triggers = array(
@@ -38,6 +39,7 @@ class ncenterlite extends ModuleObject
 		array('moduleObject.proc', 'ncenterlite', 'controller', 'triggerBeforeModuleObjectProc', 'before'),
 		array('member.deleteMember', 'ncenterlite', 'controller', 'triggerAfterDeleteMember', 'after'),
 		array('communication.sendMessage', 'ncenterlite', 'controller', 'triggerAfterSendMessage', 'after'),
+		array('document.updateVotedCount', 'ncenterlite', 'controller', 'triggerAfterVotedupdate', 'after'),
 		);
 
 	function _isDisable()
