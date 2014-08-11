@@ -3,6 +3,7 @@
 
 	<column name="srl" type="number" size="11" notnull="notnull" breif="이벤트 대상의 상위 srl" />
 	<column name="target_srl" type="number" size="11" notnull="notnull" breif="이벤트 대상 srl(문서/댓글)" />
+	<column name="target_p_srl" type="number" size="11" notnull="notnull" breif="이벤트 대상 srl(문서/댓글) 대댓글의 경우 앞전 댓글" />
 	<column name="type" type="char" size="1" notnull="notnull" breif="이벤트 대상 타입" />
 	<column name="target_type" type="char" size="1" notnull="notnull" breif="이벤트 타입" />
 

@@ -79,6 +79,11 @@ class ncenterlite extends ModuleObject
 			return true;
 		}
 
+		if(!$oDB->isColumnExists('ncenterlite_notify', 'target_p_srl'))
+		{
+			return true;
+		}
+
 		return false;
 	}
 
@@ -107,6 +112,11 @@ class ncenterlite extends ModuleObject
 		if(!$oDB->isColumnExists('ncenterlite_notify','target_browser'))
 		{
 			$oDB->addColumn('ncenterlite_notify', 'target_browser', 'varchar', 50, true);
+		}
+
+		if(!$oDB->isColumnExists('ncenterlite_notify','target_p_srl'))
+		{
+			$oDB->addColumn('ncenterlite_notify', 'target_p_srl', 'number', 10, true);
 		}
 
 		return new Object(0, 'success_updated');
