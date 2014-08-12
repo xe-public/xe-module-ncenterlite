@@ -833,7 +833,6 @@ class ncenterliteController extends ncenterlite
 		}
 
 		$output = executeQuery('ncenterlite.insertNotify', $args);
-		debugPrint($args);
 
 		ModuleHandler::triggerCall('ncenterlite._insertNotify', 'after', $args);
 
