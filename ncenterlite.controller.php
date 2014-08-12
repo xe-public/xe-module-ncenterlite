@@ -56,6 +56,7 @@ class ncenterliteController extends ncenterlite
 				$args = new stdClass();
 				$args->member_srl = $mention_member_srl;
 				$args->srl = $obj->document_srl;
+				$args->target_p_srl = $obj->documentl_srl;
 				$args->target_srl = $mention_member_srl;
 				$args->type = $this->_TYPE_DOCUMENT;
 				$args->target_type = $this->_TYPE_MENTION;
@@ -86,6 +87,7 @@ class ncenterliteController extends ncenterlite
 				$args = new stdClass();
 				$args->member_srl = $val->member_srl;
 				$args->srl = $obj->document_srl;
+				$args->target_p_srl = $obj->document_srl;
 				$args->target_srl = $member_srl;
 				$args->type = $this->_TYPE_DOCUMENT;
 				$args->target_type = $this->_TYPE_DOCUMENTS;
@@ -137,6 +139,7 @@ class ncenterliteController extends ncenterlite
 		{
 			$args = new stdClass();
 			$args->member_srl = $mention_member_srl;
+			$args->target_p_srl = $obj->commnet_srl;
 			$args->srl = $obj->comment_srl;
 			$args->target_srl = $mention_member_srl;
 			$args->type = $this->_TYPE_COMMENT;
@@ -163,8 +166,9 @@ class ncenterliteController extends ncenterlite
 			{
 				$args = new stdClass();
 				$args->member_srl = abs($member_srl);
-				$args->srl = $parent_srl;
-				$args->target_srl = $comment_srl;
+				$args->srl = $commnet_srl;
+				$args->target_p_srl = $parent_srl;
+				$args->target_srl = $document_srl;
 				$args->type = $this->_TYPE_COMMENT;
 				$args->target_type = $this->_TYPE_COMMENT;
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
@@ -178,7 +182,7 @@ class ncenterliteController extends ncenterlite
 				$notify_member_srl[] = abs($member_srl);
 			}
 		}
-
+		// 대댓글이 아니고, 게시글의 댓글을 남길 경우
 		if(!$parent_srl || ($parent_srl && $config->document_notify == 'all-comment'))
 		{
 			$oDocumentModel = &getModel('document');
@@ -190,8 +194,9 @@ class ncenterliteController extends ncenterlite
 			{
 				$args = new stdClass();
 				$args->member_srl = abs($member_srl);
-				$args->srl = $document_srl;
-				$args->target_srl = $comment_srl;
+				$args->srl = $comment_srl;
+				$args->target_p_srl = $comment_srl;
+				$args->target_srl = $document_srl;
 				$args->type = $this->_TYPE_DOCUMENT;
 				$args->target_type = $this->_TYPE_COMMENT;
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
@@ -267,6 +272,7 @@ class ncenterliteController extends ncenterlite
 				$args->member_srl = $logged_info->member_srl;
 				$args->srl = $sender_member_info->member_srl;
 				if(!$args->srl) $args->srl = 0;
+				$args->target_p_srl = 1;
 				$args->target_srl = $sender_member_info->member_srl;
 				if(!$args->srl) $args->target_srl = 0;
 				$args->type = $this->_TYPE_MESSAGE;
@@ -301,6 +307,7 @@ class ncenterliteController extends ncenterlite
 		{
 			$args->srl = '1';
 		}
+		$args->target_p_srl = '1';
 		$args->target_srl = $trigger_obj->related_srl;
 		if(!$tigger_obj->related_srl) $args->targe_srl = '1';
 		$args->type = $this->_TYPE_MESSAGE;
@@ -320,6 +327,7 @@ class ncenterliteController extends ncenterlite
 		$args = new stdClass();
 		$args->member_srl = $obj->member_srl;
 		$args->srl = $obj->document_srl;
+		$args->target_p_srl = '1';
 		$args->target_srl = $obj->document_srl;
 		$args->type = $this->_TYPE_DOCUMENT;
 		$args->target_type = $this->_TYPE_VOTED;
@@ -395,7 +403,7 @@ class ncenterliteController extends ncenterlite
 			$oDocument = Context::get('oDocument');
 			$logged_info = Context::get('logged_info');
 
-			if($document_srl && $logged_info)
+			if($document_srl && $logged_info && $config->document_read=='Y')
 			{
 				$args->target_srl = $document_srl;
 				$args->member_srl = $logged_info->member_srl;
@@ -504,6 +512,7 @@ class ncenterliteController extends ncenterlite
 				$args->type = $type;
 				$args->target_type = $this->_TYPE_COMMENT;
 				$args->target_srl = $vars->parent_srl;
+				$args->target_p_srl = '1';
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $vars->document_srl, '_comment_srl', $vars->parent_srl) . '#comment_'. $vars->parent_srl;
 				$args->target_summary = cut_str(strip_tags($vars->content), 200);
 				$args->target_nick_name = $logged_info->nick_name;
@@ -824,6 +833,7 @@ class ncenterliteController extends ncenterlite
 		}
 
 		$output = executeQuery('ncenterlite.insertNotify', $args);
+		debugPrint($args);
 
 		ModuleHandler::triggerCall('ncenterlite._insertNotify', 'after', $args);
 

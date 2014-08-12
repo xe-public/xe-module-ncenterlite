@@ -17,5 +17,6 @@
 		<column name="target_browser" var="target_browser" />
 		<column name="target_url" var="target_url" notnull="notnull" />
 		<column name="regdate" var="regdate" />
+		<column name="target_p_srl" var="target_p_srl" filter="number" />
 	</columns>
 </query>
