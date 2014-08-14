@@ -260,7 +260,7 @@ class ncenterliteController extends ncenterlite
 				$message_count = $output->data->count;
 
 				// 기존 쪽지 알림을 읽은 것으로 변경
-				$cond = null;
+				$cond = new stdClass();
 				$cond->type = $this->_TYPE_MESSAGE;
 				$cond->member_srl = $logged_info->member_srl;
 				$output = executeQuery('ncenterlite.updateNotifyReadedByType', $cond);
@@ -283,15 +283,7 @@ class ncenterliteController extends ncenterlite
 				$args->target_member_srl = $sender_member_info->member_srl;
 				$args->regdate = date('YmdHis');
 				$args->notify = $this->_getNotifyId($args);
-
-				if($this->message_mid)
-				{
-					$args->target_url = getNotEncodedFullUrl('', 'mid', $this->message_mid, 'act', 'dispCommunicationMessages');
-				}
-				else
-				{
-					$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages');
-				}
+				$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages');
 
 				$output = $this->_insertNotify($args, $is_anonymous);
 			}
@@ -300,23 +292,25 @@ class ncenterliteController extends ncenterlite
 
 	function triggerAfterSendMessage(&$trigger_obj)
 	{
-		$args = new stdClass();
-		$args->member_srl = $trigger_obj->receiver_srl;
-		$args->srl = $trigger_obj->related_srl;
-		if(!$trigger_obj->related_srl)
+		$oNcenterliteModel = getModel('ncenterlite');
+		$config = $oNcenterliteModel->getConfig();
+
+		if($config->message_notify != 'N')
 		{
-			$args->srl = '1';
+			$args = new stdClass();
+			$args->member_srl = $trigger_obj->receiver_srl;
+			$args->srl = $trigger_obj->related_srl;
+			$args->target_p_srl = '1';
+			$args->target_srl = $trigger_obj->message_srl;
+			$args->type = $this->_TYPE_MESSAGE;
+			$args->target_type = $this->_TYPE_MESSAGE;
+			$args->target_summary = $trigger_obj->title;
+			$args->regdate = date('YmdHis');
+			$args->notify = $this->_getNotifyId($args);
+			$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages', 'message_srl', $trigger_obj->related_srl);
+			$output = $this->_insertNotify($args, $is_anonymous);
+		
 		}
-		$args->target_p_srl = '1';
-		$args->target_srl = $trigger_obj->related_srl;
-		if(!$tigger_obj->related_srl) $args->targe_srl = '1';
-		$args->type = $this->_TYPE_MESSAGE;
-		$args->target_type = $this->_TYPE_MESSAGE;
-		$args->target_summary = $trigger_obj->title;
-		$args->regdate = date('YmdHis');
-		$args->notify = $this->_getNotifyId($args);
-		$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages');
-		$output = $this->_insertNotify($args, $is_anonymous);
 	}
 
 	function triggerAfterVotedupdate(&$obj)
