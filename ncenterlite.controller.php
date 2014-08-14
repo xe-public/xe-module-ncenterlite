@@ -300,6 +300,7 @@ class ncenterliteController extends ncenterlite
 			$args = new stdClass();
 			$args->member_srl = $trigger_obj->receiver_srl;
 			$args->srl = $trigger_obj->related_srl;
+			if($trigger_obj->related_srl) $args->srl = $trigger_obj->message_srl+1;
 			$args->target_p_srl = '1';
 			$args->target_srl = $trigger_obj->message_srl;
 			$args->type = $this->_TYPE_MESSAGE;
