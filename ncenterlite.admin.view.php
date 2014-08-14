@@ -11,8 +11,16 @@ class ncenterliteAdminView extends ncenterlite
 	{
 		$oModuleModel = &getModel('module');
 		$oNcenterliteModel = &getModel('ncenterlite');
+		$oLayoutModel = getModel('layout');
+
 		$config = $oNcenterliteModel->getConfig();
 		Context::set('config', $config);
+
+		$layout_list = $oLayoutModel->getLayoutList();
+		Context::set('layout_list', $layout_list);
+
+		$mobile_layout_list = $oLayoutModel->getLayoutList(0, 'M');
+		Context::set('mlayout_list', $mobile_layout_list);
 
 		$skin_list = $oModuleModel->getSkins($this->module_path);
 		Context::set('skin_list', $skin_list);
