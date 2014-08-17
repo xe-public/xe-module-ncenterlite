@@ -221,6 +221,8 @@ class ncenterliteController extends ncenterlite
 		}
 		$oNcenterliteModel = &getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
+		if($config->use != 'Y') return new Object();
+
 		$vars = Context::getRequestVars();
 		$logged_info = Context::get('logged_info');
 
@@ -294,6 +296,7 @@ class ncenterliteController extends ncenterlite
 	{
 		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
+		if($config->use != 'Y') return new Object();
 
 		if($config->message_notify != 'N')
 		{
@@ -321,22 +324,21 @@ class ncenterliteController extends ncenterlite
 
 		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
+		if($config->use != 'Y') return new Object();
 
-		if($config->message_notify != 'N')
-		{
-			$args = new stdClass();
-			$args->member_srl = $obj->member_srl;
-			$args->srl = $obj->document_srl;
-			$args->target_p_srl = '1';
-			$args->target_srl = $obj->document_srl;
-			$args->type = $this->_TYPE_DOCUMENT;
-			$args->target_type = $this->_TYPE_VOTED;
-			$args->target_summary = $oDocument->get('title');
-			$args->regdate = date('YmdHis');
-			$args->notify = $this->_getNotifyId($args);
-			$args->target_url = getNotEncodedFullUrl('', 'document_srl', $obj->document_srl);
-			$output = $this->_insertNotify($args, $is_anonymous);
-		}
+		$args = new stdClass();
+		$args->member_srl = $obj->member_srl;
+		$args->srl = $obj->document_srl;
+		$args->target_p_srl = '1';
+		$args->target_srl = $obj->document_srl;
+		$args->type = $this->_TYPE_DOCUMENT;
+		$args->target_type = $this->_TYPE_VOTED;
+		$args->target_summary = $oDocument->get('title');
+		$args->regdate = date('YmdHis');
+		$args->notify = $this->_getNotifyId($args);
+		$args->target_url = getNotEncodedFullUrl('', 'document_srl', $obj->document_srl);
+		$output = $this->_insertNotify($args, $is_anonymous);
+
 	}
 
 	function triggerAfterDeleteComment(&$obj)
