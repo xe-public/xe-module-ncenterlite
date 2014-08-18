@@ -1,4 +1,4 @@
-<query id="getNotifyList" action="select">
+<query id="getDispNotifyList" action="select">
 	<tables>
 		<table name="ncenterlite_notify" />
 	</tables>
