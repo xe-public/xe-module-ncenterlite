@@ -40,6 +40,7 @@ class ncenterlite extends ModuleObject
 		array('member.deleteMember', 'ncenterlite', 'controller', 'triggerAfterDeleteMember', 'after'),
 		array('communication.sendMessage', 'ncenterlite', 'controller', 'triggerAfterSendMessage', 'after'),
 		array('document.updateVotedCount', 'ncenterlite', 'controller', 'triggerAfterVotedupdate', 'after'),
+		array('moduleHandler.init', 'ncenterlite', 'controller', 'triggerAddMemberMenu', 'after'),
 		);
 
 	function _isDisable()

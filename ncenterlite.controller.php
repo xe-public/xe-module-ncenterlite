@@ -651,6 +651,16 @@ class ncenterliteController extends ncenterlite
 		$output_display = $html . $output_display;
 	}
 
+	function triggerAddMemberMenu()
+	{
+		if(!Context::get('is_logged')) return new Object();
+		$target_srl = Context::get('target_srl');
+
+		$oMemberController = &getController('member');
+		$oMemberController->addMemberMenu('dispNcenterliteNotifyList', '내 알림 목록');
+		return new Object();
+	}
+
 	function _addFile()
 	{
 		$oModuleModel = &getModel('module');

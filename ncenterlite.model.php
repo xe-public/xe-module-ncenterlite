@@ -157,6 +157,23 @@ class ncenterliteModel extends ncenterlite
 		return $output;
 	}
 
+	function getMyDispNotifyList($member_srl)
+	{
+		$logged_info = Context::get('logged_info');
+		if(!$member_srl)
+		{
+			$member_srl = $logged_info->member_srl;
+		}
+
+		$args = new stdClass();
+		$args->member_srl = $member_srl;
+		$args->page = '1';
+		$output = executeQueryArray('ncenterlite.getDispNotifyList', $args);
+		if(!$output->data) $output->data = array();
+
+		return $output;
+	}
+
 	function _getNewCount($member_srl=null)
 	{
 		if(!$member_srl)

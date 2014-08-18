@@ -117,7 +117,7 @@
 			<div class="x_controls">
 				<select name="layout_srl" id="layout_srl">
 					<option value="0">{$lang->notuse}</option>
-					<option loop="$layout_list => $key, $val" value="{$key}" selected="selected"|cond="$config->layout_srl==$key">{$val->title} ({$val->layout})</option>
+					<option loop="$layout_list => $key, $val" value="{$val->layout_srl}" selected="selected"|cond="$config->layout_srl==$val->layout_srl">{$val->title} ({$val->layout})</option>
 				</select>
 				<a href="#aboutLayout" data-toggle class="x_icon-question-sign">{$lang->help}</a>
 				<p class="x_help-block" id="aboutLayout" hidden>{$lang->about_layout}</p>

@@ -1,0 +1,41 @@
+<load target="css/notify.css" />
+<table class="bd_lst bd_tb_lst bd_tb" style="margin-top:20px;">
+	<thead class="bg_f_f9">
+		<tr>
+			<th scope="col" class="nowr" style="width:100px;">보낸사람</th>
+			<th scope="col" style="width:100px;">받은사람</th>
+			<th scope="col" style="width:500px;">내용</th>
+			<th scope="col" style="width:50px;">읽음여부</th>
+			<th scope="col" style="width:100px;">{$lang->date}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<!--@foreach($ncenterlite_list as $no => $val)-->
+		{@
+			$oMemberModel = getModel('member');
+			$member_info = $oMemberModel->getMemberInfoByMemberSrl($val->member_srl);
+		}
+		<tr>
+			<td>{$val->target_nick_name}</td>
+			<td cond="$member_info->member_srl">{$member_info->nick_name}</td> <td cond="!$member_info->member_srl">타겟없음</td>
+			<td><a href="{$val->target_url}">{$val->target_summary}</a></td>
+			<td>{$val->readed}</td>
+			<td>
+				{zdate($val->regdate,"Y-m-d")}
+				</br>
+				{zdate($val->regdate,"H:i:s")}
+			</td>
+		</tr>
+		<!--@endforeach-->
+	</tbody>
+</table>
+
+<form action="./" method="get" class="bd_pg clear">
+	<a href="{getUrl('page','','module_srl','')}" class="direction">‹ Prev</a>
+	<!--@while($page_no = $page_navigation->getNextPage())-->
+	<strong class="this" cond="$page==$page_no">{$page_no}</strong> 
+	<a href="{getUrl('page',$page_no,'module_srl','')}" cond="$page!=$page_no">{$page_no}</a>
+	<!--@end-->
+	<a href="{getUrl('page',$page_navigation->last_page,'module_srl','')}" class="direction">Next ›</a>
+</form>
+
