@@ -35,7 +35,19 @@ class ncenterliteModel extends ncenterlite
 
 		global $lang;
 
-		$output = $this->_getMyNotifyList($member_srl, $page, $readed);
+		$act = Context::get('act');
+		if($act=='dispNcenterliteNotifyList')
+		{
+			$output = $this->getMyDispNotifyList($member_srl);
+		}
+		elseif($act=='dispNcenterliteAdminList')
+		{
+			$output = $this->getNcenterliteAdminList();
+		}
+		else
+		{
+			$output = $this->_getMyNotifyList($member_srl, $page, $readed);
+		}
 		$oMemberModel = &getModel('member');
 		$list = $output->data;
 
@@ -159,16 +171,33 @@ class ncenterliteModel extends ncenterlite
 
 	function getMyDispNotifyList($member_srl)
 	{
+
 		$logged_info = Context::get('logged_info');
-		if(!$member_srl)
-		{
-			$member_srl = $logged_info->member_srl;
-		}
+
+		$member_srl = $logged_info->member_srl;
 
 		$args = new stdClass();
+		$args->page = Context::get('page');
+		$args->list_count = '20';
+		$args->page_count = '10';
 		$args->member_srl = $member_srl;
-		$args->page = '1';
 		$output = executeQueryArray('ncenterlite.getDispNotifyList', $args);
+		if(!$output->data) $output->data = array();
+
+		return $output;
+	}
+
+	function getNcenterliteAdminList($member_srl)
+	{
+		$logged_info = Context::get('logged_info');
+
+		$member_srl = $logged_info->member_srl;
+
+		$args = new stdClass();
+		$args->page = Context::get('page');
+		$args->list_count = '20';
+		$args->page_count = '10';
+		$output = executeQueryArray('ncenterlite.getAdminNotifyList', $args);
 		if(!$output->data) $output->data = array();
 
 		return $output;

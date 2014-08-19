@@ -47,13 +47,9 @@ class ncenterliteAdminView extends ncenterlite
 
 	function dispNcenterliteAdminList()
 	{
-		$oMemberModel = getModel('member');
+		$oNcenterliteModel = getModel('ncenterlite');
 
-		$args = new stdClass;
-		$args->page = Context::get('page');
-		$args->list_count = '20';
-		$args->page_count = '10';
-		$output = executeQuery('ncenterlite.getAdminNotifyList', $args);
+		$output = $oNcenterliteModel->getMyNotifyList();
 
 		Context::set('total_count', $output->page_navigation->total_count);
 		Context::set('total_page', $output->page_navigation->total_page);

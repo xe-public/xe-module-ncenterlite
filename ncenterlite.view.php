@@ -28,14 +28,8 @@ class ncenterliteView extends ncenterlite
 	function dispNcenterliteNotifyList()
 	{
 		$oNcenterliteModel = getModel('ncenterlite');
-		$logged_info = Context::get('logged_info');
 
-		$args = new stdClass();
-		$args->member_srl = $logged_info->member_srl;
-		$args->page = Context::get('page');
-		$args->list_count = '20';
-		$args->page_count = '10';
-		$output = executeQueryArray('ncenterlite.getDispNotifyList', $args);
+		$output = $oNcenterliteModel->getMyNotifyList();
 
 		Context::set('total_count', $output->page_navigation->total_count);
 		Context::set('total_page', $output->page_navigation->total_page);

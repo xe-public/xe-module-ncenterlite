@@ -18,7 +18,7 @@
 		<tr>
 			<td>{$val->target_nick_name}</td>
 			<td cond="$member_info->member_srl">{$member_info->nick_name}</td> <td cond="!$member_info->member_srl">타겟없음</td>
-			<td><a href="{$val->target_url}">{$val->target_summary}</a></td>
+			<td><a href="{$val->target_url}">{$val->text}</a></td>
 			<td>{$val->readed}</td>
 			<td>
 				{zdate($val->regdate,"Y-m-d")}
