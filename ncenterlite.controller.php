@@ -555,8 +555,12 @@ class ncenterliteController extends ncenterlite
 
 	function triggerBeforeDisplay(&$output_display)
 	{
+		$act = Context::get('act');
 		// 팝업창이면 중지
 		if(Context::get('ncenterlite_is_popup')) return;
+
+		// 자신의 알림목록을 보고 있을 경우엔 알림센터창을 띄우지 않는다.
+		if($act == 'dispNcenterliteNotifyList') return;
 
 		if(count($this->disable_notify_bar_act))
 		{
