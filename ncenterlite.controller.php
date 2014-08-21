@@ -297,23 +297,45 @@ class ncenterliteController extends ncenterlite
 		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
 		if($config->use != 'Y') return new Object();
-
-		if($config->message_notify != 'N')
+		if(version_compare(__XE_VERSION__, '1.8', '>='))
 		{
-			$args = new stdClass();
-			$args->member_srl = $trigger_obj->receiver_srl;
-			$args->srl = $trigger_obj->related_srl;
-			if($trigger_obj->related_srl) $args->srl = $trigger_obj->message_srl+1;
-			$args->target_p_srl = '1';
-			$args->target_srl = $trigger_obj->message_srl;
-			$args->type = $this->_TYPE_MESSAGE;
-			$args->target_type = $this->_TYPE_MESSAGE;
-			$args->target_summary = $trigger_obj->title;
-			$args->regdate = date('YmdHis');
-			$args->notify = $this->_getNotifyId($args);
-			$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages', 'message_srl', $trigger_obj->related_srl);
-			$output = $this->_insertNotify($args, $is_anonymous);
-		
+			if($config->message_notify != 'N')
+			{
+				$args = new stdClass();
+				$args->member_srl = $trigger_obj->receiver_srl;
+				$args->srl = $trigger_obj->related_srl;
+				$args->target_p_srl = '1';
+				$args->target_srl = $trigger_obj->message_srl;
+				$args->type = $this->_TYPE_MESSAGE;
+				$args->target_type = $this->_TYPE_MESSAGE;
+				$args->target_summary = $trigger_obj->title;
+				$args->regdate = date('YmdHis');
+				$args->notify = $this->_getNotifyId($args);
+				$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages', 'message_srl', $trigger_obj->related_srl);
+				$output = $this->_insertNotify($args, $is_anonymous);
+				debugPrint($output);
+				debugPrint($trigger_obj);
+			}
+		}
+		else
+		{
+			if($config->message_notify != 'N')
+			{
+				$args = new stdClass();
+				$args->member_srl = $trigger_obj->receiver_srl;
+				$args->srl = $trigger_obj->receiver_srl;
+				$args->target_p_srl = '1';
+				$args->target_srl = $trigger_obj->sender_srl;
+				$args->type = $this->_TYPE_MESSAGE;
+				$args->target_type = $this->_TYPE_MESSAGE;
+				$args->target_summary = $trigger_obj->title;
+				$args->regdate = date('YmdHis');
+				$args->notify = $this->_getNotifyId($args);
+				$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages');
+				$output = $this->_insertNotify($args, $is_anonymous);
+				debugPrint($output);
+				debugPrint($trigger_obj);
+			}
 		}
 	}
 
