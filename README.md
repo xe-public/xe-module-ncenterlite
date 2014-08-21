@@ -1,5 +1,7 @@
 XpressEngine(XE) Notification Center *Lite*
 ==========================================
+[![Latest release](http://img.shields.io/github/release/xe-public/xe-module-ncenterlite.svg)](https://github.com/qw5414/attendance/releases)
+[![License](http://img.shields.io/badge/license-GNU%20LGPL-brightgreen.svg)](http://www.gnu.org/licenses/gpl.html)
 
 XE 알림센터의 무료 버전.
 
@@ -16,27 +18,25 @@ XE 알림센터의 무료 버전.
 * '@닉네임'과 같은 형태로 지정한 회원에게 알림
 * 새로운 글이 올라올 경우 전체회원에게 알림
 
-Author
+Maintainers
 ------
-**XE Public**
-
 * website : https://github.com/xe-public
+
+[BJ람보](http://github.com/qw5414),
+[BNU](http://github.com/bnu)
 
 Contributors
 ------------
-[@qw5414](http://github.com/qw5414)
-[@bnu](http://github.com/bnu)
-[@kantsoft](http://github.com/kantsoft)
+[kantsoft](http://github.com/kantsoft),
+[hansim](https://github.com/hansim),
+[SeungYeonYou](https://github.com/SeungYeonYou),
+[YJSoft](https://github.com/YJSoft)
 
 Thanks to
 ---------
-[@yaho1021](https://github.com/yaho1021),
-[@mAKEkr](https://github.com/mAKEkr),
-쓰리공주,
-[@qw5414](https://github.com/qw5414),
-[@hansim](https://github.com/hansim),
-[@SeungYeonYou](https://github.com/SeungYeonYou),
-[@YJSoft](https://github.com/YJSoft)
+[yaho1021](https://github.com/yaho1021),
+[mAKEkr](https://github.com/mAKEkr),
+쓰리공주
 
 Copyright (ko)
 ---------------------

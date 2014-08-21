@@ -17,6 +17,7 @@ class ncenterliteModel extends ncenterlite
 			if(!$config->document_notify) $config->document_notify = 'direct-comment';
 			if(!$config->hide_module_srls) $config->hide_module_srls = array();
 			if(!is_array($config->hide_module_srls)) $config->hide_module_srls = explode('|@|', $config->hide_module_srls);
+			if(!$config->docuiment_read) $config->document_read = 'N';
 
 			if(!$config->skin) $config->skin = 'default';
 			if(!$config->colorset) $config->colorset = 'black';
@@ -34,7 +35,19 @@ class ncenterliteModel extends ncenterlite
 
 		global $lang;
 
-		$output = $this->_getMyNotifyList($member_srl, $page, $readed);
+		$act = Context::get('act');
+		if($act=='dispNcenterliteNotifyList')
+		{
+			$output = $this->getMyDispNotifyList($member_srl);
+		}
+		elseif($act=='dispNcenterliteAdminList')
+		{
+			$output = $this->getNcenterliteAdminList();
+		}
+		else
+		{
+			$output = $this->_getMyNotifyList($member_srl, $page, $readed);
+		}
 		$oMemberModel = &getModel('member');
 		$list = $output->data;
 
@@ -81,13 +94,21 @@ class ncenterliteModel extends ncenterlite
 					$str = sprintf('<strong>%s</strong>님! 스킨 테스트 알림을 완료했습니다.', $target_member);
 				break;
 				case 'P':
-					$str = sprintf('<strong>%s</strong>님이 <strong>%s</strong>게시판에 <strong>%s</strong>글을 남겼습니다.', $target_member, $v->target_browser, $v->target_summary);
+					$str = sprintf('<strong>%s</strong>님이 <strong>"%s"</strong>게시판에 <strong>%s</strong>글을 남겼습니다.', $target_member, $v->target_browser, $v->target_summary);
 				break;
 				case 'S':
-					$oDocumentModel = getModel('document');
-					$document_info = $oDocumentModel->getDocument($v->srl);
-					$str = $document_info->variables['title'];
-				break;	
+					if($v->target_browser)
+					{
+						$str = sprintf('<strong>%s</strong>님이 <strong>"%s"</strong>게시판에 <strong>"%s"</strong>글을 남겼습니다.', $target_member, $v->target_browser, $v->target_summary);
+					}
+					else
+					{
+						$str = sprintf('<strong>%s</strong>님이 <strong>"%s"</strong>글을 남겼습니다.', $target_member, $v->target_summary);
+					}
+				break;
+				case 'V':
+					$str = sprintf('<strong>%s</strong>님이 <strong>"%s"</strong>글을 추천하였습니다.', $target_member, $v->target_summary);
+				break;
 			}
 
 			$v->text = $str;
@@ -143,6 +164,40 @@ class ncenterliteModel extends ncenterlite
 		$args->page = $page ? $page : 1;
 		if($readed) $args->readed = $readed;
 		$output = executeQueryArray('ncenterlite.getNotifyList', $args);
+		if(!$output->data) $output->data = array();
+
+		return $output;
+	}
+
+	function getMyDispNotifyList($member_srl)
+	{
+
+		$logged_info = Context::get('logged_info');
+
+		$member_srl = $logged_info->member_srl;
+
+		$args = new stdClass();
+		$args->page = Context::get('page');
+		$args->list_count = '20';
+		$args->page_count = '10';
+		$args->member_srl = $member_srl;
+		$output = executeQueryArray('ncenterlite.getDispNotifyList', $args);
+		if(!$output->data) $output->data = array();
+
+		return $output;
+	}
+
+	function getNcenterliteAdminList($member_srl)
+	{
+		$logged_info = Context::get('logged_info');
+
+		$member_srl = $logged_info->member_srl;
+
+		$args = new stdClass();
+		$args->page = Context::get('page');
+		$args->list_count = '20';
+		$args->page_count = '10';
+		$output = executeQueryArray('ncenterlite.getAdminNotifyList', $args);
 		if(!$output->data) $output->data = array();
 
 		return $output;

@@ -21,11 +21,12 @@ class ncenterlite extends ModuleObject
 	// @@@@@@@@@@ 사용자 커스텀 끝
 
 
-	var $_TYPE_COMMENT = 'C';
-	var $_TYPE_DOCUMENT = 'D';
-	var $_TYPE_MENTION = 'M';
-	var $_TYPE_MESSAGE = 'E'; // mEssage
-	var $_TYPE_DOCUMENTS = 'P';
+	var $_TYPE_DOCUMENT = 'D'; // 댓글
+	var $_TYPE_COMMENT = 'C'; // 댓글의 댓글
+	var $_TYPE_MENTION = 'M'; // 멘션
+	var $_TYPE_MESSAGE = 'E'; // 쪽지 mEssage
+	var $_TYPE_DOCUMENTS = 'P'; // 글 작성 알림
+	var $_TYPE_VOTED = 'V'; // 추천글 안내 알림
 	var $_TYPE_TEST = 'T';
 
 	var $triggers = array(
@@ -38,7 +39,9 @@ class ncenterlite extends ModuleObject
 		array('moduleObject.proc', 'ncenterlite', 'controller', 'triggerBeforeModuleObjectProc', 'before'),
 		array('member.deleteMember', 'ncenterlite', 'controller', 'triggerAfterDeleteMember', 'after'),
 		array('communication.sendMessage', 'ncenterlite', 'controller', 'triggerAfterSendMessage', 'after'),
-	);
+		array('document.updateVotedCount', 'ncenterlite', 'controller', 'triggerAfterVotedupdate', 'after'),
+		array('moduleHandler.init', 'ncenterlite', 'controller', 'triggerAddMemberMenu', 'after'),
+		);
 
 	function _isDisable()
 	{
@@ -77,6 +80,11 @@ class ncenterlite extends ModuleObject
 			return true;
 		}
 
+		if(!$oDB->isColumnExists('ncenterlite_notify', 'target_p_srl'))
+		{
+			return true;
+		}
+
 		return false;
 	}
 
@@ -105,6 +113,11 @@ class ncenterlite extends ModuleObject
 		if(!$oDB->isColumnExists('ncenterlite_notify','target_browser'))
 		{
 			$oDB->addColumn('ncenterlite_notify', 'target_browser', 'varchar', 50, true);
+		}
+
+		if(!$oDB->isColumnExists('ncenterlite_notify','target_p_srl'))
+		{
+			$oDB->addColumn('ncenterlite_notify', 'target_p_srl', 'number', 10, true);
 		}
 
 		return new Object(0, 'success_updated');

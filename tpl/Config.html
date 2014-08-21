@@ -22,7 +22,7 @@
 		<div class="x_control-group">
 			<label class="x_control-label">익명 알림에서 익명 이름 설정</label>
 			<div class="x_controls">
-				<input name="anonymous_name" value="{$config->anonymous_name}" />
+				<input type="text" name="anonymous_name" value="{$config->anonymous_name}" />
 				<p class="x_help-block">익명 게시판 등에서 알림이 등록될 시, Anonymous 등 익명을 표시할 이름을 설정할 수 있습니다. 기본은 Anonymous 입니다.</p>
 			</div>
 		</div>
@@ -45,21 +45,21 @@
 			</div>
 		</div>
 		<div class="x_control-group">
-			<label class="x_control-label">새글 알림 설정</label>
-			<div class="x_controls">
-				<label class="x_inline"><input type="radio" name="document_format" value="Y" checked="checked"|cond="$config->document_format == 'Y'" /> 새글 알림을 사용</label>
-				<label class="x_inline"><input type="radio" name="document_format" value="N" checked="checked"|cond="$config->document_format == 'N'" /> 새글 알림을 사용하지 않음</label>
-				<p>새글 알림을 사용할 경우 DB의 부하가 있을 수 있습니다. 자유게시판과 같은 활동성이 높은 곳 보다는 공지상항게시판 같은 곳에서 운영진 알림용으로 사용하시길 권장합니다.</p>
-			</div>
-		</div>
-		<div class="x_control-group">
 			<label class="x_control-label">안드로이드알림 솔루션</label>
 			<div class="x_controls">
 				<label class="x_inline"><input type="radio" name="android_format" value="N" checked="checked"|cond="$config->android_format == 'N'" /> 안드로이드 알림을 사용하지 않음</label>
 				<label class="x_inline"><input type="radio" name="android_format" value="mobileplus" checked="checked"|cond="$config->android_format == 'mobileplus'" />MobilePlus</label>
+				<p>알림센터와 함께 안드로이드 모바일 알림 솔루션을 선택하여 사용할 수 있습니다. 각각의 안드로이드 어플리케이션 플레폼을 사용하시면 선택하여 사용하시기 바랍니다.</p>
 			</div>
 		</div>
-
+		<div class="x_control-group">
+			<label class="x_control-label">게시판 읽을경우 관련알림 삭제</label>
+			<div class="x_controls">
+				<label class="x_inline"><input type="radio" name="document_read" value="N" checked="checked"|cond="$config->document_read == 'N'" />알림을 지우지 않음</label>
+				<label class="x_inline"><input type="radio" name="document_read" value="Y" checked="checked"|cond="$config->document_read == 'Y'" />알림을 지움</label>
+				<p>게시판을 읽을경우 해당 글의 포함된 모든 알림내역을 알림내역에서 삭제 합니다. 기본값은 N입니다.</p>
+			</div>
+		</div>
 		<div class="x_control-group">
 			<label class="x_control-label">댓글 알림 설정</label>
 			<div class="x_controls">
@@ -73,6 +73,7 @@
 				<label><input type="checkbox" name="message_notify" value="N" checked="checked"|cond="$config->message_notify == 'N'" /> 쪽지 알림을 사용하지 않음(XE의 기본 쪽지 알림을 사용)</label>
 			</div>
 		</div>
+
 		<div class="x_control-group">
 			<label class="x_control-label">댓글 알림 설정</label>
 			<div class="x_controls">
@@ -85,6 +86,16 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="x_control-group">
+			<label class="x_control-label">새글 알림 설정</label>
+			<div class="x_controls">
+				<label class="x_inline"><input type="radio" name="document_format" value="Y" checked="checked"|cond="$config->document_format == 'Y'" /> 새글 알림을 사용</label>
+				<label class="x_inline"><input type="radio" name="document_format" value="N" checked="checked"|cond="$config->document_format == 'N'" /> 새글 알림을 사용하지 않음</label>
+				<p><span class="x_label x_label-important" style="margin-right:3px;">주의!</span>새글 알림을 사용할 경우 DB의 부하가 있을 수 있습니다. 자유게시판과 같은 활동성이 높은 곳 보다는 공지사항게시판 같은 곳에서 운영진 알림용으로 사용하시길 권장합니다.</p>
+			</div>
+		</div>
+
 		<div class="x_control-group">
 			<label class="x_control-label">Document 알림 설정</label>
 			<div class="x_controls">
@@ -95,6 +106,21 @@
 						<strong>{$item->browser_title}</strong> ({$item->mid} / {strtoupper($item->module)})
 					</label>
 				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<h1>레이아웃 설정</h1>
+		<div class="x_control-group">
+			<label class="x_control-label" for="layout_srl">{$lang->layout}</label>
+			<div class="x_controls">
+				<select name="layout_srl" id="layout_srl">
+					<option value="0">{$lang->notuse}</option>
+					<option loop="$layout_list => $key, $val" value="{$val->layout_srl}" selected="selected"|cond="$config->layout_srl==$val->layout_srl">{$val->title} ({$val->layout})</option>
+				</select>
+				<a href="#aboutLayout" data-toggle class="x_icon-question-sign">{$lang->help}</a>
+				<p class="x_help-block" id="aboutLayout" hidden>{$lang->about_layout}</p>
 			</div>
 		</div>
 	</section>

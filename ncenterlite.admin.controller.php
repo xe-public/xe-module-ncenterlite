@@ -22,6 +22,9 @@ class ncenterliteAdminController extends ncenterlite
 		$config->colorset = Context::get('colorset');
 		$config->zindex = Context::get('zindex');
 		$config->anonymous_name = Context::get('anonymous_name');
+		$config->document_read = Context::get('document_read');
+		$config->layout_srl = Context::get('layout_srl');
+
 		if(!$config->document_notify) $config->document_notify = 'direct-comment';
 
 		$this->setMessage('success_updated');

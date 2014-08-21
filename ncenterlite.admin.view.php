@@ -11,8 +11,16 @@ class ncenterliteAdminView extends ncenterlite
 	{
 		$oModuleModel = &getModel('module');
 		$oNcenterliteModel = &getModel('ncenterlite');
+		$oLayoutModel = getModel('layout');
+
 		$config = $oNcenterliteModel->getConfig();
 		Context::set('config', $config);
+
+		$layout_list = $oLayoutModel->getLayoutList();
+		Context::set('layout_list', $layout_list);
+
+		$mobile_layout_list = $oLayoutModel->getLayoutList(0, 'M');
+		Context::set('mlayout_list', $mobile_layout_list);
 
 		$skin_list = $oModuleModel->getSkins($this->module_path);
 		Context::set('skin_list', $skin_list);
@@ -39,13 +47,9 @@ class ncenterliteAdminView extends ncenterlite
 
 	function dispNcenterliteAdminList()
 	{
-		$oMemberModel = getModel('member');
+		$oNcenterliteModel = getModel('ncenterlite');
 
-		$args = new stdClass;
-		$args->page = Context::get('page');
-		$args->list_count = '20';
-		$args->page_count = '10';
-		$output = executeQuery('ncenterlite.getAdminNotifyList', $args);
+		$output = $oNcenterliteModel->getMyNotifyList();
 
 		Context::set('total_count', $output->page_navigation->total_count);
 		Context::set('total_page', $output->page_navigation->total_page);
