@@ -180,7 +180,6 @@ class ncenterliteController extends ncenterlite
 				$args->notify = $this->_getNotifyId($args);
 				$output = $this->_insertNotify($args, $is_anonymous);
 				$notify_member_srl[] = abs($member_srl);
-				debugPrint($output);
 			}
 		}
 		// 대댓글이 아니고, 게시글의 댓글을 남길 경우
