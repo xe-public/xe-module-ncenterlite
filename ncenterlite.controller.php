@@ -166,7 +166,7 @@ class ncenterliteController extends ncenterlite
 			{
 				$args = new stdClass();
 				$args->member_srl = abs($member_srl);
-				$args->srl = $commnet_srl;
+				$args->srl = $comment_srl;
 				$args->target_p_srl = $parent_srl;
 				$args->target_srl = $document_srl;
 				$args->type = $this->_TYPE_COMMENT;
