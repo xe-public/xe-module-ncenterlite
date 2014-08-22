@@ -1,7 +1,7 @@
 XpressEngine(XE) Notification Center *Lite*
 ==========================================
 [![Latest release](http://img.shields.io/github/release/xe-public/xe-module-ncenterlite.svg)](https://github.com/qw5414/attendance/releases)
-[![License](http://img.shields.io/badge/license-GNU%20LGPL-brightgreen.svg)](http://www.gnu.org/licenses/gpl.html)
+[![License](http://img.shields.io/badge/license-GPL%20v2-brightgreen.svg)](http://www.gnu.org/licenses/gpl.html)
 
 XE 알림센터의 무료 버전.
 
