@@ -17,7 +17,7 @@ class ncenterliteModel extends ncenterlite
 			if(!$config->document_notify) $config->document_notify = 'direct-comment';
 			if(!$config->hide_module_srls) $config->hide_module_srls = array();
 			if(!is_array($config->hide_module_srls)) $config->hide_module_srls = explode('|@|', $config->hide_module_srls);
-			if(!$config->docuiment_read) $config->document_read = 'N';
+			if(!$config->document_read) $config->document_read = 'N';
 
 			if(!$config->skin) $config->skin = 'default';
 			if(!$config->colorset) $config->colorset = 'black';
