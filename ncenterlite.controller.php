@@ -38,10 +38,6 @@ class ncenterliteController extends ncenterlite
 		$member_srl = $oDocument->get('member_srl');
 
 		$oMemberModel = getModel('member');
-		$member_output = $this->getMemberTotal();
-		if(!$member_output->toBool()) return $member_output;
-		if(!$member_output->data) break;
-		$members_data = $member_output->data;
 
 		$group_list = $oMemberModel->getGroups();
 
@@ -70,10 +66,13 @@ class ncenterliteController extends ncenterlite
 				$output = $this->_insertNotify($args, $is_anonymous);
 			}
 		}
-		// 맨션알림이 아닐경우 $config->document_module_srls 에 선택된 모듈에서 새글알림 작동
-		elseif(!$mention_targets && in_array($module_info->module_srl, $config->document_module_srls))
+		// 맨션알림이 아닐경우 $config->document_module_srls 에 선택된 모듈에서 새글알림 작동 
+		elseif(!$mention_targets && in_array($module_info->module_srl, $config->document_module_srls) && $config->document_format == 'Y')
 		{
-			if($config->document_format == 'N') return new Object();
+			$member_output = $this->getMemberTotal();
+			if(!$member_output->toBool()) return $member_output;
+			$members_data = $member_output->data;
+
 			foreach($members_data as $key => $val)
 			{
 				// 각맴버마다 설정을 위해 member_info호출
@@ -81,7 +80,7 @@ class ncenterliteController extends ncenterlite
 				// 알림을 받을 맴버가, 30일간 접속이 없을 경우 패스
 				if($member_info->last_login < date('YmdHis', strtotime('-30 days'))) continue;
 				// 알림을 받을 맴버가 수신거부를 하였을 경우 패스
-				if($member_info->documentnotify ==='YES') continue;
+				if($member_info->documentnotify === 'YES') continue;
 				// 알림을 받을 맴버가 글작성자일 경우 패스
 				if($member_srl == $val->member_srl) continue;
 				$args = new stdClass();
