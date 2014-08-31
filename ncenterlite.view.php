@@ -16,7 +16,7 @@ class ncenterliteView extends ncenterlite
 
 		$oLayoutModel = getModel('layout');
 		$layout_info = $oLayoutModel->getLayout($config->layout_srl);
-		debugPrint($layout_info);
+
 		if($layout_info)
 		{
 			$this->module_info->layout_srl = $config->layout_srl;

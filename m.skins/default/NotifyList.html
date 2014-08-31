@@ -1,0 +1,24 @@
+<load target="notify.css" />
+<div class="sosifam">
+	<h2 class="sosi-title">내 알림 목록</h2>
+	<ul class="history-list cfix">
+		<li class="history-item cfix" loop="$ncenterlite_list => $no, $val">
+		{@
+			$oMemberModel = getModel('member');
+			$member_info = $oMemberModel->getMemberInfoByMemberSrl($val->member_srl);
+		}
+			<div class="history-info">
+				<span class="history-gird text-ellipsis">
+					<span class="history-succeed">{$val->target_nick_name}</span> ->
+					<span class="history-title">{$member_info->nick_name}</span>
+				</span>
+				<div class="history-text">
+					<span class="history-ip"><strong><a href="{$val->target_url}">{$val->text}</a></strong></span>
+					<span class="history-auth">({zdate($val->regdate,"Y-m-d H:i:s")})</span>
+					<span class="history-auth" cond="$val->readed=='Y'">(읽음)</span>
+					<span class="history-auth" cond="$val->readed=='N'">(읽지 않음)</span>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
