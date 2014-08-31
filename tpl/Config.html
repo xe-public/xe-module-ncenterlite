@@ -53,6 +53,14 @@
 			</div>
 		</div>
 		<div class="x_control-group">
+			<label class="x_control-label">글 추천 알림.</label>
+			<div class="x_controls">
+				<label class="x_inline"><input type="radio" name="voted_format" value="Y" checked="checked"|cond="$config->voted_format == 'Y'" /> 사용함</label>
+				<label class="x_inline"><input type="radio" name="voted_format" value="N" checked="checked"|cond="$config->voted_format == 'N'" /> 사용하지 않음</label>
+				<p>글이 추천받았을때 추천알림을 받을 수 있습니다.</p>
+			</div>
+		</div>
+		<div class="x_control-group">
 			<label class="x_control-label">게시판 읽을경우 관련알림 삭제</label>
 			<div class="x_controls">
 				<label class="x_inline"><input type="radio" name="document_read" value="N" checked="checked"|cond="$config->document_read == 'N'" />알림을 지우지 않음</label>

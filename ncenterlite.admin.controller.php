@@ -24,6 +24,7 @@ class ncenterliteAdminController extends ncenterlite
 		$config->anonymous_name = Context::get('anonymous_name');
 		$config->document_read = Context::get('document_read');
 		$config->layout_srl = Context::get('layout_srl');
+		$config->voted_format = Context::get('voted_format');
 
 		if(!$config->document_notify) $config->document_notify = 'direct-comment';
 
