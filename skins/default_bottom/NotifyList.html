@@ -1,6 +1,6 @@
 <load target="css/notify.css" />
 <include target="../../../member/skins/default/common_header.html" />
-<table class="bd_lst bd_tb_lst bd_tb" style="margin-top:20px;">
+<table class="table table-striped table-hover" style="margin-top:20px;">
 	<thead class="bg_f_f9">
 		<tr>
 			<th scope="col" class="nowr" style="width:100px;">보낸사람</th>
@@ -31,12 +31,12 @@
 	</tbody>
 </table>
 
-<form action="./" method="get" class="bd_pg clear">
-	<a href="{getUrl('page','')}" class="direction">‹ Prev</a>
-	<!--@while($page_no = $page_navigation->getNextPage())-->
-	<strong class="this" cond="$page==$page_no">{$page_no}</strong> 
-	<a href="{getUrl('page',$page_no)}" cond="$page!=$page_no">{$page_no}</a>
-	<!--@end-->
-	<a href="{getUrl('page',$page_navigation->last_page)}" class="direction">Next ›</a>
-</form>
-
+<div class="pagination pagination-centered">
+	<ul>
+		<li><a href="{getUrl('page','')}" class="direction">&laquo; {$lang->first_page}</a></li> 
+		<!--@while($page_no = $page_navigation->getNextPage())-->
+		<li class="active"|cond="$page == $page_no"><a href="{getUrl('page',$page_no)}">{$page_no}</a></li> 
+		<!--@end-->
+		<li><a href="{getUrl('page',$page_navigation->last_page)}" class="direction">{$lang->last_page} &raquo;</a></li>
+	</ul>
+</div>
