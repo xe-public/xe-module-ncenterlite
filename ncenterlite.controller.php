@@ -1,6 +1,42 @@
 <?php
 class ncenterliteController extends ncenterlite
 {
+	function procNcenterliteUserConfig()
+	{
+		$logged_info = Context::get('logged_info');
+		$oNcenterliteModel = getModel('ncenterlite');
+		$member_srl = $logged_info->member_srl;
+		$output = $oNcenterliteModel->getMemberConfig($member_srl);
+
+		$obj = Context::getRequestVars();
+		$args = new stdClass();
+		if(!$output)
+		{
+			$args->member_srl = $member_srl;
+			$args->document_notify = $obj->document_notify;
+			$args->comment_notify = $obj->comment_notify;
+			$args->mention_notify = $obj->mention_notify;
+			$args->message_notify = $obj->message_notify;
+			$outputs = executeQuery('ncenterlite.insertUserConfig', $args);
+		}
+		else
+		{
+			$args->member_srl = $member_srl;
+			$args->document_notify = $obj->document_notify;
+			$args->comment_notify = $obj->comment_notify;
+			$args->mention_notify = $obj->mention_notify;
+			$args->message_notify = $obj->message_notify;
+			$outputs = executeQuery('ncenterlite.updateUserConfig', $args);
+		}
+
+		if(!in_array(Context::getRequestMethod(),array('XMLRPC','JSON')))
+		{
+			$returnUrl = Context::get('success_return_url') ? Context::get('success_return_url') : getNotEncodedUrl('', 'act', 'dispNcenterliteUserConfig');
+			header('location: ' . $returnUrl);
+			return;
+		}
+	}
+
 	function triggerAfterDeleteMember($obj)
 	{
 		$oNcenterliteModel = &getModel('ncenterlite');
@@ -69,35 +105,42 @@ class ncenterliteController extends ncenterlite
 		// 맨션알림이 아닐경우 $config->document_module_srls 에 선택된 모듈에서 새글알림 작동 
 		elseif(!$mention_targets && in_array($module_info->module_srl, $config->document_module_srls) && $config->document_format == 'Y')
 		{
-			$member_output = $this->getMemberTotal();
+			$member_output = $oNcenterliteModel->getAllMemberConfig();
 			if(!$member_output->toBool()) return $member_output;
-			$members_data = $member_output->data;
+			$members_output = $member_output->data;
+			if(count($members_output)==1)
+			{
+				$members_output = $member_output;
+			}
 
-			foreach($members_data as $key => $val)
+			foreach($members_output as $key => $val)
 			{
 				// 각맴버마다 설정을 위해 member_info호출
 				$member_info = $oMemberModel->getMemberInfoByMemberSrl($val->member_srl);
 				// 알림을 받을 맴버가, 30일간 접속이 없을 경우 패스
 				if($member_info->last_login < date('YmdHis', strtotime('-30 days'))) continue;
 				// 알림을 받을 맴버가 수신거부를 하였을 경우 패스
-				if($member_info->documentnotify === 'YES') continue;
-				// 알림을 받을 맴버가 글작성자일 경우 패스
-				if($member_srl == $val->member_srl) continue;
-				$args = new stdClass();
-				$args->member_srl = $val->member_srl;
-				$args->srl = $obj->document_srl;
-				$args->target_p_srl = $obj->document_srl;
-				$args->target_srl = $member_srl;
-				$args->type = $this->_TYPE_DOCUMENT;
-				$args->target_type = $this->_TYPE_DOCUMENTS;
-				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $obj->document_srl);
-				$args->target_summary = cut_str(strip_tags($obj->title), 200);
-				$args->target_nick_name = $obj->nick_name;
-				$args->target_email_address = $obj->email_address;
-				$args->regdate = date('YmdHis');
-				$args->target_browser = $module_info->browser_title;
-				$args->notify = $this->_getNotifyId($args);
-				$output = $this->_insertNotify($args, $is_anonymous);
+				if($val->document_notify == 'Y')
+				{
+					// 알림을 받을 맴버가 글작성자일 경우 패스
+					//if($member_srl == $val->member_srl) continue;
+					$args = new stdClass();
+					$args->member_srl = $val->member_srl;
+					$args->srl = $obj->document_srl;
+					$args->target_p_srl = $obj->document_srl;
+					$args->target_srl = $member_srl;
+					$args->type = $this->_TYPE_DOCUMENT;
+					$args->target_type = $this->_TYPE_DOCUMENTS;
+					$args->target_url = getNotEncodedFullUrl('', 'document_srl', $obj->document_srl);
+					$args->target_summary = cut_str(strip_tags($obj->title), 200);
+					$args->target_nick_name = $obj->nick_name;
+					$args->target_email_address = $obj->email_address;
+					$args->regdate = date('YmdHis');
+					$args->target_browser = $module_info->browser_title;
+					$args->notify = $this->_getNotifyId($args);
+					$output = $this->_insertNotify($args, $is_anonymous);
+					debugPrint($output);
+				}
 			}
 		}
 		return new Object();

@@ -28,6 +28,29 @@ class ncenterliteModel extends ncenterlite
 		return $this->config;
 	}
 
+	function getMemberConfig($member_srl=null)
+	{
+		$logged_info = Context::get('logged_info');
+		if(!$member_srl)
+		{
+			$member_srl = $logged_info->member_srl;
+		}
+
+		$args = new stdClass();
+		$args->member_srl = $member_srl;
+		$output = executeQuery('ncenterlite.getUserConfig', $args);
+		if(!$output->data) return $output->data;
+
+		return $output;
+	}
+
+	function getAllMemberConfig()
+	{
+		$output = executeQuery('ncenterlite.getAllUserConfig');
+
+		return $output;
+	}
+
 	function getMyNotifyList($member_srl=null, $page=1, $readed='N')
 	{
 		$oNcenterliteModel = getModel('ncenterlite');
