@@ -5,8 +5,9 @@
 <form ruleset="insertConfig" action="./" method="post" class="x_form-horizontal" id="fo_ncenterlite">
 	<input type="hidden" name="module" value="ncenterlite" />
 	<input type="hidden" name="act" value="procNcenterliteAdminInsertConfig" />
-	<section class="section">
-		<h1>기능 설정</h1>
+
+	<section class="section collapsed">
+		<h1>기본 기능 설정 (클릭하시면 기능설정을 할 수 있습니다.)</h1>
 		<div class="x_control-group">
 			<label class="x_control-label">알림센터 동작여부</label>
 			<div class="x_controls">
@@ -52,6 +53,30 @@
 				<p>알림센터와 함께 안드로이드 모바일 알림 솔루션을 선택하여 사용할 수 있습니다. 각각의 안드로이드 어플리케이션 플레폼을 사용하시면 선택하여 사용하시기 바랍니다.</p>
 			</div>
 		</div>
+
+		<div class="x_control-group">
+			<label class="x_control-label">쪽지 알림 설정</label>
+			<div class="x_controls">
+				<label><input type="checkbox" name="message_notify" value="N" checked="checked"|cond="$config->message_notify == 'N'" /> 쪽지 알림을 사용하지 않음(XE의 기본 쪽지 알림을 사용)</label>
+			</div>
+		</div>
+
+		<div class="x_control-group">
+			<label class="x_control-label">알림센터 사용여부</label>
+			<div class="x_controls">
+				<p class="x_help-block">선택한 페이지에서 알림센터를 표시하지 않습니다.</p>
+				<div loop="$mid_list => $mid, $item">
+					<label>
+						<input type="checkbox" value="{$item->module_srl}" name="hide_module_srls[]" checked="checked"|cond="in_array($item->module_srl, $config->hide_module_srls)" />
+						<strong>{$item->browser_title}</strong> ({$item->mid} / {strtoupper($item->module)})
+					</label>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section collapsed">
+		<h1>새 글 알림 및 문서알림 (클릭하시면 기능설정을 할 수 있습니다.) </h1>
 		<div class="x_control-group">
 			<label class="x_control-label">글 추천 알림.</label>
 			<div class="x_controls">
@@ -73,25 +98,6 @@
 			<div class="x_controls">
 				<label class="x_inline"><input type="radio" name="document_notify" value="all-comment" checked="checked"|cond="$config->document_notify == 'all-comment'" /> 글쓴이에게 모든 댓글 알림</label>
 				<label class="x_inline"><input type="radio" name="document_notify" value="direct-comment" checked="checked"|cond="$config->document_notify == 'direct-comment'" /> 대댓글은 알리지 않음</label>
-			</div>
-		</div>
-		<div class="x_control-group">
-			<label class="x_control-label">쪽지 알림 설정</label>
-			<div class="x_controls">
-				<label><input type="checkbox" name="message_notify" value="N" checked="checked"|cond="$config->message_notify == 'N'" /> 쪽지 알림을 사용하지 않음(XE의 기본 쪽지 알림을 사용)</label>
-			</div>
-		</div>
-
-		<div class="x_control-group">
-			<label class="x_control-label">알림센터 사용여부</label>
-			<div class="x_controls">
-				<p class="x_help-block">선택한 페이지에서 알림센터를 표시하지 않습니다.</p>
-				<div loop="$mid_list => $mid, $item">
-					<label>
-						<input type="checkbox" value="{$item->module_srl}" name="hide_module_srls[]" checked="checked"|cond="in_array($item->module_srl, $config->hide_module_srls)" />
-						<strong>{$item->browser_title}</strong> ({$item->mid} / {strtoupper($item->module)})
-					</label>
-				</div>
 			</div>
 		</div>
 
@@ -118,8 +124,10 @@
 		</div>
 	</section>
 
-	<section class="section">
-		<h1>레이아웃 설정</h1>
+
+
+	<section class="section collapsed">
+		<h1>레이아웃 설정 (클릭하시면 기능설정을 할 수 있습니다.)</h1>
 		<div class="x_control-group">
 			<label class="x_control-label" for="layout_srl">{$lang->layout}</label>
 			<div class="x_controls">
@@ -144,8 +152,8 @@
 		</div>
 	</section>
 
-	<section class="section">
-		<h1>스킨 설정</h1>
+	<section class="section collapsed">
+		<h1>스킨 설정 (클릭하시면 기능설정을 할 수 있습니다.)</h1>
 		<div class="x_control-group">
 			<label class="x_control-label">{$lang->skin}</label>
 			<div class="x_controls">
@@ -216,6 +224,5 @@
 				<label><input type="button" name="dummy" onClick="doDummyPushDataInsert();" class="x_btn" value="더미 데이터 생성"> 모듈 및 모바일 테스트를 위한 시험용 알림 생성</label>
 			</div>
 		</div>
-
-	</select>
+	</section>
 </form>
