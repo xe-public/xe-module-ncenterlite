@@ -30,9 +30,9 @@ class ncenterliteModel extends ncenterlite
 
 	function getMemberConfig($member_srl=null)
 	{
-		$logged_info = Context::get('logged_info');
 		if(!$member_srl)
 		{
+			$logged_info = Context::get('logged_info');
 			$member_srl = $logged_info->member_srl;
 		}
 

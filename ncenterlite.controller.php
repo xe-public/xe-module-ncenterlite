@@ -143,12 +143,6 @@ class ncenterliteController extends ncenterlite
 		return new Object();
 	}
 
-	// 전체 맴버 불러들이기.
-	function getMemberTotal()
-	{
-		return executeQuery('ncenterlite.getMemberTotals');
-	}
-
 	function triggerAfterInsertComment(&$obj)
 	{
 		if($this->_isDisable()) return;
