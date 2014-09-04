@@ -46,7 +46,7 @@ class ncenterliteModel extends ncenterlite
 
 	function getAllMemberConfig()
 	{
-		$output = executeQuery('ncenterlite.getAllUserConfig');
+		$output = executeQueryArray('ncenterlite.getAllUserConfig');
 
 		return $output;
 	}

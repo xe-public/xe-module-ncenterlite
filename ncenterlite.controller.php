@@ -108,10 +108,7 @@ class ncenterliteController extends ncenterlite
 			$member_output = $oNcenterliteModel->getAllMemberConfig();
 			if(!$member_output->toBool()) return $member_output;
 			$members_output = $member_output->data;
-			if(count($members_output)==1)
-			{
-				$members_output = $member_output;
-			}
+
 
 			foreach($members_output as $key => $val)
 			{
