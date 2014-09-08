@@ -73,22 +73,25 @@
 
 				for(var i in ret.list.data)
 				{
-					var item = ret.list.data[i];
-					var $html = $item_html.clone();
-					if(ret.useProfileImage == 'Y')
-					{
-						var $img = $profileImg.clone();
-						if(!item.profileImage) item.profileImage = request_uri + 'modules/ncenterlite/skins/default/img/p.png';
-						$img.attr('src', item.profileImage);
-						$html.find('a').prepend($img);
+					if(ret.list.data.hasOwnProperty(i))
+					{	
+						var item = ret.list.data[i];
+						var $html = $item_html.clone();
+						if(ret.useProfileImage == 'Y')
+						{
+							var $img = $profileImg.clone();
+							if(!item.profileImage) item.profileImage = request_uri + 'modules/ncenterlite/skins/default/img/p.png';
+							$img.attr('src', item.profileImage);
+							$html.find('a').prepend($img);
+						}
+
+						$('span.msg', $html).html(item.text);
+						$('span.ago', $html).html(item.ago);
+						$('a', $html).attr('href', item.url);
+
+						if(i == 0) $html.attr('id', 'ncenterlite_page_' + ret.list.page.cur_page);
+						$listWrap.append($html);
 					}
-
-					$('span.msg', $html).html(item.text);
-					$('span.ago', $html).html(item.ago);
-					$('a', $html).attr('href', item.url);
-
-					if(i == 0) $html.attr('id', 'ncenterlite_page_' + ret.list.page.cur_page);
-					$listWrap.append($html);
 				}
 
 				$listWrap.animate({scrollTop: (ret.list.page.cur_page-1) * 265}, 800);
