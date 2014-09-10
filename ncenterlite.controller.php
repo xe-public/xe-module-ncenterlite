@@ -9,23 +9,20 @@ class ncenterliteController extends ncenterlite
 		$output = $oNcenterliteModel->getMemberConfig($member_srl);
 
 		$obj = Context::getRequestVars();
+
 		$args = new stdClass();
+		$args->member_srl = $member_srl;
+		$args->document_notify = $obj->document_notify;
+		$args->comment_notify = $obj->comment_notify;
+		$args->mention_notify = $obj->mention_notify;
+		$args->message_notify = $obj->message_notify;
+				
 		if(!$output)
 		{
-			$args->member_srl = $member_srl;
-			$args->document_notify = $obj->document_notify;
-			$args->comment_notify = $obj->comment_notify;
-			$args->mention_notify = $obj->mention_notify;
-			$args->message_notify = $obj->message_notify;
 			$outputs = executeQuery('ncenterlite.insertUserConfig', $args);
 		}
 		else
 		{
-			$args->member_srl = $member_srl;
-			$args->document_notify = $obj->document_notify;
-			$args->comment_notify = $obj->comment_notify;
-			$args->mention_notify = $obj->mention_notify;
-			$args->message_notify = $obj->message_notify;
 			$outputs = executeQuery('ncenterlite.updateUserConfig', $args);
 		}
 
@@ -136,7 +133,6 @@ class ncenterliteController extends ncenterlite
 					$args->target_browser = $module_info->browser_title;
 					$args->notify = $this->_getNotifyId($args);
 					$output = $this->_insertNotify($args, $is_anonymous);
-					debugPrint($output);
 				}
 			}
 		}
@@ -346,8 +342,6 @@ class ncenterliteController extends ncenterlite
 				$args->notify = $this->_getNotifyId($args);
 				$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages', 'message_srl', $trigger_obj->related_srl);
 				$output = $this->_insertNotify($args, $is_anonymous);
-				debugPrint($output);
-				debugPrint($trigger_obj);
 			}
 		}
 		else
@@ -366,8 +360,6 @@ class ncenterliteController extends ncenterlite
 				$args->notify = $this->_getNotifyId($args);
 				$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages');
 				$output = $this->_insertNotify($args, $is_anonymous);
-				debugPrint($output);
-				debugPrint($trigger_obj);
 			}
 		}
 	}
