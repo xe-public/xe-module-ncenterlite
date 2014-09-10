@@ -82,6 +82,13 @@ class ncenterliteController extends ncenterlite
 			// !TODO 공용 메소드로 분리
 			foreach($mention_targets as $mention_member_srl)
 			{
+				$target_member_config = $oNcenterliteModel->getMemberConfig($mention_member_srl);
+				
+				$notify_member_config = $target_member_config->data;
+				if($notify_member_config->mention_notify == 'N')
+				{
+					continue;
+				}
 				$args = new stdClass();
 				$args->member_srl = $mention_member_srl;
 				$args->srl = $obj->document_srl;
@@ -117,7 +124,7 @@ class ncenterliteController extends ncenterlite
 				if($val->document_notify == 'Y')
 				{
 					// 알림을 받을 맴버가 글작성자일 경우 패스
-					//if($member_srl == $val->member_srl) continue;
+					if($member_srl == $val->member_srl) continue;
 					$args = new stdClass();
 					$args->member_srl = $val->member_srl;
 					$args->srl = $obj->document_srl;
@@ -705,11 +712,18 @@ class ncenterliteController extends ncenterlite
 
 	function triggerAddMemberMenu()
 	{
+		$logged_info = Context::get('logged_info');
 		if(!Context::get('is_logged')) return new Object();
 		$target_srl = Context::get('target_srl');
 
 		$oMemberController = &getController('member');
 		$oMemberController->addMemberMenu('dispNcenterliteNotifyList', '내 알림 목록');
+		/* 이거 먼저 추가하되 추후 추가작업
+		if($logged_info->is_admin== 'Y')
+		{
+			$oMemberController->addMemberPopupMenu();
+		}
+		*/
 		return new Object();
 	}
 
@@ -904,8 +918,19 @@ class ncenterliteController extends ncenterlite
 		}
 
 		$output = executeQuery('ncenterlite.insertNotify', $args);
+		if(!$output->toBool())
+		{
+			return $output;
+		}
 
-		ModuleHandler::triggerCall('ncenterlite._insertNotify', 'after', $args);
+		if($output->toBool())
+		{
+			$trigger_notify = ModuleHandler::triggerCall('ncenterlite._insertNotify', 'after', $args);
+			if(!$trigger_notify->toBool())
+			{
+				return $trigger_notify;
+			}	
+		}
 
 		return $output;
 	}
