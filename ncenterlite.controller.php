@@ -106,43 +106,7 @@ class ncenterliteController extends ncenterlite
 				$output = $this->_insertNotify($args, $is_anonymous);
 			}
 		}
-		// 맨션알림이 아닐경우 $config->document_module_srls 에 선택된 모듈에서 새글알림 작동 
-		elseif(!$mention_targets && in_array($module_info->module_srl, $config->document_module_srls) && $config->document_format == 'Y')
-		{
-			$member_output = $oNcenterliteModel->getAllMemberConfig();
-			if(!$member_output->toBool()) return $member_output;
-			$members_output = $member_output->data;
 
-
-			foreach($members_output as $key => $val)
-			{
-				// 각맴버마다 설정을 위해 member_info호출
-				$member_info = $oMemberModel->getMemberInfoByMemberSrl($val->member_srl);
-				// 알림을 받을 맴버가, 30일간 접속이 없을 경우 패스
-				if($member_info->last_login < date('YmdHis', strtotime('-30 days'))) continue;
-				// 알림을 받을 맴버가 수신거부를 하였을 경우 패스
-				if($val->document_notify == 'Y')
-				{
-					// 알림을 받을 맴버가 글작성자일 경우 패스
-					if($member_srl == $val->member_srl) continue;
-					$args = new stdClass();
-					$args->member_srl = $val->member_srl;
-					$args->srl = $obj->document_srl;
-					$args->target_p_srl = $obj->document_srl;
-					$args->target_srl = $member_srl;
-					$args->type = $this->_TYPE_DOCUMENT;
-					$args->target_type = $this->_TYPE_DOCUMENTS;
-					$args->target_url = getNotEncodedFullUrl('', 'document_srl', $obj->document_srl);
-					$args->target_summary = cut_str(strip_tags($obj->title), 200);
-					$args->target_nick_name = $obj->nick_name;
-					$args->target_email_address = $obj->email_address;
-					$args->regdate = date('YmdHis');
-					$args->target_browser = $module_info->browser_title;
-					$args->notify = $this->_getNotifyId($args);
-					$output = $this->_insertNotify($args, $is_anonymous);
-				}
-			}
-		}
 		return new Object();
 	}
 
@@ -926,6 +890,7 @@ class ncenterliteController extends ncenterlite
 		if($output->toBool())
 		{
 			$trigger_notify = ModuleHandler::triggerCall('ncenterlite._insertNotify', 'after', $args);
+			debugPrint($trigger_notify);
 			if(!$trigger_notify->toBool())
 			{
 				return $trigger_notify;
