@@ -4,7 +4,6 @@
 	</tables>
 	<columns>
 		<column name="member_srl" var="member_srl" notnull="notnull" />
-		<column name="document_notify" var="document_notify" notnull="notnull" default="N" />
 		<column name="comment_notify" var="comment_notify" notnull="notnull" />
 		<column name="mention_notify" var="mention_notify" notnull="notnull" />
 		<column name="message_notify" var="message_notify" notnull="notnull" />
