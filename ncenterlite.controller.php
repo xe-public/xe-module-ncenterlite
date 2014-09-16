@@ -727,7 +727,7 @@ class ncenterliteController extends ncenterlite
 		if($logged_info->is_admin== 'Y')
 		{
 			$url = getUrl('','act','dispNcenterliteUserConfig','member_srl',$target_srl);
-			$oMemberController->addMemberPopupMenu($url, '유저 알림 설정', '');;
+			$oMemberController->addMemberPopupMenu($url, '유저 알림 설정', '');
 		}
 
 		return new Object();
