@@ -40,14 +40,16 @@ class ncenterliteMobile extends ncenterlite
 		$this->setTemplateFile('NotifyList');
 	}
 
-	function dispNcneterliteUserConfig()
+	function dispNcenterliteUserConfig()
 	{
+		$oMemberModel = getModel('member');
 		$logged_info = Context::get('logged_info');
-		if(!$logged_info) return new Object(-1, '로그인 사용자만 접근할 수 있습니다.');  
+		if(!$logged_info) return new Object(-1, '로그인 사용자만 접근할 수 있습니다.');
 
 		if($logged_info->is_admin == 'Y')
 		{
 			$member_srl = Context::get('member_srl');
+			$member_info = $oMemberModel->getMemberInfoByMemberSrl($member_srl);
 		}
 		if($logged_info->is_admin != 'Y' && Context::get('member_srl'))
 		{
@@ -60,6 +62,7 @@ class ncenterliteMobile extends ncenterlite
 		}
 		$output = $oNcenterliteModel->getMemberConfig($member_srl);
 
+		Context::set('member_info', $member_info);
 		Context::set('user_config', $output->data);
 		$this->setTemplateFile('userconfig');
 	}
