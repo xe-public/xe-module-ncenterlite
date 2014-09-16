@@ -412,9 +412,9 @@ class ncenterliteController extends ncenterlite
 			$logged_info = Context::get('logged_info');
 			if($comment_srl && $logged_info)
 			{
-				$args->target_srl = $comment_srl;
+				$args->srl = $comment_srl;
 				$args->member_srl = $logged_info->member_srl;
-				executeQuery('ncenterlite.updateNotifyReadedByTargetSrl', $args);
+				$output_update = executeQuery('ncenterlite.updateNotifyReadedByTargetSrl', $args);
 			}
 		}
 		else if($oModule->act == 'dispBoardContent')
@@ -889,7 +889,6 @@ class ncenterliteController extends ncenterlite
 		if($output->toBool())
 		{
 			$trigger_notify = ModuleHandler::triggerCall('ncenterlite._insertNotify', 'after', $args);
-			debugPrint($trigger_notify);
 			if(!$trigger_notify->toBool())
 			{
 				return $trigger_notify;
