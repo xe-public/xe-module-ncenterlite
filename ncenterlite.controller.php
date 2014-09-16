@@ -722,12 +722,14 @@ class ncenterliteController extends ncenterlite
 
 		$oMemberController = &getController('member');
 		$oMemberController->addMemberMenu('dispNcenterliteNotifyList', '내 알림 목록');
-		/* 이거 먼저 추가하되 추후 추가작업
+		$oMemberController->addMemberMenu('dispNcenterliteUserConfig', '내 알림 설정');
+
 		if($logged_info->is_admin== 'Y')
 		{
-			$oMemberController->addMemberPopupMenu();
+			$url = getUrl('','act','dispNcenterliteUserConfig','member_srl',$target_srl);
+			$oMemberController->addMemberPopupMenu($url, '유저 알림 설정', '');
 		}
-		*/
+
 		return new Object();
 	}
 
