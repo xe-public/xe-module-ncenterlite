@@ -1,0 +1,56 @@
+<load target="../../../member/skins/default/css/member.css" />
+<div class="xm">
+
+<form ruleset="insertConfig" action="./" method="post" class="form-horizontal" id="fo_ncenterlite">
+	<input type="hidden" name="module" value="ncenterlite" />
+	<input type="hidden" name="act" value="procNcenterliteUserConfig" />
+	<section class="section">
+		<h1><block cond="$member_info">{$member_info->nick_name}</block>
+			<block cond="!$member_info">{$logged_info->nick_name}</block>님의 알림센터 설정</h1>
+
+		<p>알림센터의 개인의 설정을 저장하도록 합니다.<block cond="$member_info">(주의! 당신은 관리자 권한으로 다른유저의 설정창을 접속하였습니다.)</block></p>
+		<div class="control-group">
+			<label class="control-label">댓글 알림</label>
+			<div class="controls">
+				<label class="inline">
+					<input type="radio" name="comment_notify" value="Y" checked="checked"|cond="$user_config->comment_notify == 'Y'" /> 사용
+				</label>
+				<label class="inline">
+					<input type="radio" name="comment_notify" value="N" checked="checked"|cond="$user_config->comment_notify == 'N'" /> 사용 안 함
+				</label>
+				<p class="help-block">내 게시물의 혹은 내 댓글에 댓글이 달릴경우 알림을 받습니다.</p>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">맨션 알림</label>
+			<div class="controls">
+				<label class="inline">
+					<input type="radio" name="mention_notify" value="Y" checked="checked"|cond="$user_config->mention_notify == 'Y'" /> 사용
+				</label>
+				<label class="inline">
+					<input type="radio" name="mention_notify" value="N" checked="checked"|cond="$user_config->mention_notify == 'N'" /> 사용 안 함
+				</label>
+				<p class="help-block">누군가 글, 혹은 댓글을 통해서 나를 맨션 했을 경우 알려줍니다. (맨션 방법 @닉네임 )</p>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">쪽지 알림</label>
+			<div class="controls">
+				<label class="inline">
+					<input type="radio" name="message_notify" value="Y" checked="checked"|cond="$user_config->message_notify == 'Y'" /> 사용
+				</label>
+				<label class="inline">
+					<input type="radio" name="message_notify" value="N" checked="checked"|cond="$user_config->message_notify == 'N'" /> 사용 안 함
+				</label>
+				<p class="help-block">누군가에게 받은 쪽지를 알림을 받습니다.</p>
+			</div>
+		</div>
+
+	</section>
+	<div class="clearfix btnArea">
+		<div class="pull-right">
+			<button class="btn btn-primary" type="submit">{$lang->cmd_registration}</button>
+		</div>
+	</div>
+</form>
+</div>
