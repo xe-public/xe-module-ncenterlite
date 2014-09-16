@@ -162,6 +162,30 @@ class ncenterliteController extends ncenterlite
 			$notify_member_srl[] = $mention_member_srl;
 		}
 
+		$admin_list = $oNcenterliteModel->getMemberAdmins();
+		$admins_list = $admin_list->data;
+		
+		foreach($admins_list as $admins)
+		{
+			if(in_array($module_info->module_srl, $config->admin_comment_module_srls))
+			{
+				$args = new stdClass();
+				$args->member_srl = $admins->member_srl;
+				$args->target_p_srl = $obj->commnet_srl;
+				$args->srl = $obj->comment_srl;
+				$args->target_srl = $admins->member_srl;
+				$args->type = $this->_TYPE_COMMENT;
+				$args->target_type = $this->_TYPE_ADMIN_COMMENT;
+				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
+				$args->target_summary = cut_str(strip_tags($content), 200);
+				$args->target_nick_name = $obj->nick_name;
+				$args->target_email_address = $obj->email_address;
+				$args->regdate = date('YmdHis');
+				$args->target_browser = $module_info->browser_title;
+				$args->notify = $this->_getNotifyId($args);
+				$output = $this->_insertNotify($args, $is_anonymous);
+			}
+		}
 		// 대댓글
 		if($parent_srl)
 		{

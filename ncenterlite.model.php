@@ -98,6 +98,10 @@ class ncenterliteModel extends ncenterlite
 					$str = sprintf($lang->ncenterlite_commented, $target_member, $type, $v->target_summary);
 					//$str = sprintf('<strong>%s</strong>님이 회원님의 %s에 <strong>"%s" 댓글</strong>을 남겼습니다.', $target_member, $type, $v->target_summary);
 				break;
+				case 'A':
+					$str = sprintf('<strong>%s</strong>님이 <strong>"%s"</strong>게시판에 <strong>"%s"</strong>댓글을 남겼습니다. ', $target_member, $v->target_browser, $v->target_summary);
+					//$str = sprintf('<strong>%s</strong>님이 회원님의 %s에 <strong>"%s" 댓글</strong>을 남겼습니다.', $target_member, $type, $v->target_summary);
+				break;
 				case 'M':
 					$str = sprintf($lang->ncenterlite_mentioned, $target_member,  $v->target_summary, $type);
 					//$str = sprintf('<strong>%s</strong>님이 <strong>"%s" %s</strong>에서 회원님을 언급하였습니다.', $target_member,  $v->target_summary, $type);
@@ -221,6 +225,15 @@ class ncenterliteModel extends ncenterlite
 		$args->list_count = '20';
 		$args->page_count = '10';
 		$output = executeQueryArray('ncenterlite.getAdminNotifyList', $args);
+		if(!$output->data) $output->data = array();
+
+		return $output;
+	}
+
+	function getMemberAdmins()
+	{
+		$args->is_admin = 'Y';
+		$output = executeQueryArray('ncenterlite.getMemberAdmins', $args);
 		if(!$output->data) $output->data = array();
 
 		return $output;
