@@ -315,7 +315,7 @@ class ncenterliteController extends ncenterlite
 		if($config->use != 'Y') return new Object();
 		if($config->message_notify != 'N')
 		{
-			$messages_member_config = $oNcneterliteModel->getMemberConfig($$trigger_obj->receiver_srl);
+			$messages_member_config = $oNcenterliteModel->getMemberConfig($trigger_obj->receiver_srl);
 			$message_member_config = $messages_member_config->data;
 
 			if(version_compare(__XE_VERSION__, '1.8', '>=') && $message_member_config->message_notify != 'N')
