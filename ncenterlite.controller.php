@@ -82,12 +82,13 @@ class ncenterliteController extends ncenterlite
 			foreach($mention_targets as $mention_member_srl)
 			{
 				$target_member_config = $oNcenterliteModel->getMemberConfig($mention_member_srl);
-				
 				$notify_member_config = $target_member_config->data;
+
 				if($notify_member_config->mention_notify == 'N')
 				{
 					continue;
 				}
+
 				$args = new stdClass();
 				$args->member_srl = $mention_member_srl;
 				$args->srl = $obj->document_srl;
@@ -136,6 +137,13 @@ class ncenterliteController extends ncenterlite
 		// !TODO 공용 메소드로 분리
 		foreach($mention_targets as $mention_member_srl)
 		{
+			$target_member_config = $oNcenterliteModel->getMemberConfig($mention_member_srl);
+			$notify_member_config = $target_member_config->data;
+			if($notify_member_config->mention_notify == 'N')
+			{
+				continue;
+			}
+
 			$args = new stdClass();
 			$args->member_srl = $mention_member_srl;
 			$args->target_p_srl = $obj->commnet_srl;
@@ -154,14 +162,41 @@ class ncenterliteController extends ncenterlite
 			$notify_member_srl[] = $mention_member_srl;
 		}
 
+		$admin_list = $oNcenterliteModel->getMemberAdmins();
+		$admins_list = $admin_list->data;
+		
+		foreach($admins_list as $admins)
+		{
+			if(in_array($module_info->module_srl, $config->admin_comment_module_srls))
+			{
+				$args = new stdClass();
+				$args->member_srl = $admins->member_srl;
+				$args->target_p_srl = $obj->commnet_srl;
+				$args->srl = $obj->comment_srl;
+				$args->target_srl = $admins->member_srl;
+				$args->type = $this->_TYPE_COMMENT;
+				$args->target_type = $this->_TYPE_ADMIN_COMMENT;
+				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
+				$args->target_summary = cut_str(strip_tags($content), 200);
+				$args->target_nick_name = $obj->nick_name;
+				$args->target_email_address = $obj->email_address;
+				$args->regdate = date('YmdHis');
+				$args->target_browser = $module_info->browser_title;
+				$args->notify = $this->_getNotifyId($args);
+				$output = $this->_insertNotify($args, $is_anonymous);
+			}
+		}
 		// 대댓글
 		if($parent_srl)
 		{
 			$oCommentModel = &getModel('comment');
 			$oComment = $oCommentModel->getComment($parent_srl);
 			$member_srl = $oComment->member_srl;
+			$comment_member_config = $oNcenterliteModel->getMemberConfig($member_srl);
+			$parent_member_config = $comment_member_config->data;
+
 			// !TODO 공용 메소드로 분리
-			if(!in_array(abs($member_srl), $notify_member_srl) && (!$logged_info || ($member_srl != 0 && abs($member_srl) != $logged_info->member_srl)))
+			if(!in_array(abs($member_srl), $notify_member_srl) && (!$logged_info || ($member_srl != 0 && abs($member_srl) != $logged_info->member_srl)) && $parent_member_config->comment_notify != 'N')
 			{
 				$args = new stdClass();
 				$args->member_srl = abs($member_srl);
@@ -188,8 +223,11 @@ class ncenterliteController extends ncenterlite
 			$oDocument = $oDocumentModel->getDocument($document_srl);
 
 			$member_srl = $oDocument->get('member_srl');
+			$comment_member_config = $oNcenterliteModel->getMemberConfig($member_srl);
+			$document_comment_member_config = $comment_member_config->data;
+
 			// !TODO 공용 메소드로 분리
-			if(!in_array(abs($member_srl), $notify_member_srl) && (!$logged_info || ($member_srl != 0 && abs($member_srl) != $logged_info->member_srl)))
+			if(!in_array(abs($member_srl), $notify_member_srl) && (!$logged_info || ($member_srl != 0 && abs($member_srl) != $logged_info->member_srl)) && $document_comment_member_config->comment_notify != 'N')
 			{
 				$args = new stdClass();
 				$args->member_srl = abs($member_srl);
@@ -225,8 +263,11 @@ class ncenterliteController extends ncenterlite
 		$vars = Context::getRequestVars();
 		$logged_info = Context::get('logged_info');
 
-		// 쪽지 체크
-		if($config->message_notify != 'N')
+		$messages_member_config = $oNcenterliteModel->getMemberConfig($logged_info->member_srl);
+		$message_member_config = $messages_member_config->data;
+
+		// 쪽지 체크 및 유저 쪽지 알림 채크
+		if($config->message_notify != 'N' && $message_member_config->message_notify != 'N')
 		{
 			$flag_path = './files/ncenterlite/new_message_flags/';
 
@@ -296,9 +337,12 @@ class ncenterliteController extends ncenterlite
 		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
 		if($config->use != 'Y') return new Object();
-		if(version_compare(__XE_VERSION__, '1.8', '>='))
+		if($config->message_notify != 'N')
 		{
-			if($config->message_notify != 'N')
+			$messages_member_config = $oNcenterliteModel->getMemberConfig($trigger_obj->receiver_srl);
+			$message_member_config = $messages_member_config->data;
+
+			if(version_compare(__XE_VERSION__, '1.8', '>=') && $message_member_config->message_notify != 'N')
 			{
 				$args = new stdClass();
 				$args->member_srl = $trigger_obj->receiver_srl;
@@ -313,10 +357,7 @@ class ncenterliteController extends ncenterlite
 				$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages', 'message_srl', $trigger_obj->related_srl);
 				$output = $this->_insertNotify($args, $is_anonymous);
 			}
-		}
-		else
-		{
-			if($config->message_notify != 'N')
+			elseif($message_member_config->message_notify != 'N')
 			{
 				$args = new stdClass();
 				$args->member_srl = $trigger_obj->receiver_srl;
