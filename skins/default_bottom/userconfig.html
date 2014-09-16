@@ -5,8 +5,10 @@
 	<input type="hidden" name="module" value="ncenterlite" />
 	<input type="hidden" name="act" value="procNcenterliteUserConfig" />
 	<section class="section">
-		<h1>{$logged_info->nick_name}님의 알림센터 설정</h1>
-		<p>알림센터의 개인의 설정을 저장하도록 합니다.</p>
+		<h1><block cond="$member_info">{$member_info->nick_name}</block>
+			<block cond="!$member_info">{$logged_info->nick_name}</block>님의 알림센터 설정</h1>
+
+		<p>알림센터의 개인의 설정을 저장하도록 합니다.<block cond="$member_info">(주의! 당신은 관리자 권한으로 다른유저의 설정창을 접속하였습니다.)</block></p>
 		<div class="control-group">
 			<label class="control-label">댓글 알림</label>
 			<div class="controls">
