@@ -63,10 +63,6 @@ class ncenterliteModel extends ncenterlite
 		{
 			$output = $this->getMyDispNotifyList($member_srl);
 		}
-		elseif($act=='dispNcenterliteAdminList')
-		{
-			$output = $this->getNcenterliteAdminList();
-		}
 		else
 		{
 			$output = $this->_getMyNotifyList($member_srl, $page, $readed);
