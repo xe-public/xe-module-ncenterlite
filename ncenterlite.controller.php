@@ -998,4 +998,3 @@ class ncenterliteController extends ncenterlite
 		return $list;
 	}
 }
-
