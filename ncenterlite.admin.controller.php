@@ -108,7 +108,7 @@ class ncenterliteAdminController extends ncenterlite
 		}
 		else
 		{
-			$this->setMessage('모든 정보를 삭제하였습니다.')
+			$this->setMessage('모든 정보를 삭제하였습니다.');
 		}
 		
 		if(!in_array(Context::getRequestMethod(),array('XMLRPC','JSON')))
