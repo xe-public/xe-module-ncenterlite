@@ -93,7 +93,7 @@ class ncenterliteController extends ncenterlite
 				$args->member_srl = $mention_member_srl;
 				$args->srl = $obj->document_srl;
 				$args->target_p_srl = $obj->documentl_srl;
-				$args->target_srl = $mention_member_srl;
+				$args->target_srl = $obj->documentl_srl;
 				$args->type = $this->_TYPE_DOCUMENT;
 				$args->target_type = $this->_TYPE_MENTION;
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $obj->document_srl);
@@ -148,7 +148,7 @@ class ncenterliteController extends ncenterlite
 			$args->member_srl = $mention_member_srl;
 			$args->target_p_srl = $obj->commnet_srl;
 			$args->srl = $obj->comment_srl;
-			$args->target_srl = $mention_member_srl;
+			$args->target_srl = $document_srl;
 			$args->type = $this->_TYPE_COMMENT;
 			$args->target_type = $this->_TYPE_MENTION;
 			$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
@@ -167,13 +167,14 @@ class ncenterliteController extends ncenterlite
 		
 		foreach($admins_list as $admins)
 		{
+			debugPrint($document_srl);
 			if(in_array($module_info->module_srl, $config->admin_comment_module_srls))
 			{
 				$args = new stdClass();
 				$args->member_srl = $admins->member_srl;
 				$args->target_p_srl = $obj->commnet_srl;
 				$args->srl = $obj->comment_srl;
-				$args->target_srl = $admins->member_srl;
+				$args->target_srl = $obj->document_srl;
 				$args->type = $this->_TYPE_COMMENT;
 				$args->target_type = $this->_TYPE_ADMIN_COMMENT;
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
