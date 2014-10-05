@@ -13,7 +13,7 @@ class ncenterliteAdminModel extends ncenterlite
 		$act = Context::get('act');
 		$output = $oNcenterliteModel->getNcenterliteAdminList();
 
-		$oMemberModel = &getModel('member');
+		$oMemberModel = getModel('member');
 		$list = $output->data;
 
 		foreach($list as $k => $v)
