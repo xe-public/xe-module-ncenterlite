@@ -74,7 +74,6 @@ class ncenterliteController extends ncenterlite
 		$group_list = $oMemberModel->getGroups();
 
 		$is_anonymous = $this->_isAnonymous($this->_TYPE_DOCUMENT, $obj);
-
 		// 맨션 알림일경우 맨션알림 시작.
 		if($mention_targets)
 		{
@@ -93,7 +92,7 @@ class ncenterliteController extends ncenterlite
 				$args->member_srl = $mention_member_srl;
 				$args->srl = $obj->document_srl;
 				$args->target_p_srl = $obj->documentl_srl;
-				$args->target_srl = $obj->documentl_srl;
+				$args->target_srl = $obj->document_srl;
 				$args->type = $this->_TYPE_DOCUMENT;
 				$args->target_type = $this->_TYPE_MENTION;
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $obj->document_srl);
@@ -148,7 +147,7 @@ class ncenterliteController extends ncenterlite
 			$args->member_srl = $mention_member_srl;
 			$args->target_p_srl = $obj->commnet_srl;
 			$args->srl = $obj->comment_srl;
-			$args->target_srl = $document_srl;
+			$args->target_srl = $obj->document_srl;
 			$args->type = $this->_TYPE_COMMENT;
 			$args->target_type = $this->_TYPE_MENTION;
 			$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
@@ -167,14 +166,13 @@ class ncenterliteController extends ncenterlite
 		
 		foreach($admins_list as $admins)
 		{
-			debugPrint($document_srl);
 			if(in_array($module_info->module_srl, $config->admin_comment_module_srls))
 			{
 				$args = new stdClass();
 				$args->member_srl = $admins->member_srl;
 				$args->target_p_srl = $obj->commnet_srl;
 				$args->srl = $obj->comment_srl;
-				$args->target_srl = $obj->document_srl;
+				$args->target_srl = $obj->comment_srl;
 				$args->type = $this->_TYPE_COMMENT;
 				$args->target_type = $this->_TYPE_ADMIN_COMMENT;
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
@@ -203,7 +201,7 @@ class ncenterliteController extends ncenterlite
 				$args->member_srl = abs($member_srl);
 				$args->srl = $comment_srl;
 				$args->target_p_srl = $parent_srl;
-				$args->target_srl = $document_srl;
+				$args->target_srl = $obj->comment_srl;
 				$args->type = $this->_TYPE_COMMENT;
 				$args->target_type = $this->_TYPE_COMMENT;
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
@@ -427,6 +425,7 @@ class ncenterliteController extends ncenterlite
 	{
 		$vars = Context::getRequestVars();
 		$logged_info = Context::get('logged_info');
+		$args = new stdClass();
 
 		if($oModule->getLayoutFile() == 'popup_layout.html') Context::set('ncenterlite_is_popup', TRUE);
 
@@ -454,7 +453,7 @@ class ncenterliteController extends ncenterlite
 			$logged_info = Context::get('logged_info');
 			if($comment_srl && $logged_info)
 			{
-				$args->srl = $comment_srl;
+				$args->target_srl = $comment_srl;
 				$args->member_srl = $logged_info->member_srl;
 				$output_update = executeQuery('ncenterlite.updateNotifyReadedByTargetSrl', $args);
 			}
@@ -470,7 +469,7 @@ class ncenterliteController extends ncenterlite
 			{
 				$args->target_srl = $document_srl;
 				$args->member_srl = $logged_info->member_srl;
-				executeQuery('ncenterlite.updateNotifyReadedByTargetSrl', $args);
+				$outputs = executeQuery('ncenterlite.updateNotifyReadedByTargetSrl', $args);
 			}
 
 			if($comment_srl && $document_srl && $oDocument)
