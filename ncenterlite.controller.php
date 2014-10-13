@@ -91,7 +91,7 @@ class ncenterliteController extends ncenterlite
 				$args = new stdClass();
 				$args->member_srl = $mention_member_srl;
 				$args->srl = $obj->document_srl;
-				$args->target_p_srl = $obj->documentl_srl;
+				$args->target_p_srl = $obj->document_srl;
 				$args->target_srl = $obj->document_srl;
 				$args->type = $this->_TYPE_DOCUMENT;
 				$args->target_type = $this->_TYPE_MENTION;
