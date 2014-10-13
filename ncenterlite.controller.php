@@ -145,7 +145,7 @@ class ncenterliteController extends ncenterlite
 
 			$args = new stdClass();
 			$args->member_srl = $mention_member_srl;
-			$args->target_p_srl = $obj->commnet_srl;
+			$args->target_p_srl = $obj->comment_srl;
 			$args->srl = $obj->comment_srl;
 			$args->target_srl = $obj->document_srl;
 			$args->type = $this->_TYPE_COMMENT;
@@ -170,7 +170,7 @@ class ncenterliteController extends ncenterlite
 			{
 				$args = new stdClass();
 				$args->member_srl = $admins->member_srl;
-				$args->target_p_srl = $obj->commnet_srl;
+				$args->target_p_srl = $obj->comment_srl;
 				$args->srl = $obj->comment_srl;
 				$args->target_srl = $obj->comment_srl;
 				$args->type = $this->_TYPE_COMMENT;
@@ -987,12 +987,28 @@ class ncenterliteController extends ncenterlite
 
 		$nicks = array_unique($matches[2]);
 
-		foreach($nicks as $nick_name)
+		$oMemberModel = getModel('member');
+		$member_config = $oMemberModel->getMemberConfig();
+
+		if($config->mention_names == 'id' && $member_config->identifier != 'email_address')
 		{
-			$vars = null;
-			$vars->nick_name = $nick_name;
-			$output = executeQuery('ncenterlite.getMemberSrlByNickName', $vars);
-			if($output->data && $output->data->member_srl) $list[] = $output->data->member_srl;
+			foreach($nicks as $user_id)
+			{
+				$vars = null;
+				$vars->user_id = $user_id;
+				$output = executeQuery('ncenterlite.getMemberSrlById', $vars);
+				if($output->data && $output->data->member_srl) $list[] = $output->data->member_srl;
+			}
+		}
+		else
+		{
+			foreach($nicks as $nick_name)
+			{
+				$vars = null;
+				$vars->nick_name = $nick_name;
+				$output = executeQuery('ncenterlite.getMemberSrlByNickName', $vars);
+				if($output->data && $output->data->member_srl) $list[] = $output->data->member_srl;
+			}
 		}
 
 		return $list;

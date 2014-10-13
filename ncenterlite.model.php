@@ -11,6 +11,7 @@ class ncenterliteModel extends ncenterlite
 			$config = $oModuleModel->getModuleConfig('ncenterlite');
 			if(!$config->use) $config->use = 'Y';
 
+			if(!$config->mention_names) $config->mention_names = 'nick_name';
 			if(!$config->message_notify) $config->message_notify = 'Y';
 			if(!$config->mention_format && !is_array($config->mention_format)) $config->mention_format = array('respect');
 			if(!is_array($config->mention_format)) $config->mention_format = explode('|@|', $config->mention_format);

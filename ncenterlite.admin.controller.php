@@ -8,6 +8,7 @@ class ncenterliteAdminController extends ncenterlite
 		$config->use = Context::get('use');
 
 		$config->mention_format = Context::get('mention_format');
+		$config->mention_names = Context::get('mention_names');
 		$config->document_notify = Context::get('document_notify');
 		$config->message_notify = Context::get('message_notify');
 		$config->hide_module_srls = Context::get('hide_module_srls');

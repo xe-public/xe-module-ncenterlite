@@ -46,6 +46,18 @@
 			</div>
 		</div>
 		<div class="x_control-group">
+			<label class="x_control-label">맨션 타겟 설정</label>
+			<div class="x_controls">
+				<label class="x_inline">
+					<input type="radio" id="mention_names_id" name="mention_names" value="id" checked="checked"|cond="$config->mention_names == 'id'" /> 아이디
+				</label>
+				<label class="x_inline">
+					<input type="radio" id="mention_names_nick_name" name="mention_names" value="nick_name" checked="checked"|cond="$config->mention_names == 'nick_name'" /> 닉네임
+				</label>
+				<p class="x_help-block">알림센터에서 닉네임 혹은 아이디 선택하여 맨션설정을 할 수 있습니다.</p>
+			</div>
+		</div>
+		<div class="x_control-group">
 			<label class="x_control-label">안드로이드알림 솔루션</label>
 			<div class="x_controls">
 				<label class="x_inline"><input type="radio" name="android_format" value="N" checked="checked"|cond="$config->android_format == 'N'" /> 안드로이드 알림을 사용하지 않음</label>
