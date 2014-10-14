@@ -79,6 +79,18 @@
 			</div>
 		</div>
 		<div class="x_control-group">
+			<label class="x_control-label">회원정보 메뉴노출 설정</label>
+			<div class="x_controls">
+				<label class="x_inline">
+					<input type="radio" id="user_config_list_id" name="user_config_list" value="Y" checked="checked"|cond="$config->user_config_list == 'Y'" /> 회원정보에 표시함.
+				</label>
+				<label class="x_inline">
+					<input type="radio" id="user_config_list_nick_name" name="user_config_list" value="N" checked="checked"|cond="$config->user_config_list == 'N'" /> 표기안함
+				</label>
+				<p class="x_help-block">회원정보보기에서 메뉴 목록에 회원알림센터 설정 및 회원알림목록을 접근할 수잇는 페이지를 노출하거나 노출 시키지 않을 수 있습니다.</p>
+			</div>
+		</div>
+		<div class="x_control-group">
 			<label class="x_control-label">안드로이드알림 솔루션</label>
 			<div class="x_controls">
 				<label class="x_inline"><input type="radio" name="android_format" value="N" checked="checked"|cond="$config->android_format == 'N'" /> 안드로이드 알림을 사용하지 않음</label>

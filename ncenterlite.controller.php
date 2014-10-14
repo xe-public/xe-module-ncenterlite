@@ -716,18 +716,24 @@ class ncenterliteController extends ncenterlite
 
 	function triggerAddMemberMenu()
 	{
-		$logged_info = Context::get('logged_info');
-		if(!Context::get('is_logged')) return new Object();
-		$target_srl = Context::get('target_srl');
+		$oNcenterliteModel = getModel('ncenterlite');
+		$config = $oNcenterliteModel->getConfig();
 
-		$oMemberController = &getController('member');
-		$oMemberController->addMemberMenu('dispNcenterliteNotifyList', '내 알림 목록');
-		$oMemberController->addMemberMenu('dispNcenterliteUserConfig', '내 알림 설정');
-
-		if($logged_info->is_admin== 'Y')
+		if($config->user_config_list == 'Y')
 		{
-			$url = getUrl('','act','dispNcenterliteUserConfig','member_srl',$target_srl);
-			$oMemberController->addMemberPopupMenu($url, '유저 알림 설정', '');
+			$logged_info = Context::get('logged_info');
+			if(!Context::get('is_logged')) return new Object();
+			$target_srl = Context::get('target_srl');
+
+			$oMemberController = &getController('member');
+			$oMemberController->addMemberMenu('dispNcenterliteNotifyList', '내 알림 목록');
+			$oMemberController->addMemberMenu('dispNcenterliteUserConfig', '내 알림 설정');
+
+			if($logged_info->is_admin== 'Y')
+			{
+				$url = getUrl('','act','dispNcenterliteUserConfig','member_srl',$target_srl);
+				$oMemberController->addMemberPopupMenu($url, '유저 알림 설정', '');
+			}
 		}
 
 		return new Object();
