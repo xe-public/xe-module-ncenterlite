@@ -1,9 +1,16 @@
 <load target="../../../member/skins/default/css/member.css" />
 <div class="xm">
 
+<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == 'modules/ncenterlite/skins/default/userconfig/1'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+
+
 <form ruleset="insertConfig" action="./" method="post" class="form-horizontal" id="fo_ncenterlite">
 	<input type="hidden" name="module" value="ncenterlite" />
 	<input type="hidden" name="act" value="procNcenterliteUserConfig" />
+	<input type="hidden" name="xe_validator_id" value="modules/ncenterlite/skins/default/userconfig/1" />
+	<input type="hidden" name="member_srl" value="{$member_srl}">
 	<section class="section">
 		<h1><block cond="$member_info">{$member_info->nick_name}</block>
 			<block cond="!$member_info">{$logged_info->nick_name}</block>님의 알림센터 설정</h1>

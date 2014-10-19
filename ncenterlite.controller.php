@@ -5,7 +5,16 @@ class ncenterliteController extends ncenterlite
 	{
 		$logged_info = Context::get('logged_info');
 		$oNcenterliteModel = getModel('ncenterlite');
-		$member_srl = $logged_info->member_srl;
+
+		$member_srl = Context::get('member_srl');
+
+		if(!$member_srl)
+		{
+			$member_srl = $logged_info->member_srl;
+		}
+
+		if($logged_info->member_srl != $member_srl && $logged_info->is_admin != 'Y') return new Object(-1, '다른회원의 설정을 변경할 권한이 없습니다.');
+
 		$output = $oNcenterliteModel->getMemberConfig($member_srl);
 
 		$obj = Context::getRequestVars();
@@ -15,7 +24,7 @@ class ncenterliteController extends ncenterlite
 		$args->comment_notify = $obj->comment_notify;
 		$args->mention_notify = $obj->mention_notify;
 		$args->message_notify = $obj->message_notify;
-				
+
 		if(!$output)
 		{
 			$outputs = executeQuery('ncenterlite.insertUserConfig', $args);
@@ -25,13 +34,17 @@ class ncenterliteController extends ncenterlite
 			$outputs = executeQuery('ncenterlite.updateUserConfig', $args);
 		}
 
+		$this->setMessage('success_updated');
+
 		if(!in_array(Context::getRequestMethod(),array('XMLRPC','JSON')))
 		{
-			$returnUrl = Context::get('success_return_url') ? Context::get('success_return_url') : getNotEncodedUrl('', 'act', 'dispNcenterliteUserConfig');
+			$returnUrl = Context::get('success_return_url') ? Context::get('success_return_url') : getNotEncodedUrl('', 'act', 'dispNcenterliteUserConfig','member_srl',$member_srl);
 			header('location: ' . $returnUrl);
 			return;
 		}
 	}
+
+
 
 	function triggerAfterDeleteMember($obj)
 	{
