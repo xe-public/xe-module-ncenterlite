@@ -649,6 +649,7 @@ class ncenterliteController extends ncenterlite
 
 		// 알림센터가 비활성화 되어 있으면 중지
 		if($config->use != 'Y') return new Object();
+		if($config->display_use == 'N') return new Object();
 
 		// 노티바 제외 페이지이면 중지
 		if(in_array($module_info->module_srl, $config->hide_module_srls)) return new Object();
