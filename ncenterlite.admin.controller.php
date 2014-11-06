@@ -127,7 +127,7 @@ class ncenterliteAdminController extends ncenterlite
 		$vars = Context::getRequestVars();
 		$oModuleModel = &getModel('module');
 		$ncenterlite_module_info = $oModuleModel->getModuleInfoXml('ncenterlite');
-		$agreement_file = FileHandler::getRealPath(sprintf('%s%s.txt', './files/ncenterlite/', $ncenterlite_module_info->version));
+		$agreement_file = FileHandler::getRealPath(sprintf('%s%s.txt', './files/ncenterlite/ncenterlite-', $ncenterlite_module_info->version));
 
 		FileHandler::writeFile($agreement_file, $vars->is_agree);
 
