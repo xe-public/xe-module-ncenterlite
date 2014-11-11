@@ -16,26 +16,27 @@ XE 알림센터의 무료 버전.
 * 댓글이 작성되면 글 작성자에게 알림
 * 댓글의 댓글이 작성되면 해당 댓글 작성자에게 알림
 * '@닉네임'과 같은 형태로 지정한 회원에게 알림
+	* '@아이디'와 같은 형태로도 지정한 회원에게 알림기능가능(설정요망)
 * 회원이 모든 알림 내용을 받거나 안받을 수 있도록 설정가능.(회원설정가능)
 
 Maintainers
 ------
 * website : https://github.com/xe-public
 
-[BJ람보](http://github.com/qw5414),
-[BNU](http://github.com/bnu)
+[@qw5414 (BJ람보)](http://github.com/qw5414),
+[@BNU](http://github.com/bnu)
 
 Contributors
 ------------
-[kantsoft](http://github.com/kantsoft),
-[hansim](https://github.com/hansim),
-[SeungYeonYou](https://github.com/SeungYeonYou),
-[YJSoft](https://github.com/YJSoft)
+[@kantsoft](http://github.com/kantsoft),
+[@hansim](https://github.com/hansim),
+[@SeungYeonYou](https://github.com/SeungYeonYou),
+[@YJSoft](https://github.com/YJSoft)
 
 Thanks to
 ---------
-[yaho1021](https://github.com/yaho1021),
-[mAKEkr](https://github.com/mAKEkr),
+[@yaho1021](https://github.com/yaho1021),
+[@mAKEkr](https://github.com/mAKEkr),
 쓰리공주
 
 Copyright (ko)
