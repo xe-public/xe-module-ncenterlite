@@ -22,7 +22,6 @@ class ncenterliteView extends ncenterlite
 			$this->module_info->layout_srl = $config->layout_srl;
 			$this->setLayoutPath($layout_info->path);
 		}
-
 	}
 
 	function dispNcenterliteNotifyList()
