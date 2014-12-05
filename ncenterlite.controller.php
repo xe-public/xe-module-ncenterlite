@@ -44,6 +44,8 @@ class ncenterliteController extends ncenterlite
 		}
 	}
 
+
+
 	function triggerAfterDeleteMember($obj)
 	{
 		$oNcenterliteModel = &getModel('ncenterlite');

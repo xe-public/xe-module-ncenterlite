@@ -15,10 +15,7 @@ class ncenterliteAdminController extends ncenterlite
 		$config->message_notify = Context::get('message_notify');
 		$config->hide_module_srls = Context::get('hide_module_srls');
 		$config->android_format = Context::get('android_format');
-		if(!$config->mention_format && !is_array($config->mention_format))
-		{
-			$config->mention_format = array();
-		}
+		if(!$config->mention_format && !is_array($config->mention_format)) $config->mention_format = array();
 		$config->admin_comment_module_srls = Context::get('admin_comment_module_srls');
 
 		$config->skin = Context::get('skin');
@@ -32,10 +29,7 @@ class ncenterliteAdminController extends ncenterlite
 		$config->mlayout_srl = Context::get('mlayout_srl');
 		$config->voted_format = Context::get('voted_format');
 
-		if(!$config->document_notify)
-		{
-			$config->document_notify = 'direct-comment';
-		}
+		if(!$config->document_notify) $config->document_notify = 'direct-comment';
 
 		$this->setMessage('success_updated');
 
