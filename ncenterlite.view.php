@@ -50,9 +50,12 @@ class ncenterliteView extends ncenterlite
 		{
 			$member_info = $oMemberModel->getMemberInfoByMemberSrl($member_srl);
 		}
-		if($logged_info->is_admin != 'Y' && $logged_info->member_srl != $member_srl)
+		if($logged_info->is_admin != 'Y' && $member_srl)
 		{
-			return new Object(-1, '다른회원의 설정을 볼 권한이 없습니다.');
+			if($member_srl != $logged_info->member_srl)
+			{
+				return new Object(-1, '다른회원의 설정을 볼 권한이 없습니다.');
+			}
 		}
 		$oNcenterliteModel = getModel('ncenterlite');
 		if(!$member_srl)
