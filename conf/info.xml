@@ -2,8 +2,8 @@
 <module version="0.2">
 	<title xml:lang="ko">XE 알림센터 Lite</title>
 	<description xml:lang="ko">사이트 사용자간의 커뮤니케이션에 대한 정보를 알려주는 모듈입니다.</description>
-	<version>2.1.1</version>
-	<date>2014-12-05</date>
+	<version>2.1.2</version>
+	<date>2014-12-09</date>
 	<category>content</category>
 	<author link="http://github.com/xe-public">
 		<name xml:lang="ko">XE Public</name>
