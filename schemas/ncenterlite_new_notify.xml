@@ -1,0 +1,26 @@
+<table name="ncenterlite_new_notify">
+	<column name="notify" type="char" size="32" notnull="notnull" primary_key="primary_key" breif="메시지 ID" />
+	<column name="notify_srl" type="number" size="11" notnull="notnull" primary_key="primary_key" breif="메시지 ID" />
+
+	<column name="document_srl" type="number" size="11" notnull="notnull" breif="이벤트 대상의 상위 srl" />
+	<column name="comment_srl" type="number" size="11" breif="이벤트 대상 srl(문서/댓글)" />
+	<column name="parent_srl" type="number" size="11" breif="이벤트 대상 srl(문서/댓글) 대댓글의 경우 앞전 댓글" />
+	<column name="message_srl" type="number" size="11" />
+	<column name="type" type="varchar" size="15" notnull="notnull" breif="이벤트 대상 타입" />
+	<column name="target_type" type="varchar" size="15" notnull="notnull" breif="이벤트 타입" />
+
+	<column name="member_srl" type="number" size="11" notnull="notnull" index="idx_member_srl" breif="받는 사람" />
+
+	<column name="target_is_admin" type="char" size="1" notnull="notnull" breif="관리자 여부" />
+	<column name="target_member_srl" type="number" size="11" notnull="notnull" breif="보내는 사람" />
+	<column name="target_nick_name" type="varchar" size="50" notnull="notnull" breif="보내는 사람" />
+	<column name="target_user_id" type="varchar" size="50" notnull="notnull" breif="보내는 사람" />
+	<column name="target_email_address" type="varchar" size="50" notnull="notnull" breif="보내는 사람" />
+
+	<column name="target_browser" type="varchar" size="50" breif="브라우저 제목" />
+	<column name="target_summary" type="varchar" size="50" breif="메시지 요약문" />
+	<column name="target_contect" type="bigtext" />
+	<column name="target_url" type="varchar" size="255" notnull="notnull" breif="링크 목적지 주소" />
+	<column name="readed" type="char" size="1" default="N" notnull="notnull" index="idx_readed" />
+	<column name="regdate" type="date" index="idx_regdate" />
+</table>
