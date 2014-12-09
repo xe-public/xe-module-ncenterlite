@@ -21,14 +21,15 @@ class ncenterlite extends ModuleObject
 	// @@@@@@@@@@ 사용자 커스텀 끝
 
 
-	var $_TYPE_DOCUMENT = 'D'; // 댓글
-	var $_TYPE_COMMENT = 'C'; // 댓글의 댓글
-	var $_TYPE_ADMIN_COMMENT = 'A'; // 어드민 댓글 알림
-	var $_TYPE_MENTION = 'M'; // 멘션
-	var $_TYPE_MESSAGE = 'E'; // 쪽지 mEssage
-	var $_TYPE_DOCUMENTS = 'P'; // 글 작성 알림
-	var $_TYPE_VOTED = 'V'; // 추천글 안내 알림
-	var $_TYPE_TEST = 'T';
+	var $_TYPE_DOCUMENT = 'DOCUMENT'; // 문서
+	var $_TYPE_COMMENT = 'COMMENT'; // 댓글
+	var $_TYPE_P_COMMENT = 'P_COMMENT'; // 대댓글
+	var $_TYPE_ADMIN_COMMENT = 'ADMINCOMMENT'; // 어드민 댓글 알림
+	var $_TYPE_MENTION = 'MENTION'; // 멘션
+	var $_TYPE_MESSAGE = 'MESSAGE'; // 쪽지 mEssage
+	var $_TYPE_DOCUMENTS = 'DOCUMENTS'; // 글 작성 알림
+	var $_TYPE_VOTED = 'VOTED'; // 추천글 안내 알림
+	var $_TYPE_TEST = 'TEST';
 
 	var $triggers = array(
 		array('comment.insertComment', 'ncenterlite', 'controller', 'triggerAfterInsertComment', 'after'),
