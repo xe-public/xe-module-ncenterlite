@@ -2,7 +2,7 @@
 	<column name="notify" type="char" size="32" notnull="notnull" primary_key="primary_key" breif="메시지 ID" />
 	<column name="notify_srl" type="number" size="11" notnull="notnull" primary_key="primary_key" breif="메시지 ID" />
 
-	<column name="document_srl" type="number" size="11" notnull="notnull" breif="이벤트 대상의 상위 srl" />
+	<column name="document_srl" type="number" size="11" breif="이벤트 대상의 상위 srl" />
 	<column name="comment_srl" type="number" size="11" breif="이벤트 대상 srl(문서/댓글)" />
 	<column name="parent_srl" type="number" size="11" breif="이벤트 대상 srl(문서/댓글) 대댓글의 경우 앞전 댓글" />
 	<column name="message_srl" type="number" size="11" />
@@ -19,7 +19,7 @@
 
 	<column name="target_browser" type="varchar" size="50" breif="브라우저 제목" />
 	<column name="target_summary" type="varchar" size="50" breif="메시지 요약문" />
-	<column name="target_contect" type="bigtext" />
+	<column name="target_content" type="bigtext" />
 	<column name="target_url" type="varchar" size="255" notnull="notnull" breif="링크 목적지 주소" />
 	<column name="readed" type="char" size="1" default="N" notnull="notnull" index="idx_readed" />
 	<column name="regdate" type="date" index="idx_regdate" />
