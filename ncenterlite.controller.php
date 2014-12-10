@@ -135,6 +135,7 @@ class ncenterliteController extends ncenterlite
 		$oModuleModel = getModel('module');
 		$module_info = $oModuleModel->getModuleInfoByDocumentSrl($document_srl);
 		$comment_srl = $obj->comment_srl;
+		debugPrint($comment_srl);
 		$parent_srl = $obj->parent_srl;
 		$content = $obj->content;
 		$regdate = $obj->regdate;
@@ -145,6 +146,10 @@ class ncenterliteController extends ncenterlite
 		// 멘션
 		$mention_targets = $this->_getMentionTarget(strip_tags($obj->content));
 		// !TODO 공용 메소드로 분리
+
+		$args = new stdClass();
+
+
 		foreach($mention_targets as $mention_member_srl)
 		{
 			$target_member_config = $oNcenterliteModel->getMemberConfig($mention_member_srl);
@@ -153,16 +158,14 @@ class ncenterliteController extends ncenterlite
 			{
 				continue;
 			}
-
-			$args = new stdClass();
 			$args->member_srl = $mention_member_srl;
-			$args->target_p_srl = $obj->comment_srl;
-			$args->srl = $obj->comment_srl;
-			$args->target_srl = $obj->document_srl;
+			$args->document_srl = $obj->document_srl;
+			$args->comment_srl = $obj->comment_srl;
 			$args->type = $this->_TYPE_COMMENT;
 			$args->target_type = $this->_TYPE_MENTION;
 			$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
 			$args->target_summary = cut_str(strip_tags($content), 200);
+			$args->target_content = $content;
 			$args->target_nick_name = $obj->nick_name;
 			$args->target_email_address = $obj->email_address;
 			$args->regdate = date('YmdHis');
@@ -179,13 +182,19 @@ class ncenterliteController extends ncenterlite
 		{
 			if(in_array($module_info->module_srl, $config->admin_comment_module_srls))
 			{
-				$args = new stdClass();
 				$args->member_srl = $admins->member_srl;
-				$args->target_p_srl = $obj->comment_srl;
-				$args->srl = $obj->comment_srl;
-				$args->target_srl = $obj->comment_srl;
+				$args->document_srl = $obj->document_srl;
+				$args->comment_srl = $obj->comment_srl;
+
 				$args->type = $this->_TYPE_COMMENT;
-				$args->target_type = $this->_TYPE_ADMIN_COMMENT;
+				if(!$parent_srl)
+				{
+					$args->target_type = $this->_TYPE_ADMIN_COMMENT;
+				}
+				else
+				{
+					$args->target_type = $this->_TYPE_ADMIN_P_COMMENT;
+				}
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
 				$args->target_summary = cut_str(strip_tags($content), 200);
 				$args->target_nick_name = $obj->nick_name;
@@ -208,15 +217,15 @@ class ncenterliteController extends ncenterlite
 			// !TODO 공용 메소드로 분리
 			if(!in_array(abs($member_srl), $notify_member_srl) && (!$logged_info || ($member_srl != 0 && abs($member_srl) != $logged_info->member_srl)) && $parent_member_config->comment_notify != 'N')
 			{
-				$args = new stdClass();
 				$args->member_srl = abs($member_srl);
-				$args->srl = $comment_srl;
-				$args->target_p_srl = $parent_srl;
-				$args->target_srl = $obj->comment_srl;
+				$args->document_srl = $obj->document_srl;
+				$args->comment_srl = $comment_srl;
+				$args->parent_srl = $parent_srl;
 				$args->type = $this->_TYPE_COMMENT;
 				$args->target_type = $this->_TYPE_COMMENT;
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
 				$args->target_summary = cut_str(strip_tags($content), 200);
+				$args->target_content = $content;
 				$args->target_nick_name = $obj->nick_name;
 				$args->target_email_address = $obj->email_address;
 				$args->regdate = $regdate;
@@ -239,15 +248,18 @@ class ncenterliteController extends ncenterlite
 			// !TODO 공용 메소드로 분리
 			if(!in_array(abs($member_srl), $notify_member_srl) && (!$logged_info || ($member_srl != 0 && abs($member_srl) != $logged_info->member_srl)) && $document_comment_member_config->comment_notify != 'N')
 			{
-				$args = new stdClass();
 				$args->member_srl = abs($member_srl);
-				$args->srl = $comment_srl;
-				$args->target_p_srl = $comment_srl;
-				$args->target_srl = $document_srl;
+				$args->document_srl = $obj->document_srl;
+				$args->comment_srl = $comment_srl;
+				if($parent_srl)
+				{
+					$args->parent_srl = $parent_srl;
+				}
 				$args->type = $this->_TYPE_DOCUMENT;
 				$args->target_type = $this->_TYPE_COMMENT;
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
 				$args->target_summary = cut_str(strip_tags($content), 200);
+				$args->target_content = $content;
 				$args->target_nick_name = $obj->nick_name;
 				$args->target_email_address = $obj->email_address;
 				$args->regdate = $regdate;
@@ -940,7 +952,7 @@ class ncenterliteController extends ncenterlite
 			$args->target_member_srl = 0;
 			$args->target_user_id = '';
 		}
-
+		$args->notify_srl = getNextSequence();
 		$output = executeQuery('ncenterlite.insertNotify', $args);
 		if(!$output->toBool())
 		{
@@ -953,7 +965,7 @@ class ncenterliteController extends ncenterlite
 			if(!$trigger_notify->toBool())
 			{
 				return $trigger_notify;
-			}	
+			}
 		}
 
 		return $output;

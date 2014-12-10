@@ -1,6 +1,6 @@
 <query id="getNotifyList" action="select">
 	<tables>
-		<table name="ncenterlite_notify" />
+		<table name="ncenterlite_new_notify" />
 	</tables>
 
 	<columns>

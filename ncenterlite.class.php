@@ -25,6 +25,7 @@ class ncenterlite extends ModuleObject
 	var $_TYPE_COMMENT = 'COMMENT'; // 댓글
 	var $_TYPE_P_COMMENT = 'P_COMMENT'; // 대댓글
 	var $_TYPE_ADMIN_COMMENT = 'ADMINCOMMENT'; // 어드민 댓글 알림
+	var $_TYPE_ADMIN_P_COMMENT = 'ADMIN_P_COMMENT';
 	var $_TYPE_MENTION = 'MENTION'; // 멘션
 	var $_TYPE_MESSAGE = 'MESSAGE'; // 쪽지 mEssage
 	var $_TYPE_DOCUMENTS = 'DOCUMENTS'; // 글 작성 알림

@@ -1,22 +1,29 @@
 <query id="insertNotify" action="insert">
 	<tables>
-		<table name="ncenterlite_notify" />
+		<table name="ncenterlite_new_notify" />
 	</tables>
 	<columns>
 		<column name="notify" var="notify" notnull="notnull" />
-		<column name="srl" var="srl" filter="number" notnull="notnull" />
-		<column name="target_srl" var="target_srl" filter="number" notnull="notnull" />
-		<column name="member_srl" var="member_srl" filter="number" notnull="notnull" />
+		<column name="notify_srl" var="notify_srl" notnull="notnull" />
+
+		<column name="document_srl" var="document_srl" filter="number" />
+		<column name="comment_srl" var="comment_srl" filter="number" />
+		<column name="parent_srl" var="parent_srl" filter="number" />
+		<column name="message_srl" var="message_srl" filter="number" />
+		<column name="type" var="type" notnull="notnull" />
+		<column name="target_type" var="target_type" notnull="notnull" />
+		<column name="member_srl" var="member_srl" filter="number" />
+
+		<column name="target_is_admin" var="target_is_admin" />
 		<column name="target_member_srl" var="target_member_srl" filter="number" notnull="notnull" />
 		<column name="target_nick_name" var="target_nick_name" />
 		<column name="target_user_id" var="target_user_id" />
 		<column name="target_email_address" var="target_email_address" />
-		<column name="type" var="type" notnull="notnull" />
-		<column name="target_type" var="target_type" notnull="notnull" />
+
 		<column name="target_summary" var="target_summary" />
 		<column name="target_browser" var="target_browser" />
+		<column name="target_content" var="target_content" />
 		<column name="target_url" var="target_url" notnull="notnull" />
 		<column name="regdate" var="regdate" />
-		<column name="target_p_srl" var="target_p_srl" filter="number" />
 	</columns>
 </query>
