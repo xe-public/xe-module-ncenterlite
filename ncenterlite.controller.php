@@ -158,8 +158,8 @@ class ncenterliteController extends ncenterlite
 			$args = new stdClass();
 			$args->member_srl = $mention_member_srl;
 			$args->target_p_srl = $obj->comment_srl;
-			$args->srl = $obj->comment_srl;
-			$args->target_srl = $obj->document_srl;
+			$args->srl = $obj->document_srl;
+			$args->target_srl = $obj->comment_srl;
 			$args->type = $this->_TYPE_COMMENT;
 			$args->target_type = $this->_TYPE_MENTION;
 			$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
@@ -183,7 +183,7 @@ class ncenterliteController extends ncenterlite
 				$args = new stdClass();
 				$args->member_srl = $admins->member_srl;
 				$args->target_p_srl = $obj->comment_srl;
-				$args->srl = $obj->comment_srl;
+				$args->srl = $obj->document_srl;
 				$args->target_srl = $obj->comment_srl;
 				$args->type = $this->_TYPE_COMMENT;
 				$args->target_type = $this->_TYPE_ADMIN_COMMENT;
@@ -211,7 +211,7 @@ class ncenterliteController extends ncenterlite
 			{
 				$args = new stdClass();
 				$args->member_srl = abs($member_srl);
-				$args->srl = $comment_srl;
+				$args->srl = $obj->document_srl;
 				$args->target_p_srl = $parent_srl;
 				$args->target_srl = $obj->comment_srl;
 				$args->type = $this->_TYPE_COMMENT;
@@ -242,9 +242,9 @@ class ncenterliteController extends ncenterlite
 			{
 				$args = new stdClass();
 				$args->member_srl = abs($member_srl);
-				$args->srl = $comment_srl;
+				$args->srl = $document_srl;
 				$args->target_p_srl = $comment_srl;
-				$args->target_srl = $document_srl;
+				$args->target_srl = $comment_srl;
 				$args->type = $this->_TYPE_DOCUMENT;
 				$args->target_type = $this->_TYPE_COMMENT;
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
@@ -479,9 +479,9 @@ class ncenterliteController extends ncenterlite
 
 			if($document_srl && $logged_info && $config->document_read=='Y')
 			{
-				$args->target_srl = $document_srl;
+				$args->srl = $document_srl;
 				$args->member_srl = $logged_info->member_srl;
-				$outputs = executeQuery('ncenterlite.updateNotifyReadedByTargetSrl', $args);
+				$outputs = executeQuery('ncenterlite.updateNotifyReadedBySrl', $args);
 			}
 
 			if($comment_srl && $document_srl && $oDocument)
