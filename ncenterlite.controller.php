@@ -52,6 +52,7 @@ class ncenterliteController extends ncenterlite
 		$member_srl = $obj->member_srl;
 		if(!$member_srl) return new Object();
 
+		$args = new stdClass();
 		$args->member_srl = $member_srl;
 		executeQuery('ncenterlite.deleteNotifyByMemberSrl', $args);
 
