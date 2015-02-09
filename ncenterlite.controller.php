@@ -46,7 +46,7 @@ class ncenterliteController extends ncenterlite
 
 	function triggerAfterDeleteMember($obj)
 	{
-		$oNcenterliteModel = &getModel('ncenterlite');
+		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
 
 		$member_srl = $obj->member_srl;
@@ -125,7 +125,7 @@ class ncenterliteController extends ncenterlite
 	{
 		if($this->_isDisable()) return;
 
-		$oNcenterliteModel = &getModel('ncenterlite');
+		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
 		if($config->use != 'Y') return new Object();
 
@@ -200,7 +200,7 @@ class ncenterliteController extends ncenterlite
 		// 대댓글
 		if($parent_srl)
 		{
-			$oCommentModel = &getModel('comment');
+			$oCommentModel = getModel('comment');
 			$oComment = $oCommentModel->getComment($parent_srl);
 			$member_srl = $oComment->member_srl;
 			$comment_member_config = $oNcenterliteModel->getMemberConfig($member_srl);
@@ -230,7 +230,7 @@ class ncenterliteController extends ncenterlite
 		// 대댓글이 아니고, 게시글의 댓글을 남길 경우
 		if(!$parent_srl || ($parent_srl && $config->document_notify == 'all-comment'))
 		{
-			$oDocumentModel = &getModel('document');
+			$oDocumentModel = getModel('document');
 			$oDocument = $oDocumentModel->getDocument($document_srl);
 
 			$member_srl = $oDocument->get('member_srl');
@@ -267,7 +267,7 @@ class ncenterliteController extends ncenterlite
 		{
 			return new Object();
 		}
-		$oNcenterliteModel = &getModel('ncenterlite');
+		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
 		if($config->use != 'Y') return new Object();
 
@@ -302,7 +302,7 @@ class ncenterliteController extends ncenterlite
 			}
 			else if($need_update)
 			{
-				$oMemberModel = &getModel('member');
+				$oMemberModel = getModel('member');
 				$_sender_member_srl = trim(FileHandler::readFile($flag_path . $logged_info->member_srl));
 				$sender_member_info = $oMemberModel->getMemberInfoByMemberSrl($_sender_member_srl);
 				FileHandler::removeFile($flag_path . $logged_info->member_srl);
@@ -413,7 +413,7 @@ class ncenterliteController extends ncenterlite
 
 	function triggerAfterDeleteComment(&$obj)
 	{
-		$oNcenterliteModel = &getModel('ncenterlite');
+		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
 		if($config->use != 'Y') return new Object();
 
@@ -424,7 +424,7 @@ class ncenterliteController extends ncenterlite
 
 	function triggerAfterDeleteDocument(&$obj)
 	{
-		$oNcenterliteModel = &getModel('ncenterlite');
+		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
 		if($config->use != 'Y') return new Object();
 
@@ -441,7 +441,7 @@ class ncenterliteController extends ncenterlite
 
 		if($oModule->getLayoutFile() == 'popup_layout.html') Context::set('ncenterlite_is_popup', TRUE);
 
-		$oNcenterliteModel = &getModel('ncenterlite');
+		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
 		if($config->use != 'Y') return new Object();
 
@@ -514,7 +514,7 @@ class ncenterliteController extends ncenterlite
 						if($oDB->isTableExists('socialxe'))
 						{
 							unset($args);
-							$oModuleModel = &getModel('module');
+							$oModuleModel = getModel('module');
 							$module_info = $oModuleModel->getModuleInfoByDocumentSrl($document_srl);
 							$args->module_srl = $module_info->module_srl;
 							$output = executeQuery('ncenterlite.getSocialxeCount', $args);
@@ -524,7 +524,7 @@ class ncenterliteController extends ncenterlite
 
 								unset($args);
 								$args->comment_srl = $comment_srl;
-								$oCommentModel = &getModel('comment');
+								$oCommentModel = getModel('comment');
 								$oComment = $oCommentModel->getComment($comment_srl);
 								$parent_srl = $oComment->get('parent_srl');
 								if($parent_srl)
@@ -565,14 +565,14 @@ class ncenterliteController extends ncenterlite
 			$parent_type = ($vars->document_srl == $vars->parent_srl) ? 'DOCUMENT' : 'COMMENT';
 			if($parent_type == 'DOCUMENT')
 			{
-				$oDocumentModel = &getModel('document');
+				$oDocumentModel = getModel('document');
 				$oDocument = $oDocumentModel->getDocument($vars->document_srl);
 				$member_srl = $oDocument->get('member_srl');
 				$type = $this->_TYPE_DOCUMENT;
 			}
 			else
 			{
-				$oCommentModel = &getModel('comment');
+				$oCommentModel = getModel('comment');
 				$oComment = $oCommentModel->getComment($vars->parent_srl);
 				$member_srl = $oComment->get('member_srl');
 				$type = $this->_TYPE_COMMENT;
@@ -599,7 +599,7 @@ class ncenterliteController extends ncenterlite
 		else if($oModule->act == 'dispKinView' || $oModule->act == 'dispKinIndex')
 		{
 			// 글을 볼 때 알림 제거
-			$oDocumentModel = &getModel('document');
+			$oDocumentModel = getModel('document');
 			$oDocument = $oDocumentModel->getDocument($vars->document_srl);
 			$member_srl = $oDocument->get('member_srl');
 
@@ -656,7 +656,7 @@ class ncenterliteController extends ncenterlite
 		// admin 모듈이면 중지
 		if($module_info->module == 'admin' ) return;
 
-		$oNcenterliteModel = &getModel('ncenterlite');
+		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
 
 		// 알림센터가 비활성화 되어 있으면 중지
@@ -668,13 +668,13 @@ class ncenterliteController extends ncenterlite
 
 		Context::set('ncenterlite_config', $config);
 
-		$oModuleModel = &getModel('module');
+		$oModuleModel = getModel('module');
 		$ncenterlite_module_info = $oModuleModel->getModuleInfoXml('ncenterlite');
 		$jsCacheRefresh = '?'.$ncenterlite_module_info->version.'.'.$ncenterlite_module_info->date.'.js';
 		Context::addJsFile('./modules/ncenterlite/tpl/js/ncenterlite.js'.$jsCacheRefresh, true, '', 100000);
 
 
-		$oNcenterliteModel = &getModel('ncenterlite');
+		$oNcenterliteModel = getModel('ncenterlite');
 
 		// 알림 목록 가져오기
 		$_output = $oNcenterliteModel->getMyNotifyList();
@@ -687,7 +687,7 @@ class ncenterliteController extends ncenterlite
 		if($_COOKIE['_ncenterlite_hide_id'] && $_COOKIE['_ncenterlite_hide_id'] == $_latest_notify_id) return;
 		setcookie('_ncenterlite_hide_id', '', 0, '/');
 
-		$oMemberModel = &getModel('member');
+		$oMemberModel = getModel('member');
 		$memberConfig = $oMemberModel->getMemberConfig();
 		if($memberConfig->profile_image == 'Y')
 		{
@@ -738,7 +738,7 @@ class ncenterliteController extends ncenterlite
 			if(!Context::get('is_logged')) return new Object();
 			$target_srl = Context::get('target_srl');
 
-			$oMemberController = &getController('member');
+			$oMemberController = getController('member');
 			$oMemberController->addMemberMenu('dispNcenterliteNotifyList', '내 알림 목록');
 			$oMemberController->addMemberMenu('dispNcenterliteUserConfig', '내 알림 설정');
 
@@ -754,14 +754,14 @@ class ncenterliteController extends ncenterlite
 
 	function _addFile()
 	{
-		$oModuleModel = &getModel('module');
+		$oModuleModel = getModel('module');
 		$module_info = $oModuleModel->getModuleInfoXml('ncenterlite');
 		if(file_exists(FileHandler::getRealPath($this->template_path . 'ncenterlite.css')))
 		{
 			Context::addCssFile($this->template_path . 'ncenterlite.css', true, 'all', '', 100);
 		}
 
-		$oNcenterliteModel = &getModel('ncenterlite');
+		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
 		if(!Mobile::isFromMobilePhone())
 		{
@@ -789,7 +789,7 @@ class ncenterliteController extends ncenterlite
 
 	function _getTemplate()
 	{
-		$oNcenterModel = &getModel('ncenterlite');
+		$oNcenterModel = getModel('ncenterlite');
 		$config = $oNcenterModel->getConfig();
 
 		$oTemplateHandler = TemplateHandler::getInstance();
@@ -974,7 +974,7 @@ class ncenterliteController extends ncenterlite
 	 **/
 	function _getMentionTarget($content)
 	{
-		$oNcenterliteModel = &getModel('ncenterlite');
+		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
 		$logged_info = Context::get('logged_info');
 

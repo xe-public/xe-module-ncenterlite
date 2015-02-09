@@ -3,7 +3,7 @@ class ncenterliteAdminController extends ncenterlite
 {
 	function procNcenterliteAdminInsertConfig()
 	{
-		$oModuleController = &getController('module');
+		$oModuleController = getController('module');
 
 		$config->use = Context::get('use');
 		$config->display_use = Context::get('display_use');
@@ -54,7 +54,7 @@ class ncenterliteAdminController extends ncenterlite
 	 **/
 	function procNcenterliteAdminInsertDummyData()
 	{
-		$oNcenterliteController = &getController('ncenterlite');
+		$oNcenterliteController = getController('ncenterlite');
 		$logged_info = Context::get('logged_info');
 
 		for($i = 1; $i <= 5; $i++)
@@ -131,7 +131,7 @@ class ncenterliteAdminController extends ncenterlite
 	function procNcenterliteAdminEnviromentGatheringAgreement()
 	{
 		$vars = Context::getRequestVars();
-		$oModuleModel = &getModel('module');
+		$oModuleModel = getModel('module');
 		$ncenterlite_module_info = $oModuleModel->getModuleInfoXml('ncenterlite');
 		$agreement_file = FileHandler::getRealPath(sprintf('%s%s.txt', './files/ncenterlite/ncenterlite-', $ncenterlite_module_info->version));
 
