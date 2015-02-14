@@ -63,7 +63,7 @@ class ncenterlite extends ModuleObject
 
 	function checkUpdate()
 	{
-		$oModuleModel = &getModel('module');
+		$oModuleModel = getModel('module');
 		$oDB = &DB::getInstance();
 
 		foreach($this->triggers as $trigger)
@@ -91,8 +91,8 @@ class ncenterlite extends ModuleObject
 
 	function moduleUpdate()
 	{
-		$oModuleModel = &getModel('module');
-		$oModuleController = &getController('module');
+		$oModuleModel = getModel('module');
+		$oModuleController = getController('module');
 		$oDB = &DB::getInstance();
 
 		foreach($this->triggers as $trigger)
@@ -131,7 +131,7 @@ class ncenterlite extends ModuleObject
 
 	function moduleUninstall()
 	{
-		$oModuleController = &getController('module');
+		$oModuleController = getController('module');
 
 		foreach($this->triggers as $trigger)
 		{
