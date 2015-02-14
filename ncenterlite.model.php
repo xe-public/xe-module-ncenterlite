@@ -7,7 +7,7 @@ class ncenterliteModel extends ncenterlite
 	{
 		if(!$this->config)
 		{
-			$oModuleModel = &getModel('module');
+			$oModuleModel = getModel('module');
 			$config = $oModuleModel->getModuleConfig('ncenterlite');
 			if(!$config->use) $config->use = 'Y';
 			if(!$config->display_use) $config->display_use = 'Y';
@@ -69,7 +69,8 @@ class ncenterliteModel extends ncenterlite
 		{
 			$output = $this->_getMyNotifyList($member_srl, $page, $readed);
 		}
-		$oMemberModel = &getModel('member');
+
+		$oMemberModel = getModel('member');
 		$list = $output->data;
 
 		foreach($list as $k => $v)
@@ -157,7 +158,7 @@ class ncenterliteModel extends ncenterlite
 		$logged_info = Context::get('logged_info');
 		if(!$logged_info) return new Object(-1, 'msg_not_permitted');
 
-		$oMemberModel = &getModel('member');
+		$oMemberModel = getModel('member');
 		$memberConfig = $oMemberModel->getMemberConfig();
 		$page = Context::get('page');
 
@@ -256,7 +257,7 @@ class ncenterliteModel extends ncenterlite
 
 	function getColorsetList()
 	{
-		$oModuleModel = &getModel('module');
+		$oModuleModel = getModel('module');
 		$skin = Context::get('skin');
 
 		$skin_info = $oModuleModel->loadSkinInfo($this->module_path, $skin);

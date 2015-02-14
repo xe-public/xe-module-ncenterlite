@@ -9,8 +9,8 @@ class ncenterliteAdminView extends ncenterlite
 
 	function dispNcenterliteAdminConfig()
 	{
-		$oModuleModel = &getModel('module');
-		$oNcenterliteModel = &getModel('ncenterlite');
+		$oModuleModel = getModel('module');
+		$oNcenterliteModel = getModel('ncenterlite');
 		$oLayoutModel = getModel('layout');
 
 		$config = $oNcenterliteModel->getConfig();
