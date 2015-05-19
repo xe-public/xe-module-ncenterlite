@@ -75,6 +75,7 @@ class ncenterliteModel extends ncenterlite
 
 		foreach($list as $k => $v)
 		{
+
 			$target_member = $v->target_nick_name;
 
 			switch($v->type)
@@ -88,6 +89,10 @@ class ncenterliteModel extends ncenterlite
 				// 메시지. 쪽지
 				case 'E':
 					$type = $lang->ncenterlite_type_message; //$type = '쪽지';
+				break;
+				case 'U':
+					//@TODO 다국어
+					$type = $v->target_browser;
 				break;
 			}
 
@@ -134,6 +139,9 @@ class ncenterliteModel extends ncenterlite
 				break;
 				case 'V':
 					$str = sprintf('<strong>%s</strong>님이 <strong>"%s"</strong>글을 추천하였습니다.', $target_member, $v->target_summary);
+				break;
+				case 'U':
+					$str = $v->target_body;
 				break;
 			}
 

@@ -16,6 +16,7 @@
 
 	<column name="target_browser" type="varchar" size="50" breif="브라우저 제목" />
 	<column name="target_summary" type="varchar" size="50" breif="메시지 요약문" />
+    <column name="target_body" type="varchar" size="255" breif="커스텀 알림 제목" />
 	<column name="target_url" type="varchar" size="255" notnull="notnull" breif="링크 목적지 주소" />
 	<column name="readed" type="char" size="1" default="N" notnull="notnull" index="idx_readed" />
 	<column name="regdate" type="date" index="idx_regdate" />

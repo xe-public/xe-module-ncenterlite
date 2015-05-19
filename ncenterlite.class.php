@@ -29,6 +29,7 @@ class ncenterlite extends ModuleObject
 	var $_TYPE_DOCUMENTS = 'P'; // 글 작성 알림
 	var $_TYPE_VOTED = 'V'; // 추천글 안내 알림
 	var $_TYPE_TEST = 'T';
+	var $_TYPE_CUSTOM = 'U'; //커스텀 알림
 
 	var $triggers = array(
 		array('comment.insertComment', 'ncenterlite', 'controller', 'triggerAfterInsertComment', 'after'),
@@ -76,6 +77,11 @@ class ncenterlite extends ModuleObject
 			return true;
 		}
 
+		if(!$oDB->isColumnExists('ncenterlite_notify', 'target_body'))
+		{
+			return true;
+		}
+
 		if(!$oDB->isColumnExists('ncenterlite_notify', 'target_browser'))
 		{
 			return true;
@@ -114,6 +120,11 @@ class ncenterlite extends ModuleObject
 		if(!$oDB->isColumnExists('ncenterlite_notify','target_browser'))
 		{
 			$oDB->addColumn('ncenterlite_notify', 'target_browser', 'varchar', 50, true);
+		}
+
+		if(!$oDB->isColumnExists('ncenterlite_notify','target_body'))
+		{
+			$oDB->addColumn('ncenterlite_notify', 'target_body', 'varchar', 255, true);
 		}
 
 		if(!$oDB->isColumnExists('ncenterlite_notify','target_p_srl'))
