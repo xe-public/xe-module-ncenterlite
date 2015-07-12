@@ -1,13 +1,13 @@
 <?php
 class ncenterliteModel extends ncenterlite
 {
-	var $config;
+	private static $config = NULL;
 	var $notify_args;
 	var $notify_arguments;
 
 	function getConfig()
 	{
-		if(!$this->config)
+		if(self::$config === NULL)
 		{
 			$oModuleModel = getModel('module');
 			$config = $oModuleModel->getModuleConfig('ncenterlite');
@@ -26,10 +26,10 @@ class ncenterliteModel extends ncenterlite
 			if(!$config->skin) $config->skin = 'default';
 			if(!$config->colorset) $config->colorset = 'black';
 
-			$this->config = $config;
+			self::$config = $config;
 		}
 
-		return $this->config;
+		return self::$config;
 	}
 
 	function getNotifyTypebySrl($notify_srl='')
