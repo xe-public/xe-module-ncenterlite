@@ -54,8 +54,11 @@ class ncenterliteController extends ncenterlite
 
 		$args = new stdClass();
 		$args->member_srl = $member_srl;
-		executeQuery('ncenterlite.deleteNotifyByMemberSrl', $args);
-
+		$output = executeQuery('ncenterlite.deleteNotifyByMemberSrl', $args);
+		if(!$output->toBool())
+		{
+			return $output;
+		}
 		return new Object();
 	}
 
@@ -72,18 +75,12 @@ class ncenterliteController extends ncenterlite
 		$content = strip_tags($obj->title . ' ' . $obj->content);
 
 		$mention_targets = $this->_getMentionTarget($content);
-		// 여기있던 $mention_targets 관련 주석문은 새글작동에 방해되므로 삭제했음.
+		if(!$mention_targets || !count($mention_targets)) return new Object();
 
 		$oDocumentModel = getModel('document');
 		$document_srl = $obj->document_srl;
 		$oDocument = $oDocumentModel->getDocument($document_srl);
 		$module_info = $oModuleModel->getModuleInfoByDocumentSrl($document_srl);
-
-		$member_srl = $oDocument->get('member_srl');
-
-		$oMemberModel = getModel('member');
-
-		$group_list = $oMemberModel->getGroups();
 
 		$is_anonymous = $this->_isAnonymous($this->_TYPE_DOCUMENT, $obj);
 		// 맨션 알림일경우 맨션알림 시작.

@@ -1,11 +1,13 @@
 <?php
 class ncenterliteModel extends ncenterlite
 {
-	var $config;
+	private static $config = NULL;
+	var $notify_args;
+	var $notify_arguments;
 
 	function getConfig()
 	{
-		if(!$this->config)
+		if(self::$config === NULL)
 		{
 			$oModuleModel = getModel('module');
 			$config = $oModuleModel->getModuleConfig('ncenterlite');
@@ -24,10 +26,64 @@ class ncenterliteModel extends ncenterlite
 			if(!$config->skin) $config->skin = 'default';
 			if(!$config->colorset) $config->colorset = 'black';
 
-			$this->config = $config;
+			self::$config = $config;
 		}
 
-		return $this->config;
+		return self::$config;
+	}
+
+	function getNotifyTypebySrl($notify_srl='')
+	{
+		$args = new stdClass();
+		$args->notify_type_id = $notify_srl;
+
+		$output = executeQuery('ncenterlite.getNotifyType',$args);
+
+		return $output->data;
+	}
+
+	function getNotifyTypeString($notify_srl='',$notify_args)
+	{
+		$this->notify_args = $notify_args;
+
+		$output = $this->getNotifyTypebySrl($notify_srl);
+
+		$this->notify_arguments = explode("|",$output->data->notify_type_args);
+		$string = preg_replace_callback("/%([^%]*)%/",array($this, 'replaceNotifyType'),$output->data->notify_string);
+
+		return $string;
+	}
+
+	function replaceNotifyType($match)
+	{
+		//if replace string is not at arguments, return
+		if(!in_array($match[1],$this->notify_arguments))
+		{
+			return $match[0];
+		}
+
+		//if replace string is not set, return
+		if(!isset($this->notify_args->{$match[1]}))
+		{
+			return $match[0];
+		}
+
+		return $this->notify_args->{$match[1]};
+	}
+
+	function isNotifyTypeExistsbySrl($notify_srl='')
+	{
+		$args = new stdClass();
+		$args->notify_type_srl = $notify_srl;
+
+		$output = executeQuery('ncenterlite.getNotifyType',$args);
+
+		return isset($output->data->notify_type_id);
+	}
+
+	function insertNotifyType($args)
+	{
+		return executeQuery('ncenterlite.insertNotifyType',$args);
 	}
 
 	function getMemberConfig($member_srl=null)
@@ -55,9 +111,6 @@ class ncenterliteModel extends ncenterlite
 
 	function getMyNotifyList($member_srl=null, $page=1, $readed='N')
 	{
-		$oNcenterliteModel = getModel('ncenterlite');
-		$config = $oNcenterliteModel->getConfig();
-
 		global $lang;
 
 		$act = Context::get('act');
@@ -75,6 +128,7 @@ class ncenterliteModel extends ncenterlite
 
 		foreach($list as $k => $v)
 		{
+
 			$target_member = $v->target_nick_name;
 
 			switch($v->type)
@@ -135,6 +189,11 @@ class ncenterliteModel extends ncenterlite
 				case 'V':
 					$str = sprintf('<strong>%s</strong>님이 <strong>"%s"</strong>글을 추천하였습니다.', $target_member, $v->target_summary);
 				break;
+			}
+
+			if($v->type=='U')
+			{
+				$str = $this->getNotifyTypeString($v->notify_type,unserialize($v->target_body));
 			}
 
 			$v->text = $str;

@@ -5,6 +5,7 @@ class ncenterliteAdminController extends ncenterlite
 	{
 		$oModuleController = getController('module');
 
+		$config = new stdClass();
 		$config->use = Context::get('use');
 		$config->display_use = Context::get('display_use');
 
