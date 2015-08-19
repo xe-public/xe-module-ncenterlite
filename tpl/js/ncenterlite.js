@@ -24,7 +24,7 @@ function ncenterlite_highlight() {
 		}
 
 		var s = decodeURIComponent(location.href).replace(/.*#comment_/,'');
-		if(!s) return;
+		if(!s || s === decodeURIComponent(location.href)) return;
 		s = 'comment_' + s;
 		jQuery('.xe_content').each(function(){
 			var t = jQuery(this);
