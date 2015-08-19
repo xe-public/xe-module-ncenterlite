@@ -1,6 +1,6 @@
 <load target="notify.css" />
 <div class="sosifam">
-	<h2 class="sosi-title">내 알림 목록</h2>
+	<h2 class="sosi-title">{$lang->ncenterlite_my_list}</h2>
 	<ul class="history-list cfix">
 		<li class="history-item cfix" loop="$ncenterlite_list => $no, $val">
 		{@
@@ -15,8 +15,8 @@
 				<div class="history-text">
 					<span class="history-ip"><strong><a href="{$val->target_url}">{$val->text}</a></strong></span>
 					<span class="history-auth">({zdate($val->regdate,"Y-m-d H:i:s")})</span>
-					<span class="history-auth" cond="$val->readed=='Y'">(읽음)</span>
-					<span class="history-auth" cond="$val->readed=='N'">(읽지 않음)</span>
+					<span class="history-auth" cond="$val->readed=='Y'">({$lang->ncenterlite_read_y})</span>
+					<span class="history-auth" cond="$val->readed=='N'">({$lang->ncenterlite_read_n})</span>
 				</div>
 			</div>
 		</li>

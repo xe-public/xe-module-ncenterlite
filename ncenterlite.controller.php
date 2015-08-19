@@ -13,7 +13,7 @@ class ncenterliteController extends ncenterlite
 			$member_srl = $logged_info->member_srl;
 		}
 
-		if($logged_info->member_srl != $member_srl && $logged_info->is_admin != 'Y') return new Object(-1, '다른회원의 설정을 변경할 권한이 없습니다.');
+		if($logged_info->member_srl != $member_srl && $logged_info->is_admin != 'Y') return new Object(-1, 'ncenterlite_stop_no_permission_other_user_settings');
 
 		$output = $oNcenterliteModel->getMemberConfig($member_srl);
 
@@ -715,7 +715,7 @@ class ncenterliteController extends ncenterlite
 			}
 		}
 
-		Context::addHtmlFooter('<script type="text/javascript">');
+		Context::addHtmlFooter('<script>');
 		if($config->message_notify != 'N') Context::addHtmlFooter('window.xeNotifyMessage = function() {};');
 		Context::addHtmlFooter('(function(){setTimeout(function(){var s = jQuery(document).scrollTop();jQuery(document).scrollTop(s-30);}, 700);})();</script>');
 
@@ -736,13 +736,14 @@ class ncenterliteController extends ncenterlite
 			$target_srl = Context::get('target_srl');
 
 			$oMemberController = getController('member');
-			$oMemberController->addMemberMenu('dispNcenterliteNotifyList', '내 알림 목록');
-			$oMemberController->addMemberMenu('dispNcenterliteUserConfig', '내 알림 설정');
+			$oMemberController->addMemberMenu('dispNcenterliteNotifyList', 'ncenterlite_my_list');
+			$oMemberController->addMemberMenu('dispNcenterliteUserConfig', 'ncenterlite_my_settings');
 
 			if($logged_info->is_admin== 'Y')
 			{
 				$url = getUrl('','act','dispNcenterliteUserConfig','member_srl',$target_srl);
-				$oMemberController->addMemberPopupMenu($url, '유저 알림 설정', '');
+				$str = Context::getLang('ncenterlite_user_settings');
+				$oMemberController->addMemberPopupMenu($url, $str, '');
 			}
 		}
 
@@ -864,7 +865,7 @@ class ncenterliteController extends ncenterlite
 		if(!$output->toBool()) return $output;
 
 		$url = str_replace('&amp;', '&', $url);
-		header('location: ' . $url);
+		header('Location: ' . $url, TRUE, 302);
 		Context::close();
 		exit;
 	}

@@ -20,10 +20,130 @@
 		<value xml:lang="en"><![CDATA[message]]></value>
 		<value xml:lang="jp"><![CDATA[メッセージ]]></value>
 	</item>
+	<item name="ncenterlite_sender">
+		<value xml:lang="ko"><![CDATA[보낸 사람]]></value>
+		<value xml:lang="en"><![CDATA[Sender]]></value>
+		<value xml:lang="jp"><![CDATA[Sender]]></value>
+	</item>
+	<item name="ncenterlite_addressee">
+		<value xml:lang="ko"><![CDATA[받는 사람]]></value>
+		<value xml:lang="en"><![CDATA[Addressee]]></value>
+		<value xml:lang="jp"><![CDATA[Addressee]]></value>
+	</item>
+	<item name="ncenterlite_noti_contents">
+		<value xml:lang="ko"><![CDATA[내용]]></value>
+		<value xml:lang="en"><![CDATA[Contents]]></value>
+		<value xml:lang="jp"><![CDATA[Contents]]></value>
+	</item>
+	<item name="ncenterlite_read">
+		<value xml:lang="ko"><![CDATA[읽음 확인]]></value>
+		<value xml:lang="en"><![CDATA[Have read]]></value>
+		<value xml:lang="jp"><![CDATA[Have read]]></value>
+	</item>
+	<item name="ncenterlite_read_y">
+		<value xml:lang="ko"><![CDATA[읽음]]></value>
+		<value xml:lang="en"><![CDATA[Have read]]></value>
+		<value xml:lang="jp"><![CDATA[Have read]]></value>
+	</item>
+	<item name="ncenterlite_read_n">
+		<value xml:lang="ko"><![CDATA[읽지 않음]]></value>
+		<value xml:lang="en"><![CDATA[Not read]]></value>
+		<value xml:lang="jp"><![CDATA[Not read]]></value>
+	</item>
+	<item name="ncenterlite_no_target">
+		<value xml:lang="ko"><![CDATA[대상 없음]]></value>
+		<value xml:lang="en"><![CDATA[no target]]></value>
+		<value xml:lang="jp"><![CDATA[no target]]></value>
+	</item>
+	<item name="ncenterlite_my_list">
+		<value xml:lang="ko"><![CDATA[내 알림 목록]]></value>
+		<value xml:lang="en"><![CDATA[Notification list]]></value>
+		<value xml:lang="jp"><![CDATA[Notification list]]></value>
+	</item>
+	<item name="ncenterlite_my_settings">
+		<value xml:lang="ko"><![CDATA[내 알림 설정]]></value>
+		<value xml:lang="en"><![CDATA[Notification settings]]></value>
+		<value xml:lang="jp"><![CDATA[Notification settings]]></value>
+	</item>
+	<item name="ncenterlite_user_settings">
+		<value xml:lang="ko"><![CDATA[사용자 알림 설정]]></value>
+		<value xml:lang="en"><![CDATA[User notification settings]]></value>
+		<value xml:lang="jp"><![CDATA[User notification settings]]></value>
+	</item>
+	<item name="ncenterlite_userconfig_title">
+		<value xml:lang="ko"><![CDATA[%s님의 알림센터 설정]]></value>
+		<value xml:lang="en"><![CDATA[Notification Center Settings of %s]]></value>
+		<value xml:lang="jp"><![CDATA[Notification Center Settings of %s]]></value>
+	</item>
+	<item name="ncenterlite_userconfig_about">
+		<value xml:lang="ko"><![CDATA[알림센터의 개인의 설정을 저장하도록 합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Personalized settings of notification center can be controlled by you.]]></value>
+		<value xml:lang="jp"><![CDATA[Personalized settings of notification center can be controlled by you.]]></value>
+	</item>
+	<item name="ncenterlite_comment_noti">
+		<value xml:lang="ko"><![CDATA[댓글 알림]]></value>
+		<value xml:lang="en"><![CDATA[Comment notice]]></value>
+		<value xml:lang="jp"><![CDATA[Comment notice]]></value>
+	</item>
+	<item name="ncenterlite_comment_noti_about">
+		<value xml:lang="ko"><![CDATA[내 게시물의 혹은 내 댓글에 댓글이 달릴경우 알림을 받습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Get notice of a comment after someone replies to my documents or comments.]]></value>
+		<value xml:lang="jp"><![CDATA[Get notice of a comment after someone replies to my documents or comments.]]></value>
+	</item>
+	<item name="ncenterlite_mention_noti">
+		<value xml:lang="ko"><![CDATA[멘션 알림]]></value>
+		<value xml:lang="en"><![CDATA[Mention notice]]></value>
+		<value xml:lang="jp"><![CDATA[Mention notice]]></value>
+	</item>
+	<item name="ncenterlite_mention_noti_about">
+		<value xml:lang="ko"><![CDATA[누군가 글, 혹은 댓글을 통해서 나를 맨션 했을 경우 알려줍니다. (맨션 방법 @닉네임 )]]></value>
+		<value xml:lang="en"><![CDATA[Get notice of a mention after someone mention me on documents and/or comments. ( @Nickname to mention )]]></value>
+		<value xml:lang="jp"><![CDATA[Get notice of a mention after someone mention me on documents and/or comments. ( @Nickname to mention )]]></value>
+	</item>
+	<item name="ncenterlite_message_noti">
+		<value xml:lang="ko"><![CDATA[쪽지 알림]]></value>
+		<value xml:lang="en"><![CDATA[Message notice]]></value>
+		<value xml:lang="jp"><![CDATA[Message notice]]></value>
+	</item>
+	<item name="ncenterlite_message_noti_about">
+		<value xml:lang="ko"><![CDATA[누군가에게 받은 쪽지를 알림을 받습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Get notice of a message after someone send the message to me.]]></value>
+		<value xml:lang="jp"><![CDATA[Get notice of a message after someone send the message to me.]]></value>
+	</item>
+	<item name="ncenterlite_activate">
+		<value xml:lang="ko"><![CDATA[사용]]></value>
+		<value xml:lang="en"><![CDATA[Activate]]></value>
+		<value xml:lang="jp"><![CDATA[Activate]]></value>
+	</item>
+	<item name="ncenterlite_inactivate">
+		<value xml:lang="ko"><![CDATA[사용 안함]]></value>
+		<value xml:lang="en"><![CDATA[Inactivate]]></value>
+		<value xml:lang="jp"><![CDATA[Inactivate]]></value>
+	</item>
+	<item name="ncenterlite_userconfig_about_warning">
+		<value xml:lang="ko"><![CDATA[주의! 당신은 관리자 권한으로 다른 사용자의 설정창을 접속하였습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Watch out! You are controlling other user's settings via this page.]]></value>
+		<value xml:lang="jp"><![CDATA[Watch out! You are controlling other user's settings via this page.]]></value>
+	</item>
+	<item name="ncenterlite_article">
+		<value xml:lang="ko"><![CDATA[<strong>%1$s</strong>님이 <strong>"%2$s"</strong>라고 글을 남겼습니다.]]></value>
+		<value xml:lang="en"><![CDATA[<strong>%1$s</strong> wrote an article as "%2$s".]]></value>
+		<value xml:lang="jp"><![CDATA[<strong>%1$s</strong> wrote an article as "%2$s".]]></value>
+	</item>
+	<item name="ncenterlite_board">
+		<value xml:lang="ko"><![CDATA[<strong>%1$s</strong>님이 게시판 <strong>"%2$s"</strong>에 <strong>"%3$s"</strong>라고 글을 남겼습니다.]]></value>
+		<value xml:lang="en"><![CDATA[<strong>%1$s</strong> wrote an article as "%3$s" on the board %2$s.]]></value>
+		<value xml:lang="jp"><![CDATA[<strong>%1$s</strong> wrote an article as "%3$s" on the board %2$s.]]></value>
+	</item>
 	<item name="ncenterlite_commented">
-		<value xml:lang="ko"><![CDATA[<strong>%s</strong>님이 회원님의 %s에 <strong>"%s" 댓글</strong>을 남겼습니다.]]></value>
-		<value xml:lang="en"><![CDATA[<strong>%s</strong> commented "%s" on your %s.]]></value>
+		<value xml:lang="ko"><![CDATA[<strong>%1$s</strong>님이 회원님의 %2$s에 <strong>"%3$s"</strong>라고 댓글을 남겼습니다.]]></value>
+		<value xml:lang="en"><![CDATA[<strong>%1$s</strong> commented as "%3$s" on your %2$s.]]></value>
 		<value xml:lang="jp"><![CDATA[<strong>%s</strong>さんがあなたの%sに<strong>「%s」</strong>とコメントしました。]]></value>
+	</item>
+	<item name="ncenterlite_commented_board">
+		<value xml:lang="ko"><![CDATA[<strong>%1$s</strong>님이 게시판 <strong>"%2$s"</strong>에 <strong>"%3$s"</strong>라고 댓글을 남겼습니다.]]></value>
+		<value xml:lang="en"><![CDATA[<strong>%1$s</strong> commented as "%3$s" on the board %2$s.]]></value>
+		<value xml:lang="jp"><![CDATA[<strong>%1$s</strong> commented as "%3$s" on the board %2$s.]]></value>
 	</item>
 	<item name="ncenterlite_mentioned">
 		<value xml:lang="ko"><![CDATA[<strong>%s</strong>님이 <strong>"%s" %s</strong>에서 회원님을 언급하였습니다.]]></value>
@@ -35,9 +155,24 @@
 		<value xml:lang="en"><![CDATA[You have <strong>%d</strong> new <strong>message(s)</strong>.]]></value>
 		<value xml:lang="jp"><![CDATA[<strong>%d</strong>件の読んでない<strong>メッセージ</strong>があります。]]></value>
 	</item>
+	<item name="ncenterlite_message_mention">
+		<value xml:lang="ko"><![CDATA[<strong>%s</strong>님께서 <strong>"%s"</strong>라고 메세지를 보내셨습니다.]]></value>
+		<value xml:lang="en"><![CDATA[<strong>%1$s</strong> sent a message as <strong>"%2$s"</strong>.]]></value>
+		<value xml:lang="jp"><![CDATA[<strong>%1$s</strong> sent a message as <strong>"%2$s"</strong>.]]></value>
+	</item>
+	<item name="ncenterlite_test_noti">
+		<value xml:lang="ko"><![CDATA[<strong>%s</strong>님! 스킨 테스트 알림을 완료했습니다.]]></value>
+		<value xml:lang="en"><![CDATA[<strong>%s</strong>! Skin test notification has been done.]]></value>
+		<value xml:lang="jp"><![CDATA[<strong>%s</strong>! Skin test notification has been done.]]></value>
+	</item>
+	<item name="ncenterlite_vote">
+		<value xml:lang="ko"><![CDATA[<strong>%s</strong>님이 <strong>"%s"</strong> 글을 추천하였습니다.]]></value>
+		<value xml:lang="en"><![CDATA[<strong>%1$s</strong> marked the article "%2$s" with a recommendation.]]></value>
+		<value xml:lang="jp"><![CDATA[<strong>%1$s</strong> marked the article "%2$s" with a recommendation.]]></value>
+	</item>
 	<item name="ncenterlite_ago">
 		<value xml:lang="ko"><![CDATA[전]]></value>
-		<value xml:lang="en"><![CDATA[Ago]]></value>
+		<value xml:lang="en"><![CDATA[ago]]></value>
 		<value xml:lang="jp"><![CDATA[前]]></value>
 	</item>
 	<item name="ncenterlite_date" type="array">
@@ -74,12 +209,12 @@
 	</item>
 	<item name="ncenterlite_sir">
 		<value xml:lang="ko"><![CDATA[님]]></value>
-		<value xml:lang="en"><![CDATA[]]></value>
+		<value xml:lang="en"><![CDATA[ ]]></value>
 		<value xml:lang="jp"><![CDATA[さん]]></value>
 	</item>
 	<item name="ncenterlite_message">
 		<value xml:lang="ko"><![CDATA[<strong class="num">%s</strong>개의 알림이 있습니다.]]></value>
-		<value xml:lang="en"><![CDATA[you have <strong class="num">%s</strong> notification.]]></value>
+		<value xml:lang="en"><![CDATA[You have <strong class="num">%s</strong> notification.]]></value>
 		<value xml:lang="jp"><![CDATA[<strong class="num">%s</strong>件のお知らせがあります。]]></value>
 	</item>
 	<item name="ncenterlite_messages">
@@ -96,5 +231,30 @@
 		<value xml:lang="ko"><![CDATA[더보기]]></value>
 		<value xml:lang="en"><![CDATA[More]]></value>
 		<value xml:lang="jp"><![CDATA[もっと見る]]></value>
+	</item>
+	<item name="ncenterlite_stop_login_required">
+		<value xml:lang="ko"><![CDATA[알림센터 설정을 하시려면 로그인 해주세요.]]></value>
+		<value xml:lang="en"><![CDATA[Sign in to control your own notification settings.]]></value>
+		<value xml:lang="jp"><![CDATA[Sign in to control your own notification settings.]]></value>
+	</item>
+	<item name="ncenterlite_stop_no_permission_other_user">
+		<value xml:lang="ko"><![CDATA[다른 회원의 설정을 볼 권한이 없습니다.]]></value>
+		<value xml:lang="en"><![CDATA[You don't have the authority to read settings of other members.]]></value>
+		<value xml:lang="jp"><![CDATA[You don't have the authority to read settings of other members.]]></value>
+	</item>
+	<item name="ncenterlite_stop_no_permission_other_user_settings">
+		<value xml:lang="ko"><![CDATA[다른 회원의 설정을 변경할 권한이 없습니다.]]></value>
+		<value xml:lang="en"><![CDATA[You don't have the authority to control settings of other members.]]></value>
+		<value xml:lang="jp"><![CDATA[You don't have the authority to control settings of other members.]]></value>
+	</item>
+	<item name="ncenterlite_message_delete_notification_before">
+		<value xml:lang="ko"><![CDATA[%s까지 알림 정보를 삭제했습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Notifications before %s are deleted.]]></value>
+		<value xml:lang="jp"><![CDATA[Notifications before %s are deleted.]]></value>
+	</item>
+	<item name="ncenterlite_message_delete_notification_all">
+		<value xml:lang="ko"><![CDATA[모든 알림을 삭제했습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Every notification is deleted.]]></value>
+		<value xml:lang="jp"><![CDATA[Every notification is deleted.]]></value>
 	</item>
 </lang>

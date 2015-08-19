@@ -114,11 +114,14 @@ class ncenterliteAdminController extends ncenterlite
 
 		if($old_date)
 		{
-			$this->setMessage('1달 이전 정보를 삭제하였습니다.');
+			$oNcenterliteModel = getModel('ncenterlite');
+			$message = Context::getLang('ncenterlite_message_delete_notification_before');
+			$message = sprintf($message, $oNcenterliteModel->getAgo($old_date) );
+			$this->setMessage($message);
 		}
 		else
 		{
-			$this->setMessage('모든 정보를 삭제하였습니다.');
+			$this->setMessage('ncenterlite_message_delete_notification_all');
 		}
 		
 		if(!in_array(Context::getRequestMethod(),array('XMLRPC','JSON')))

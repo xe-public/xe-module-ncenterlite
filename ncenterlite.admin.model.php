@@ -41,8 +41,8 @@ class ncenterliteAdminModel extends ncenterlite
 					//$str = sprintf('<strong>%s</strong>님이 회원님의 %s에 <strong>"%s" 댓글</strong>을 남겼습니다.', $target_member, $type, $v->target_summary);
 				break;
 				case 'A':
-					$str = sprintf('<strong>%s</strong>님이 <strong>"%s"</strong>게시판에 <strong>"%s"</strong>댓글을 남겼습니다. ', $target_member, $v->target_browser, $v->target_summary);
-					//$str = sprintf('<strong>%s</strong>님이 회원님의 %s에 <strong>"%s" 댓글</strong>을 남겼습니다.', $target_member, $type, $v->target_summary);
+					$str = sprintf($lang->ncenterlite_commented_board, $target_member, $v->target_browser, $v->target_summary);
+					//$str = sprintf('<strong>%1$s</strong>님이 게시판 <strong>"%2$s"</strong>에 <strong>"%3$s"</strong>라고 댓글을 남겼습니다.', $target_member, $type, $v->target_summary);
 				break;
 				case 'M':
 					$str = sprintf($lang->ncenterlite_mentioned, $target_member,  $v->target_summary, $type);
@@ -52,7 +52,8 @@ class ncenterliteAdminModel extends ncenterlite
 				case 'E':
 					if(version_compare(__XE_VERSION__, '1.7.4', '>='))
 					{
-						$str = sprintf('<strong>%s</strong>님께서 <strong>%s</strong> 메세지를 보내셨습니다.',$target_member, $v->target_summary);
+						$str = sprintf($lang->ncenterlite_message_mention, $target_member, $v->target_summary);
+						//<strong>%s</strong>님께서 <strong>"%s"</strong>라고 메세지를 보내셨습니다.
 					}
 					else
 					{
@@ -60,23 +61,24 @@ class ncenterliteAdminModel extends ncenterlite
 					}
 				break;
 				case 'T':
-					$str = sprintf('<strong>%s</strong>님! 스킨 테스트 알림을 완료했습니다.', $target_member);
+					$str = sprintf($lang->ncenterlite_test_noti, $target_member);
 				break;
 				case 'P':
-					$str = sprintf('<strong>%s</strong>님이 <strong>"%s"</strong>게시판에 <strong>%s</strong>글을 남겼습니다.', $target_member, $v->target_browser, $v->target_summary);
+					$str = sprintf($lang->ncenterlite_board, $target_member, $v->target_browser, $v->target_summary);
+					//<strong>%1$s</strong>님이 게시판 <strong>"%2$s"</strong>에 <strong>"%3$s"</strong>라고 글을 남겼습니다.
 				break;
 				case 'S':
 					if($v->target_browser)
 					{
-						$str = sprintf('<strong>%s</strong>님이 <strong>"%s"</strong>게시판에 <strong>"%s"</strong>글을 남겼습니다.', $target_member, $v->target_browser, $v->target_summary);
+						$str = sprintf($lang->ncenterlite_board, $target_member, $v->target_browser, $v->target_summary);
 					}
 					else
 					{
-						$str = sprintf('<strong>%s</strong>님이 <strong>"%s"</strong>글을 남겼습니다.', $target_member, $v->target_summary);
+						$str = sprintf($lang->ncenterlite_article, $target_member, $v->target_summary);
 					}
 				break;
 				case 'V':
-					$str = sprintf('<strong>%s</strong>님이 <strong>"%s"</strong>글을 추천하였습니다.', $target_member, $v->target_summary);
+					$str = sprintf($lang->ncenterlite_vote, $target_member, $v->target_summary);
 				break;
 			}
 
