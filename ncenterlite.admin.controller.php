@@ -114,8 +114,9 @@ class ncenterliteAdminController extends ncenterlite
 
 		if($old_date)
 		{
+			$oNcenterliteModel = getModel('ncenterlite');
 			$message = Context::getLang('ncenterlite_message_delete_notification_before');
-			$message = sprintf($message, getTimeGap($old_date, $format = 'Y/m/d') );
+			$message = sprintf($message, $oNcenterliteModel->getAgo($old_date) );
 			$this->setMessage($message);
 		}
 		else

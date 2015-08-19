@@ -248,7 +248,7 @@
 		<value xml:lang="jp"><![CDATA[You don't have the authority to control settings of other members.]]></value>
 	</item>
 	<item name="ncenterlite_message_delete_notification_before">
-		<value xml:lang="ko"><![CDATA[%s 이전 알림 정보를 삭제했습니다.]]></value>
+		<value xml:lang="ko"><![CDATA[%s까지 알림 정보를 삭제했습니다.]]></value>
 		<value xml:lang="en"><![CDATA[Notifications before %s are deleted.]]></value>
 		<value xml:lang="jp"><![CDATA[Notifications before %s are deleted.]]></value>
 	</item>
