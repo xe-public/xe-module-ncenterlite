@@ -105,7 +105,7 @@ class ncenterliteController extends ncenterlite
 				$args->type = $this->_TYPE_DOCUMENT;
 				$args->target_type = $this->_TYPE_MENTION;
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $obj->document_srl);
-				$args->target_summary = cut_str(strip_tags($obj->title), 200);
+				$args->target_summary = cut_str(strip_tags($obj->title), 50);
 				$args->target_nick_name = $obj->nick_name;
 				$args->target_email_address = $obj->email_address;
 				$args->regdate = date('YmdHis');
@@ -160,7 +160,7 @@ class ncenterliteController extends ncenterlite
 			$args->type = $this->_TYPE_COMMENT;
 			$args->target_type = $this->_TYPE_MENTION;
 			$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
-			$args->target_summary = cut_str(strip_tags($content), 200);
+			$args->target_summary = cut_str(strip_tags($content), 50);
 			$args->target_nick_name = $obj->nick_name;
 			$args->target_email_address = $obj->email_address;
 			$args->regdate = date('YmdHis');
@@ -185,7 +185,7 @@ class ncenterliteController extends ncenterlite
 				$args->type = $this->_TYPE_COMMENT;
 				$args->target_type = $this->_TYPE_ADMIN_COMMENT;
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
-				$args->target_summary = cut_str(strip_tags($content), 200);
+				$args->target_summary = cut_str(strip_tags($content), 50);
 				$args->target_nick_name = $obj->nick_name;
 				$args->target_email_address = $obj->email_address;
 				$args->regdate = date('YmdHis');
@@ -214,7 +214,7 @@ class ncenterliteController extends ncenterlite
 				$args->type = $this->_TYPE_COMMENT;
 				$args->target_type = $this->_TYPE_COMMENT;
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
-				$args->target_summary = cut_str(strip_tags($content), 200);
+				$args->target_summary = cut_str(strip_tags($content), 50);
 				$args->target_nick_name = $obj->nick_name;
 				$args->target_email_address = $obj->email_address;
 				$args->regdate = $regdate;
@@ -245,7 +245,7 @@ class ncenterliteController extends ncenterlite
 				$args->type = $this->_TYPE_DOCUMENT;
 				$args->target_type = $this->_TYPE_COMMENT;
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
-				$args->target_summary = cut_str(strip_tags($content), 200);
+				$args->target_summary = cut_str(strip_tags($content), 50);
 				$args->target_nick_name = $obj->nick_name;
 				$args->target_email_address = $obj->email_address;
 				$args->regdate = $regdate;
@@ -585,7 +585,7 @@ class ncenterliteController extends ncenterlite
 				$args->target_srl = $vars->parent_srl;
 				$args->target_p_srl = '1';
 				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $vars->document_srl, '_comment_srl', $vars->parent_srl) . '#comment_'. $vars->parent_srl;
-				$args->target_summary = cut_str(strip_tags($vars->content), 200);
+				$args->target_summary = cut_str(strip_tags($vars->content), 50);
 				$args->target_nick_name = $logged_info->nick_name;
 				$args->target_email_address = $logged_info->email_address;
 				$args->regdate = date('YmdHis');
