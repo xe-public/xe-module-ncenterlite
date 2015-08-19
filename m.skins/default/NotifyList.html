@@ -15,8 +15,8 @@
 				<div class="history-text">
 					<span class="history-ip"><strong><a href="{$val->target_url}">{$val->text}</a></strong></span>
 					<span class="history-auth">({zdate($val->regdate,"Y-m-d H:i:s")})</span>
-					<span class="history-auth" cond="$val->readed=='Y'">(읽음)</span>
-					<span class="history-auth" cond="$val->readed=='N'">(읽지 않음)</span>
+					<span class="history-auth" cond="$val->readed=='Y'">({$lang->ncenterlite_read_y})</span>
+					<span class="history-auth" cond="$val->readed=='N'">({$lang->ncenterlite_read_n})</span>
 				</div>
 			</div>
 		</li>

@@ -3,13 +3,15 @@ XpressEngine(XE) Notification Center *Lite*
 [![Latest release](http://img.shields.io/github/release/xe-public/xe-module-ncenterlite.svg)](https://github.com/xe-public/xe-module-ncenterlite/releases)
 [![License](http://img.shields.io/badge/license-GPL%20v2-brightgreen.svg)](http://www.gnu.org/licenses/gpl.html)
 
+한국어 설명
+---
 XE 알림센터의 무료 버전.
 
 개요
 ---
 이 소프트웨어는 'XE 알림센터'의 무료 버전의 모듈입니다.
 
-이 소프트웨어는 GPL GPL을 채택한 오픈 소스 소프트웨어(OSS)로써 자유롭게 사용할 수 있는 자유 소프트웨어입니다. 이 라이선스의 조건을 준수하는 조건하에 누구나 자유롭게 사용할 수 있으며 개작 할 수 있습니다.
+이 소프트웨어는 GPL 을 채택한 오픈 소스 소프트웨어(OSS)로써 자유롭게 사용할 수 있는 자유 소프트웨어입니다. 이 라이선스의 조건을 준수하는 조건하에 누구나 자유롭게 사용할 수 있으며 개작 할 수 있습니다.
 
 기능
 ---
@@ -18,6 +20,26 @@ XE 알림센터의 무료 버전.
 * '@닉네임'과 같은 형태로 지정한 회원에게 알림
 	* '@아이디'와 같은 형태로도 지정한 회원에게 알림기능가능(설정요망)
 * 회원이 모든 알림 내용을 받거나 안받을 수 있도록 설정가능.(회원설정가능)
+
+
+English description
+---
+Free version of XE Notification Center
+
+Overview
+---
+This software is the free version of 'XE Notification Center'.
+
+This software is distributed under the terms of GPL, and it is open-source software so that you can use this software freely. Under the terms of GPL, everyone can copy, distribute and/or modify this software.
+
+Functions
+---
+* Comment notification to the original document author, after a reply written.
+* Comment notification to the original comment author, after a reply to the comment written.
+* '@Nickname' form notificaiton 과 같은 형태로 지정한 회원에게 알림
+	* '@ID' form may be used to notice (settings required)
+* Each members can control their notification settings. (each member can control)
+
 
 Maintainers
 ------
@@ -31,7 +53,8 @@ Contributors
 [@kantsoft](http://github.com/kantsoft),
 [@hansim](https://github.com/hansim),
 [@SeungYeonYou](https://github.com/SeungYeonYou),
-[@YJSoft](https://github.com/YJSoft)
+[@YJSoft](https://github.com/YJSoft),
+[@misol](https://github.com/misol)
 
 Thanks to
 ---------
