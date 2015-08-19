@@ -19,7 +19,7 @@
 			{sprintf($title_str, $user_str)}
 		</h1>
 
-		<p>{$lang->ncenterlite_userconfig_about} <strong style="color:#ff0000" cond="$member_info">({$lang->ncenterlite_userconfig_about_warning})</strong></p>
+		<p>{$lang->ncenterlite_userconfig_about} <strong style="color:#ff0000" cond="$member_srl && $member_srl != $logged_info->member_srl">({$lang->ncenterlite_userconfig_about_warning})</strong></p>
 		<div class="control-group">
 			<label class="control-label">{$lang->ncenterlite_comment_noti}</label>
 			<div class="controls">

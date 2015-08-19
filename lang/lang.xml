@@ -42,13 +42,13 @@
 	</item>
 	<item name="ncenterlite_read_y">
 		<value xml:lang="ko"><![CDATA[읽음]]></value>
-		<value xml:lang="en"><![CDATA[Have done]]></value>
-		<value xml:lang="jp"><![CDATA[Have done]]></value>
+		<value xml:lang="en"><![CDATA[Have read]]></value>
+		<value xml:lang="jp"><![CDATA[Have read]]></value>
 	</item>
 	<item name="ncenterlite_read_n">
 		<value xml:lang="ko"><![CDATA[읽지 않음]]></value>
-		<value xml:lang="en"><![CDATA[Have not]]></value>
-		<value xml:lang="jp"><![CDATA[Have not]]></value>
+		<value xml:lang="en"><![CDATA[Not read]]></value>
+		<value xml:lang="jp"><![CDATA[Not read]]></value>
 	</item>
 	<item name="ncenterlite_no_target">
 		<value xml:lang="ko"><![CDATA[대상 없음]]></value>

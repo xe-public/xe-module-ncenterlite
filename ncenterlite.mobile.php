@@ -1,6 +1,6 @@
 <?php
 
-class ncenterliteMobile extends ncenterlite
+class ncenterliteMobile extends ncenterliteView
 {
 	function init()
 	{
@@ -27,49 +27,12 @@ class ncenterliteMobile extends ncenterlite
 
 	function dispNcenterliteNotifyList()
 	{
-		$oNcenterliteModel = getModel('ncenterlite');
-
-		$output = $oNcenterliteModel->getMyNotifyList();
-
-		Context::set('total_count', $output->page_navigation->total_count);
-		Context::set('total_page', $output->page_navigation->total_page);
-		Context::set('page', $output->page);
-		Context::set('ncenterlite_list', $output->data);
-		Context::set('page_navigation', $output->page_navigation);
-
-		$this->setTemplateFile('NotifyList');
+		parent::dispNcenterliteNotifyList();
 	}
 
 	function dispNcenterliteUserConfig()
 	{
-		$oMemberModel = getModel('member');
-
-		$logged_info = Context::get('logged_info');
-		if(!$logged_info) return new Object(-1, 'ncenterlite_stop_login_required');
-
-		if($logged_info->is_admin == 'Y')
-		{
-			$member_srl = Context::get('member_srl');
-			$member_info = $oMemberModel->getMemberInfoByMemberSrl($member_srl);
-		}
-
-		if($logged_info->is_admin != 'Y' && Context::get('member_srl'))
-		{
-			return new Object(-1, 'ncenterlite_stop_no_permission_other_user');
-		}
-
-		$oNcenterliteModel = getModel('ncenterlite');
-
-		if(!$member_srl)
-		{
-			$member_srl = $logged_info->member_srl;
-		}
-
-		$output = $oNcenterliteModel->getMemberConfig($member_srl);
-
-		Context::set('member_info', $member_info);
-		Context::set('user_config', $output->data);
-		$this->setTemplateFile('userconfig');
+		parent::dispNcenterliteUserConfig();
 	}
 
 }
