@@ -57,13 +57,13 @@
 	</item>
 	<item name="ncenterlite_my_list">
 		<value xml:lang="ko"><![CDATA[내 알림 목록]]></value>
-		<value xml:lang="en"><![CDATA[Notification list]]></value>
-		<value xml:lang="jp"><![CDATA[Notification list]]></value>
+		<value xml:lang="en"><![CDATA[My notification list]]></value>
+		<value xml:lang="jp"><![CDATA[My notification list]]></value>
 	</item>
 	<item name="ncenterlite_my_settings">
 		<value xml:lang="ko"><![CDATA[내 알림 설정]]></value>
-		<value xml:lang="en"><![CDATA[Notification settings]]></value>
-		<value xml:lang="jp"><![CDATA[Notification settings]]></value>
+		<value xml:lang="en"><![CDATA[My notification settings]]></value>
+		<value xml:lang="jp"><![CDATA[My notification settings]]></value>
 	</item>
 	<item name="ncenterlite_user_settings">
 		<value xml:lang="ko"><![CDATA[사용자 알림 설정]]></value>
@@ -222,6 +222,11 @@
 		<value xml:lang="en"><![CDATA[you have <strong class="num">%s</strong> notifications.]]></value>
 		<value xml:lang="jp"><![CDATA[<strong class="num">%s</strong>件のお知らせがあります。]]></value>
 	</item>
+	<item name="ncenterlite_thisistest">
+		<value xml:lang="ko"><![CDATA[[*] 시험용 알림입니다]]></value>
+		<value xml:lang="en"><![CDATA[[*] This is a test notice.]]></value>
+		<value xml:lang="jp"><![CDATA[[*] This is a test notice.]]></value>
+	</item>
 	<item name="ncenterlite_delete_all">
 		<value xml:lang="ko"><![CDATA[모두 삭제]]></value>
 		<value xml:lang="en"><![CDATA[delete all]]></value>
@@ -256,5 +261,105 @@
 		<value xml:lang="ko"><![CDATA[모든 알림을 삭제했습니다.]]></value>
 		<value xml:lang="en"><![CDATA[Every notification is deleted.]]></value>
 		<value xml:lang="jp"><![CDATA[Every notification is deleted.]]></value>
+	</item>
+	<item name="ncenterlite_config_environment">
+		<value xml:lang="ko"><![CDATA[<span class="x_label x_label-important">도와주세요!</span> 사용 환경 정보 제공 동의]]></value>
+		<value xml:lang="en"><![CDATA[<span class="x_label x_label-important">HELP!</span> Agreement on gathering server environment information]]></value>
+		<value xml:lang="jp"><![CDATA[<span class="x_label x_label-important">HELP!</span> Agreement on gathering server environment information]]></value>
+	</item>
+	<item name="ncenterlite_config_environment_about">
+		<value xml:lang="ko"><![CDATA[
+			<p>'알림센터 Lite'를 <a href="https://ko.wikipedia.org/wiki/자유소프트웨어" target="_blank">자유소프트웨어</a>로 제공하고 있습니다.</p>
+			<p>'알림센터 Lite'는 사용자의 버그 보고, 의견 제출을 통해 공동의 힘으로 발전하고 있습니다.<br>'제공 동의'를 선택하면 아래와 같은 항목이 전송되며, 알림센터 Lite의 기능을 개선하는데 참고하겠습니다. 감사합니다.</p>
+			<ul>
+				<li>이 사이트의 도메인</li>
+				<li>알림센터 Lite의 버전</li>
+				<li>XE 버전</li>
+				<li>PHP 버전</li>
+			</ul>
+		]]></value>
+		<value xml:lang="en"><![CDATA[
+			<p>'Notification Center Lite' is distributed as an <a href="https://en.wikipedia.org/wiki/Free_software" target="_blank">free software</a>.</p>
+			<p>'Notification Center Lite' is developing with collective intelligence, such as users' bug reports, suggestions and/or contributions.<br />If you select to 'Agree on gathering', the items below will be gathered by developers of this program, and the information will be referenced to enhance functions of this program. Thank you.</p>
+			<ul>
+				<li>Domain name of this website</li>
+				<li>Version value of Notification Center Lite</li>
+				<li>XE Core version value</li>
+				<li>PHP version value</li>
+			</ul>
+		]]></value>
+		<value xml:lang="jp"><![CDATA[
+			<p>'Notification Center Lite' is distributed as an <a href="https://en.wikipedia.org/wiki/Free_software" target="_blank">free software</a>.</p>
+			<p>'Notification Center Lite' is developing with collective intelligence, such as users' bug reports, suggestions and/or contributions.<br />If you select to 'Agree on gathering', the items below will be gathered by developers of this program, and the information will be referenced to enhance functions of this program. Thank you.</p>
+			<ul>
+				<li>Domain name of this website</li>
+				<li>Version value of Notification Center Lite</li>
+				<li>XE Core version value</li>
+				<li>PHP version value</li>
+			</ul>
+		]]></value>
+	</item>
+	<item name="ncenterlite_config_environment_agree">
+		<value xml:lang="ko"><![CDATA[제공 동의]]></value>
+		<value xml:lang="en"><![CDATA[Agree on gathering]]></value>
+		<value xml:lang="jp"><![CDATA[Agree on gathering]]></value>
+	</item>
+	<item name="ncenterlite_config_environment_disagree">
+		<value xml:lang="ko"><![CDATA[제공 안 함]]></value>
+		<value xml:lang="en"><![CDATA[Disagree on gathering]]></value>
+		<value xml:lang="jp"><![CDATA[Disagree on gathering]]></value>
+	</item>
+	<item name="ncenterlite_click_to_open">
+		<value xml:lang="ko"><![CDATA[클릭하시면 기능설정을 할 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Click here to open]]></value>
+		<value xml:lang="jp"><![CDATA[Click here to open]]></value>
+	</item>
+	<item name="ncenterlite_notice_list">
+		<value xml:lang="ko"><![CDATA[알림 목록]]></value>
+		<value xml:lang="en"><![CDATA[Notification list]]></value>
+		<value xml:lang="jp"><![CDATA[Notification list]]></value>
+	</item>
+	<item name="ncenterlite_basic_settings">
+		<value xml:lang="ko"><![CDATA[기본 기능 설정]]></value>
+		<value xml:lang="en"><![CDATA[Basic function settings]]></value>
+		<value xml:lang="jp"><![CDATA[Basic function settings]]></value>
+	</item>
+	<item name="ncenterlite_warning">
+		<value xml:lang="ko"><![CDATA[주의!]]></value>
+		<value xml:lang="en"><![CDATA[Watch out!]]></value>
+	</item>
+	<item name="ncenterlite_io">
+		<value xml:lang="ko"><![CDATA[알림센터 동작여부]]></value>
+		<value xml:lang="en"><![CDATA[Activate Notification Center]]></value>
+	</item>
+	<item name="ncenterlite_io_about">
+		<value xml:lang="ko"><![CDATA[알림센터의 모든 기능을 중지 시킬 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[You can activate or inactivate every function of Notification Center Lite module.]]></value>
+	</item>
+	<item name="ncenterlite_on">
+		<value xml:lang="ko"><![CDATA[동작]]></value>
+		<value xml:lang="en"><![CDATA[Active]]></value>
+	</item>
+	<item name="ncenterlite_off">
+		<value xml:lang="ko"><![CDATA[동작 안 함]]></value>
+		<value xml:lang="en"><![CDATA[Inactive]]></value>
+	</item>
+	<item name="ncenterlite_display">
+		<value xml:lang="ko"><![CDATA[알림센터 노출여부]]></value>
+		<value xml:lang="en"><![CDATA[Display Notification Center]]></value>
+	</item>
+	<item name="ncenterlite_display_y">
+		<value xml:lang="ko"><![CDATA[노출]]></value>
+		<value xml:lang="en"><![CDATA[Display]]></value>
+	</item>
+	<item name="ncenterlite_display_n">
+		<value xml:lang="ko"><![CDATA[숨김]]></value>
+		<value xml:lang="en"><![CDATA[Hide]]></value>
+	</item>
+	<item name="ncenterlite_display_about">
+		<value xml:lang="ko"><![CDATA[알림센터의 스킨을 사용할 것인지 혹은 위젯 레이아웃에서 제작되어 들어간 스킨을 사용할지 선택합니다. 기본은 알림센터모듈의 기본스킨을 사용하도록 합니다.
+			<span class="x_label x_label-important">주의!</span> 알림센터를 레이아웃이나 위젯으로 표현할 수 있을 때에만 동작안함 선택하세요.]]></value>
+		<value xml:lang="en"><![CDATA[알림센터의 스킨을 사용할 것인지 혹은 위젯 레이아웃에서 제작되어 들어간 스킨을 사용할지 선택합니다. 기본은 알림센터모듈의 기본스킨을 사용하도록 합니다.
+				<span class="x_label x_label-important">Watch out!</span> 알림센터를 레이아웃이나 위젯으로 표현할 수 있을 때에만 동작안함 선택하세요.]]></value>
 	</item>
 </lang>

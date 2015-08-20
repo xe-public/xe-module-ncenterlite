@@ -67,7 +67,7 @@ class ncenterliteAdminController extends ncenterlite
 			$args->type = $this->_TYPE_TEST;
 			$args->target_type = $this->_TYPE_TEST;
 			$args->target_url = getUrl('');
-			$args->target_summary = '[*] 시험용 알림입니다' . rand();
+			$args->target_summary = Context::getLang('ncenterlite_thisistest') . rand();
 			$args->target_nick_name = $logged_info->nick_name;
 			$args->regdate = date('YmdHis');
 			$args->notify = $oNcenterliteController->_getNotifyId($args);
@@ -90,7 +90,7 @@ class ncenterliteAdminController extends ncenterlite
 		$args->type = $this->_TYPE_DOCUMENT;
 		$args->target_type = $this->_TYPE_COMMENT;
 		$args->target_url = getUrl('');
-		$args->target_summary = '[*] 시험용 알림입니다' . rand();
+		$args->target_summary = Context::getLang('ncenterlite_thisistest') . rand();
 		$args->target_nick_name = $logged_info->nick_name;
 		$args->regdate = date('YmdHis');
 		$args->notify = $oNcenterliteController->_getNotifyId($args);
