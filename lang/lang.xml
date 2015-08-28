@@ -5,6 +5,11 @@
 		<value xml:lang="en"><![CDATA[XE Notification Center Lite]]></value>
 		<value xml:lang="jp"><![CDATA[XE 通知センター Lite]]></value>
 	</item>
+	<item name="ncenterlite_install_version">
+		<value xml:lang="ko"><![CDATA[설치된 알림센터 Lite 버전]]></value>
+		<value xml:lang="en"><![CDATA[Installed Notification Center Lite version]]></value>
+		<value xml:lang="jp"><![CDATA[Installed XE 通知センター Lite version]]></value>
+	</item>
 	<item name="ncenterlite_document">
 		<value xml:lang="ko"><![CDATA[글]]></value>
 		<value xml:lang="en"><![CDATA[document]]></value>
@@ -361,5 +366,93 @@
 			<span class="x_label x_label-important">주의!</span> 알림센터를 레이아웃이나 위젯으로 표현할 수 있을 때에만 동작안함 선택하세요.]]></value>
 		<value xml:lang="en"><![CDATA[알림센터의 스킨을 사용할 것인지 혹은 위젯 레이아웃에서 제작되어 들어간 스킨을 사용할지 선택합니다. 기본은 알림센터모듈의 기본스킨을 사용하도록 합니다.
 				<span class="x_label x_label-important">Watch out!</span> 알림센터를 레이아웃이나 위젯으로 표현할 수 있을 때에만 동작안함 선택하세요.]]></value>
+	</item>
+	<item name="ncenterlite_mention_target">
+		<value xml:lang="ko"><![CDATA[멘션 타겟 설정]]></value>
+		<value xml:lang="en"><![CDATA[Mention target]]></value>
+	</item>
+	<item name="ncenterlite_mention_target_about">
+		<value xml:lang="ko"><![CDATA[알림센터에서 닉네임 혹은 아이디 선택하여 맨션설정을 할 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Mention target can be nicknames or IDs (@Nickname or @ID).]]></value>
+	</item>
+	<item name="ncenterlite_skin_settings">
+		<value xml:lang="ko"><![CDATA[스킨 설정]]></value>
+		<value xml:lang="en"><![CDATA[Skin settings]]></value>
+	</item>
+	<item name="ncenterlite_zindex">
+		<value xml:lang="ko"><![CDATA[알림센터의 z-index]]></value>
+		<value xml:lang="en"><![CDATA[Z-index of notification]]></value>
+	</item>
+	<item name="ncenterlite_zindex_about">
+		<value xml:lang="ko"><![CDATA[알림센터가 다른 요소에 가려지는 경우에 100, 200, ... 이상으로 높여 보세요.]]></value>
+		<value xml:lang="en"><![CDATA[Some elements that have high z-index can hide notification layer. If so, set z-index of notification layer as 100, 200, and so on to show it.]]></value>
+	</item>
+	<item name="ncenterlite_test_make_dummy">
+		<value xml:lang="ko"><![CDATA[더미 데이터 생성]]></value>
+		<value xml:lang="en"><![CDATA[Make dummy data]]></value>
+	</item>
+	<item name="ncenterlite_test_mention">
+		<value xml:lang="ko"><![CDATA[시험용 스킨 알림 생성]]></value>
+		<value xml:lang="en"><![CDATA[Web page notification test]]></value>
+	</item>
+	<item name="ncenterlite_test_mention_about">
+		<value xml:lang="ko"><![CDATA[스킨 및 모듈 테스트를 위한 시험용 알림 생성.]]></value>
+		<value xml:lang="en"><![CDATA[Create dummy data for module and/or skin test.]]></value>
+	</item>
+	<item name="ncenterlite_test_push">
+		<value xml:lang="ko"><![CDATA[시험용 푸시 알림 생성]]></value>
+		<value xml:lang="en"><![CDATA[Push notification test]]></value>
+	</item>
+	<item name="ncenterlite_test_push_about">
+		<value xml:lang="ko"><![CDATA[모듈 및 모바일 테스트를 위한 시험용 알림 생성]]></value>
+		<value xml:lang="en"><![CDATA[Create dummy data for mobile push notification test.]]></value>
+	</item>
+	<item name="ncenterlite_document_event_settings">
+		<value xml:lang="ko"><![CDATA[새 글 알림 및 문서알림]]></value>
+		<value xml:lang="en"><![CDATA[Document event notification]]></value>
+	</item>
+	<item name="ncenterlite_document_event_vote">
+		<value xml:lang="ko"><![CDATA[글 추천 알림]]></value>
+		<value xml:lang="en"><![CDATA[Recommendation]]></value>
+	</item>
+	<item name="ncenterlite_document_event_vote_about">
+		<value xml:lang="ko"><![CDATA[글이 추천받았을때 추천알림을 받을 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[When someone recommend document, the author of it can get notifying.]]></value>
+	</item>
+	<item name="ncenterlite_document_event_read">
+		<value xml:lang="ko"><![CDATA[게시판 읽을경우 관련알림 삭제]]></value>
+		<value xml:lang="en"><![CDATA[Delete notifying after read the article]]></value>
+	</item>
+	<item name="ncenterlite_document_event_read_preserve">
+		<value xml:lang="ko"><![CDATA[알림을 지우지 않음]]></value>
+		<value xml:lang="en"><![CDATA[Preserve notification]]></value>
+	</item>
+	<item name="ncenterlite_document_event_read_delete">
+		<value xml:lang="ko"><![CDATA[알림을 지움]]></value>
+		<value xml:lang="en"><![CDATA[Delete notification]]></value>
+	</item>
+	<item name="ncenterlite_document_event_read_about">
+		<value xml:lang="ko"><![CDATA[게시판을 읽을경우 해당 글의 포함된 모든 알림내역을 알림내역에서 삭제 합니다. 기본값은 알림을 보존합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Delete every notification after read the article. Default is do not delete (preserve).]]></value>
+	</item>
+	<item name="ncenterlite_commnet_event">
+		<value xml:lang="ko"><![CDATA[댓글 알림 설정]]></value>
+		<value xml:lang="en"><![CDATA[Comments]]></value>
+	</item>
+	<item name="ncenterlite_commnet_event_noti_all">
+		<value xml:lang="ko"><![CDATA[글쓴이에게 모든 댓글 알림]]></value>
+		<value xml:lang="en"><![CDATA[Notice every comments to the author]]></value>
+	</item>
+	<item name="ncenterlite_commnet_event_noti_some">
+		<value xml:lang="ko"><![CDATA[대댓글은 알리지 않음]]></value>
+		<value xml:lang="en"><![CDATA[Notice only direct replies to the author]]></value>
+	</item>
+	<item name="ncenterlite_message_event">
+		<value xml:lang="ko"><![CDATA[쪽지 알림 설정]]></value>
+		<value xml:lang="en"><![CDATA[Notify message]]></value>
+	</item>
+	<item name="ncenterlite_message_event_about">
+		<value xml:lang="ko"><![CDATA[쪽지 알림을 사용하지 않음(XE의 기본 쪽지 알림을 사용)]]></value>
+		<value xml:lang="en"><![CDATA[Do not notify message (Use XE Core message notification system).]]></value>
 	</item>
 </lang>
