@@ -371,6 +371,10 @@
 		<value xml:lang="ko"><![CDATA[멘션 타겟 설정]]></value>
 		<value xml:lang="en"><![CDATA[Mention target]]></value>
 	</item>
+	<item name="ncenterlite_mention_target_about">
+		<value xml:lang="ko"><![CDATA[알림센터에서 닉네임 혹은 아이디 선택하여 맨션설정을 할 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Mention target can be nicknames or IDs (@Nickname or @ID).]]></value>
+	</item>
 	<item name="ncenterlite_skin_settings">
 		<value xml:lang="ko"><![CDATA[스킨 설정]]></value>
 		<value xml:lang="en"><![CDATA[Skin settings]]></value>
@@ -381,7 +385,7 @@
 	</item>
 	<item name="ncenterlite_zindex_about">
 		<value xml:lang="ko"><![CDATA[알림센터가 다른 요소에 가려지는 경우에 100, 200, ... 이상으로 높여 보세요.]]></value>
-		<value xml:lang="en"><![CDATA[Some elements that hav highte z-index can hide notification layer. If so, set z-index of notification layer as 100, 200, and so on to show it.]]></value>
+		<value xml:lang="en"><![CDATA[Some elements that have high z-index can hide notification layer. If so, set z-index of notification layer as 100, 200, and so on to show it.]]></value>
 	</item>
 	<item name="ncenterlite_test_make_dummy">
 		<value xml:lang="ko"><![CDATA[더미 데이터 생성]]></value>
@@ -437,10 +441,18 @@
 	</item>
 	<item name="ncenterlite_commnet_event_noti_all">
 		<value xml:lang="ko"><![CDATA[글쓴이에게 모든 댓글 알림]]></value>
-		<value xml:lang="en"><![CDATA[Notice all to the author]]></value>
+		<value xml:lang="en"><![CDATA[Notice every comments to the author]]></value>
 	</item>
 	<item name="ncenterlite_commnet_event_noti_some">
 		<value xml:lang="ko"><![CDATA[대댓글은 알리지 않음]]></value>
-		<value xml:lang="en"><![CDATA[Notice only direct replies]]></value>
+		<value xml:lang="en"><![CDATA[Notice only direct replies to the author]]></value>
+	</item>
+	<item name="ncenterlite_message_event">
+		<value xml:lang="ko"><![CDATA[쪽지 알림 설정]]></value>
+		<value xml:lang="en"><![CDATA[Notify message]]></value>
+	</item>
+	<item name="ncenterlite_message_event_about">
+		<value xml:lang="ko"><![CDATA[쪽지 알림을 사용하지 않음(XE의 기본 쪽지 알림을 사용)]]></value>
+		<value xml:lang="en"><![CDATA[Do not notify message (Use XE Core message notification system).]]></value>
 	</item>
 </lang>
