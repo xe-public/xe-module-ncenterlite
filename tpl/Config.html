@@ -72,13 +72,13 @@
 			</div>
 		</div>
 		<div class="x_control-group">
-			<label class="x_control-label">맨션 타겟 설정</label>
+			<label class="x_control-label">{$lang->ncenterlite_mention_target}</label>
 			<div class="x_controls">
 				<label class="x_inline">
-					<input type="radio" id="mention_names_id" name="mention_names" value="id" checked="checked"|cond="$config->mention_names == 'id'" /> 아이디
+					<input type="radio" id="mention_names_id" name="mention_names" value="id" checked="checked"|cond="$config->mention_names == 'id'" /> {$lang->user_id}
 				</label>
 				<label class="x_inline">
-					<input type="radio" id="mention_names_nick_name" name="mention_names" value="nick_name" checked="checked"|cond="$config->mention_names == 'nick_name'" /> 닉네임
+					<input type="radio" id="mention_names_nick_name" name="mention_names" value="nick_name" checked="checked"|cond="$config->mention_names == 'nick_name'" /> {$lang->nick_name}
 				</label>
 				<p class="x_help-block">알림센터에서 닉네임 혹은 아이디 선택하여 맨션설정을 할 수 있습니다.</p>
 			</div>
@@ -138,28 +138,28 @@
 	</section>
 
 	<section class="section collapsed">
-		<h1>새 글 알림 및 문서알림 ({$lang->ncenterlite_click_to_open}) </h1>
+		<h1>{$lang->ncenterlite_document_event_settings} ({$lang->ncenterlite_click_to_open}) </h1>
 		<div class="x_control-group">
-			<label class="x_control-label">글 추천 알림.</label>
+			<label class="x_control-label">{$lang->ncenterlite_document_event_vote}</label>
 			<div class="x_controls">
-				<label class="x_inline"><input type="radio" name="voted_format" value="Y" checked="checked"|cond="$config->voted_format == 'Y'" /> 사용함</label>
-				<label class="x_inline"><input type="radio" name="voted_format" value="N" checked="checked"|cond="$config->voted_format == 'N'" /> 사용하지 않음</label>
-				<p>글이 추천받았을때 추천알림을 받을 수 있습니다.</p>
+				<label class="x_inline"><input type="radio" name="voted_format" value="Y" checked="checked"|cond="$config->voted_format == 'Y'" /> {$lang->ncenterlite_activate}</label>
+				<label class="x_inline"><input type="radio" name="voted_format" value="N" checked="checked"|cond="$config->voted_format == 'N'" /> {$lang->ncenterlite_inactivate}</label>
+				<p>{$lang->ncenterlite_document_event_vote_about}</p>
 			</div>
 		</div>
 		<div class="x_control-group">
-			<label class="x_control-label">게시판 읽을경우 관련알림 삭제</label>
+			<label class="x_control-label">{$lang->ncenterlite_document_event_read}</label>
 			<div class="x_controls">
-				<label class="x_inline"><input type="radio" name="document_read" value="N" checked="checked"|cond="$config->document_read == 'N'" />알림을 지우지 않음</label>
-				<label class="x_inline"><input type="radio" name="document_read" value="Y" checked="checked"|cond="$config->document_read == 'Y'" />알림을 지움</label>
-				<p>게시판을 읽을경우 해당 글의 포함된 모든 알림내역을 알림내역에서 삭제 합니다. 기본값은 N입니다.</p>
+				<label class="x_inline"><input type="radio" name="document_read" value="N" checked="checked"|cond="$config->document_read == 'N'" />{$lang->ncenterlite_document_event_read_preserve}</label>
+				<label class="x_inline"><input type="radio" name="document_read" value="Y" checked="checked"|cond="$config->document_read == 'Y'" />{$lang->ncenterlite_document_event_read_delete}</label>
+				<p>{$lang->ncenterlite_document_event_read_about}</p>
 			</div>
 		</div>
 		<div class="x_control-group">
-			<label class="x_control-label">댓글 알림 설정</label>
+			<label class="x_control-label">{$lang->ncenterlite_commnet_event}</label>
 			<div class="x_controls">
-				<label class="x_inline"><input type="radio" name="document_notify" value="all-comment" checked="checked"|cond="$config->document_notify == 'all-comment'" /> 글쓴이에게 모든 댓글 알림</label>
-				<label class="x_inline"><input type="radio" name="document_notify" value="direct-comment" checked="checked"|cond="$config->document_notify == 'direct-comment'" /> 대댓글은 알리지 않음</label>
+				<label class="x_inline"><input type="radio" name="document_notify" value="all-comment" checked="checked"|cond="$config->document_notify == 'all-comment'" /> {$lang->ncenterlite_commnet_event_noti_all}</label>
+				<label class="x_inline"><input type="radio" name="document_notify" value="direct-comment" checked="checked"|cond="$config->document_notify == 'direct-comment'" /> {$lang->ncenterlite_commnet_event_noti_some}</label>
 			</div>
 		</div>
 	</section>
@@ -167,7 +167,7 @@
 
 
 	<section class="section collapsed">
-		<h1>레이아웃 설정 ({$lang->ncenterlite_click_to_open})</h1>
+		<h1>{$lang->cmd_layout_setup} ({$lang->ncenterlite_click_to_open})</h1>
 		<div class="x_control-group">
 			<label class="x_control-label" for="layout_srl">{$lang->layout}</label>
 			<div class="x_controls">
@@ -180,7 +180,7 @@
 			</div>
 		</div>
 		<div class="x_control-group">
-			<label class="x_control-label" for="layout_srl">모바일 {$lang->layout}</label>
+			<label class="x_control-label" for="layout_srl">{$lang->mobile} {$lang->layout}</label>
 			<div class="x_controls">
 				<select name="mlayout_srl" id="mlayout_srl">
 					<option value="0">{$lang->notuse}</option>
@@ -193,7 +193,7 @@
 	</section>
 
 	<section class="section collapsed">
-		<h1>스킨 설정 ({$lang->ncenterlite_click_to_open})</h1>
+		<h1>{$lang->ncenterlite_skin_settings} ({$lang->ncenterlite_click_to_open})</h1>
 		<div class="x_control-group">
 			<label class="x_control-label">{$lang->skin}</label>
 			<div class="x_controls">
@@ -235,10 +235,10 @@
 			</div>
 		</div>
 		<div class="x_control-group">
-			<label class="x_control-label">알림센터의 z-index</label>
+			<label class="x_control-label">{$lang->ncenterlite_zindex}</label>
 			<div class="x_controls">
 				<input type="number" name="zindex" value="{$config->zindex}" />
-				<p class="x_help-block">알림센터가 다른 요소에 가려지는 경우에 100, 200, ... 이상으로 높여 보세요.</p>
+				<p class="x_help-block">{$lang->ncenterlite_zindex_about}</p>
 			</div>
 		</div>
 	</section>
@@ -250,23 +250,23 @@
 	</div>
 
 	<section class="section">
-		<h1>기타</h1>
+		<h1>{$lang->etc}</h1>
 		<div class="x_control-group">
-			<label class="x_control-label">시험용 스킨 알림 생성</label>
+			<label class="x_control-label">{$lang->ncenterlite_test_mention}</label>
 			<div class="x_controls">
-				<label><input type="button" name="dummy" onClick="doDummyDataInsert();" class="x_btn" value="더미 데이터 생성"> 스킨 및 모듈 테스트를 위한 시험용 알림 생성</label>
+				<label><input type="button" name="dummy" onClick="doDummyDataInsert();" class="x_btn" value="{$lang->ncenterlite_test_make_dummy}"> {$lang->ncenterlite_test_mention_about}</label>
 			</div>
 		</div>
 
 		<div class="x_control-group">
-			<label class="x_control-label">시험용 푸시 알림 생성</label>
+			<label class="x_control-label">{$lang->ncenterlite_test_push}</label>
 			<div class="x_controls">
-				<label><input type="button" name="dummy" onClick="doDummyPushDataInsert();" class="x_btn" value="더미 데이터 생성"> 모듈 및 모바일 테스트를 위한 시험용 알림 생성</label>
+				<label><input type="button" name="dummy" onClick="doDummyPushDataInsert();" class="x_btn" value="{$lang->ncenterlite_test_make_dummy}"> {$lang->ncenterlite_test_push_about}</label>
 			</div>
 		</div>
 	</section>
 </form>
 <div cond="$_ncenterlite_iframe_url">
-	<p>설치된 알림센터 버전 : Lite v{$ncenterlite_module_info->version}</p>
+	<p>{$lang->ncenterlite_install_version} : Lite v{$ncenterlite_module_info->version}</p>
 	<iframe frameborder="0" src="{$_ncenterlite_iframe_url}" style="display:block; margin:10px auto; padding:0; width:90%;border:3px solid #7361d6; border-radius:10px; height:200px; overflow:scroll; "></iframe>
 </div>
