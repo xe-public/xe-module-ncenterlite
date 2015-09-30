@@ -82,6 +82,10 @@ class ncenterliteAdminModel extends ncenterlite
 				break;
 			}
 
+			if($v->type=='U')
+			{
+				$str = $oNcenterliteModel->getNotifyTypeString($v->notify_type,unserialize($v->target_body));
+			}
 			$v->text = $str;
 			$v->ago = $oNcenterliteModel->getAgo($v->regdate);
 			$v->url = getUrl('','act','procNcenterliteRedirect', 'notify', $v->notify, 'url', $v->target_url);

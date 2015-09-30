@@ -1,6 +1,6 @@
 <query id="insertNotifyType" action="insert">
 	<tables>
-		<table name="ncenterlite_notify" />
+		<table name="ncenterlite_notify_type" />
 	</tables>
 	<columns>
         <column name="notify_type_srl" var="notify_type_srl" notnull="notnull" />

@@ -35,11 +35,11 @@ class ncenterliteModel extends ncenterlite
 	function getNotifyTypebySrl($notify_srl='')
 	{
 		$args = new stdClass();
-		$args->notify_type_id = $notify_srl;
+		$args->notify_type_srl = $notify_srl;
 
 		$output = executeQuery('ncenterlite.getNotifyType',$args);
 
-		return $output->data;
+		return $output;
 	}
 
 	function getNotifyTypeString($notify_srl='',$notify_args)
