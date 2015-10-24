@@ -392,6 +392,7 @@ class ncenterliteController extends ncenterlite
 		$config = $oNcenterliteModel->getConfig();
 		if($config->use != 'Y') return new Object();
 		if($config->voted_format != 'Y') return new Object();
+		if($obj->point < 0) return new Object();
 
 		$args = new stdClass();
 		$args->member_srl = $obj->member_srl;
