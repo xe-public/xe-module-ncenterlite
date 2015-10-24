@@ -15,7 +15,7 @@
 		<action name="procNcenterliteAdminEnviromentGatheringAgreement" type="controller" />
 		<action name="procNcenterliteNotifyRead" type="controller" />
 		<action name="procNcenterliteNotifyReadAll" type="controller" />
-		<action name="procNcenterliteRedirect" type="controller" />
+		<action name="procNcenterliteRedirect" type="controller" method="GET|POST" />
 
 		<action name="getColorsetList" type="model" />
 		<action name="getMyNotifyListTpl" type="model" />
