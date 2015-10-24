@@ -1,6 +1,6 @@
 {
   "name": "XE-Notification-Lite",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "author": "XE Public",
   "contributors": [
     {
@@ -16,6 +16,11 @@
       "name": "kantsoft",
       "email": "ikantsoft@gmail.com",
       "url": "http://github.com/kantsoft"
+    },
+    {
+      "name": "misol",
+      "email": "misol.kr@gmail.com",
+      "url": "http://github.com/misol"
     }
   ],
   "keywords": ["Notification", "XpressEngine", "XE"],
