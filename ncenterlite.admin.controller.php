@@ -4,34 +4,38 @@ class ncenterliteAdminController extends ncenterlite
 	function procNcenterliteAdminInsertConfig()
 	{
 		$oModuleController = getController('module');
+		$obj = Context::getRequestVars();
 
 		$config = new stdClass();
-		$config->use = Context::get('use');
-		$config->display_use = Context::get('display_use');
+		$config->use = $obj->use;
+		$config->display_use = $obj->display_use;
 
-		$config->user_config_list = Context::get('user_config_list');
-		$config->mention_format = Context::get('mention_format');
-		$config->mention_names = Context::get('mention_names');
-		$config->document_notify = Context::get('document_notify');
-		$config->message_notify = Context::get('message_notify');
-		$config->hide_module_srls = Context::get('hide_module_srls');
-		$config->android_format = Context::get('android_format');
+		$config->user_config_list = $obj->user_config_list;
+		$config->mention_format = $obj->mention_format;
+		$config->mention_names = $obj->mention_names;
+		$config->document_notify = $obj->document_notify;
+		$config->message_notify = $obj->message_notify;
+		$config->hide_module_srls = $obj->hide_module_srls;
+		$config->android_format = $obj->android_format;
 		if(!$config->mention_format && !is_array($config->mention_format))
 		{
 			$config->mention_format = array();
 		}
-		$config->admin_comment_module_srls = Context::get('admin_comment_module_srls');
+		$config->admin_comment_module_srls = $obj->admin_comment_module_srls;
 
-		$config->skin = Context::get('skin');
-		$config->mskin = Context::get('mskin');
-		$config->mcolorset = Context::get('mcolorset');
-		$config->colorset = Context::get('colorset');
-		$config->zindex = Context::get('zindex');
-		$config->anonymous_name = Context::get('anonymous_name');
-		$config->document_read = Context::get('document_read');
-		$config->layout_srl = Context::get('layout_srl');
-		$config->mlayout_srl = Context::get('mlayout_srl');
-		$config->voted_format = Context::get('voted_format');
+		$config->skin = $obj->skin;
+		$config->mskin = $obj->mskin;
+		$config->mcolorset = $obj->mcolorset;
+		$config->colorset = $obj->colorset;
+		$config->zindex = $obj->zindex;
+		$config->anonymous_name = $obj->anonymous_name;
+		$config->document_read = $obj->document_read;
+		$config->layout_srl = $obj->layout_srl;
+		$config->mlayout_srl = $obj->mlayout_srl;
+		$config->voted_format = $obj->voted_format;
+		$config->t_use = $obj->t_use;
+		$config->chennel_id = $obj->chennel_id;
+		$config->bot_api = $obj->bot_api;
 
 		if(!$config->document_notify)
 		{
