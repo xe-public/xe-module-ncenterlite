@@ -33,9 +33,6 @@ class ncenterliteAdminController extends ncenterlite
 		$config->layout_srl = $obj->layout_srl;
 		$config->mlayout_srl = $obj->mlayout_srl;
 		$config->voted_format = $obj->voted_format;
-		$config->t_use = $obj->t_use;
-		$config->chennel_id = $obj->chennel_id;
-		$config->bot_api = $obj->bot_api;
 
 		if(!$config->document_notify)
 		{
