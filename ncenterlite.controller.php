@@ -415,6 +415,7 @@ class ncenterliteController extends ncenterlite
 		$config = $oNcenterliteModel->getConfig();
 		if($config->use != 'Y') return new Object();
 
+		$args = new stdClass();
 		$args->srl = $obj->comment_srl;
 		$output = executeQuery('ncenterlite.deleteNotifyBySrl', $args);
 		return new Object();
@@ -426,6 +427,7 @@ class ncenterliteController extends ncenterlite
 		$config = $oNcenterliteModel->getConfig();
 		if($config->use != 'Y') return new Object();
 
+		$args = new stdClass();
 		$args->srl = $obj->document_srl;
 		$output = executeQuery('ncenterlite.deleteNotifyBySrl', $args);
 		return new Object();
