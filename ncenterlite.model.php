@@ -290,6 +290,7 @@ class ncenterliteModel extends ncenterlite
 
 	function getMemberAdmins()
 	{
+		$args = new stdClass();
 		$args->is_admin = 'Y';
 		$output = executeQueryArray('ncenterlite.getMemberAdmins', $args);
 		if(!$output->data) $output->data = array();
