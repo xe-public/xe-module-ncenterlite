@@ -175,7 +175,7 @@ class ncenterliteController extends ncenterlite
 		
 		foreach($admins_list as $admins)
 		{
-			if(in_array($module_info->module_srl, $config->admin_comment_module_srls))
+			if(is_array($config->admin_comment_module_srls) && in_array($module_info->module_srl, $config->admin_comment_module_srls))
 			{
 				$args = new stdClass();
 				$args->member_srl = $admins->member_srl;
