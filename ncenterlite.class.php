@@ -97,6 +97,31 @@ class ncenterlite extends ModuleObject
 			return true;
 		}
 
+		if(!$oDB->isIndexExists('ncenterlite_notify', 'idx_srl'))
+		{
+			return true;
+		}
+
+		if(!$oDB->isIndexExists('ncenterlite_notify', 'idx_target_srl'))
+		{
+			return true;
+		}
+
+		if(!$oDB->isIndexExists('ncenterlite_notify', 'idx_target_p_srl'))
+		{
+			return true;
+		}
+
+		if(!$oDB->isIndexExists('ncenterlite_notify', 'idx_notify'))
+		{
+			return true;
+		}
+
+		if(!$oDB->isIndexExists('ncenterlite_notify', 'idx_target_member_srl'))
+		{
+			return true;
+		}
+
 		return false;
 	}
 
@@ -140,6 +165,31 @@ class ncenterlite extends ModuleObject
 		if(!$oDB->isColumnExists('ncenterlite_notify','target_p_srl'))
 		{
 			$oDB->addColumn('ncenterlite_notify', 'target_p_srl', 'number', 10, true);
+		}
+
+		if(!$oDB->isIndexExists('ncenterlite_notify', 'idx_srl'))
+		{
+			$oDB->addIndex('ncenterlite_notify', 'idx_srl', array('srl'));
+		}
+
+		if(!$oDB->isIndexExists('ncenterlite_notify', 'idx_target_srl'))
+		{
+			$oDB->addIndex('ncenterlite_notify', 'idx_target_srl', array('target_srl'));
+		}
+
+		if(!$oDB->isIndexExists('ncenterlite_notify', 'idx_target_p_srl'))
+		{
+			$oDB->addIndex('ncenterlite_notify', 'idx_target_p_srl', array('target_p_srl'));
+		}
+
+		if(!$oDB->isIndexExists('ncenterlite_notify', 'idx_notify'))
+		{
+			$oDB->addIndex('ncenterlite_notify', 'idx_notify', array('notify'));
+		}
+
+		if(!$oDB->isIndexExists('ncenterlite_notify', 'idx_target_member_srl'))
+		{
+			$oDB->addIndex('ncenterlite_notify', 'idx_target_member_srl', array('target_member_srl'));
 		}
 
 		return new Object(0, 'success_updated');
