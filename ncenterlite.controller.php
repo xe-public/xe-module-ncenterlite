@@ -936,6 +936,15 @@ class ncenterliteController extends ncenterlite
 			$args->target_user_id = $logged_info->user_id;
 			$args->target_email_address = $logged_info->email_address;
 		}
+		else if($args->target_member_srl)
+		{
+			$oMemberModel = getModel('member');
+			$member_info = $oMemberModel->getMemberInfoByMemberSrl($args->target_member_srl);
+			$args->target_member_srl = $member_info->member_srl;
+			$args->target_nick_name = $member_info->nick_name;
+			$args->target_user_id = $member_info->user_id;
+			$args->target_email_address = $member_info->email_address;
+		}
 		else
 		{
 			// 비회원
