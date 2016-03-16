@@ -275,7 +275,7 @@ class ncenterliteController extends ncenterlite
 		$message_member_config = $messages_member_config->data;
 
 		// 쪽지 체크 및 유저 쪽지 알림 채크
-		if($config->message_notify != 'N' && $message_member_config->message_notify != 'N')
+		if($config->message_notify == 'Y' && $message_member_config->message_notify != 'N')
 		{
 			$flag_path = './files/ncenterlite/new_message_flags/';
 
@@ -336,7 +336,7 @@ class ncenterliteController extends ncenterlite
 				$args->notify = $this->_getNotifyId($args);
 				$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages');
 
-				$output = $this->_insertNotify($args, $is_anonymous);
+				$output = $this->_insertNotify($args);
 			}
 		}
 	}
@@ -346,42 +346,44 @@ class ncenterliteController extends ncenterlite
 		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
 		if($config->use != 'Y') return new Object();
-		if($config->message_notify != 'N')
+		if($config->message_notify == 'N')
 		{
-			$messages_member_config = $oNcenterliteModel->getMemberConfig($trigger_obj->receiver_srl);
-			$message_member_config = $messages_member_config->data;
-
-			if(version_compare(__XE_VERSION__, '1.8', '>=') && $message_member_config->message_notify != 'N')
-			{
-				$args = new stdClass();
-				$args->member_srl = $trigger_obj->receiver_srl;
-				$args->srl = $trigger_obj->related_srl;
-				$args->target_p_srl = '1';
-				$args->target_srl = $trigger_obj->message_srl;
-				$args->type = $this->_TYPE_MESSAGE;
-				$args->target_type = $this->_TYPE_MESSAGE;
-				$args->target_summary = $trigger_obj->title;
-				$args->regdate = date('YmdHis');
-				$args->notify = $this->_getNotifyId($args);
-				$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages', 'message_srl', $trigger_obj->related_srl);
-				$output = $this->_insertNotify($args);
-			}
-			elseif($message_member_config->message_notify != 'N')
-			{
-				$args = new stdClass();
-				$args->member_srl = $trigger_obj->receiver_srl;
-				$args->srl = $trigger_obj->receiver_srl;
-				$args->target_p_srl = '1';
-				$args->target_srl = $trigger_obj->sender_srl;
-				$args->type = $this->_TYPE_MESSAGE;
-				$args->target_type = $this->_TYPE_MESSAGE;
-				$args->target_summary = $trigger_obj->title;
-				$args->regdate = date('YmdHis');
-				$args->notify = $this->_getNotifyId($args);
-				$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages');
-				$output = $this->_insertNotify($args);
-			}
+			return new Object();
 		}
+		$messages_member_config = $oNcenterliteModel->getMemberConfig($trigger_obj->receiver_srl);
+		$message_member_config = $messages_member_config->data;
+
+		if(version_compare(__XE_VERSION__, '1.8', '>=') && $message_member_config->message_notify != 'N')
+		{
+			$args = new stdClass();
+			$args->member_srl = $trigger_obj->receiver_srl;
+			$args->srl = $trigger_obj->related_srl;
+			$args->target_p_srl = '1';
+			$args->target_srl = $trigger_obj->message_srl;
+			$args->type = $this->_TYPE_MESSAGE;
+			$args->target_type = $this->_TYPE_MESSAGE;
+			$args->target_summary = $trigger_obj->title;
+			$args->regdate = date('YmdHis');
+			$args->notify = $this->_getNotifyId($args);
+			$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages', 'message_srl', $trigger_obj->related_srl);
+			$output = $this->_insertNotify($args);
+		}
+		elseif($message_member_config->message_notify != 'N')
+		{
+			$args = new stdClass();
+			$args->member_srl = $trigger_obj->receiver_srl;
+			$args->srl = $trigger_obj->receiver_srl;
+			$args->target_p_srl = '1';
+			$args->target_srl = $trigger_obj->sender_srl;
+			$args->type = $this->_TYPE_MESSAGE;
+			$args->target_type = $this->_TYPE_MESSAGE;
+			$args->target_summary = $trigger_obj->title;
+			$args->regdate = date('YmdHis');
+			$args->notify = $this->_getNotifyId($args);
+			$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages');
+			$output = $this->_insertNotify($args);
+		}
+
 	}
 
 	function triggerAfterVotedupdate(&$obj)
@@ -407,7 +409,6 @@ class ncenterliteController extends ncenterlite
 		$args->notify = $this->_getNotifyId($args);
 		$args->target_url = getNotEncodedFullUrl('', 'document_srl', $obj->document_srl);
 		$output = $this->_insertNotify($args, $is_anonymous);
-
 	}
 
 	function triggerAfterDeleteComment(&$obj)
