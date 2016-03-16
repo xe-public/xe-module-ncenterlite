@@ -305,6 +305,7 @@ class ncenterliteController extends ncenterlite
 				FileHandler::removeFile($flag_path . $logged_info->member_srl);
 
 				// 새 쪽지 수
+				$args = new stdClass();
 				$args->receiver_srl = $logged_info->member_srl;
 				$output = executeQuery('ncenterlite.getCountNewMessage', $args);
 				$message_count = $output->data->count;
@@ -363,7 +364,7 @@ class ncenterliteController extends ncenterlite
 				$args->regdate = date('YmdHis');
 				$args->notify = $this->_getNotifyId($args);
 				$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages', 'message_srl', $trigger_obj->related_srl);
-				$output = $this->_insertNotify($args, $is_anonymous);
+				$output = $this->_insertNotify($args);
 			}
 			elseif($message_member_config->message_notify != 'N')
 			{
@@ -378,7 +379,7 @@ class ncenterliteController extends ncenterlite
 				$args->regdate = date('YmdHis');
 				$args->notify = $this->_getNotifyId($args);
 				$args->target_url = getNotEncodedFullUrl('', 'act', 'dispCommunicationMessages');
-				$output = $this->_insertNotify($args, $is_anonymous);
+				$output = $this->_insertNotify($args);
 			}
 		}
 	}
@@ -513,7 +514,7 @@ class ncenterliteController extends ncenterlite
 						$oDB = &DB::getInstance();
 						if($oDB->isTableExists('socialxe'))
 						{
-							unset($args);
+							$args = new stdClass();
 							$oModuleModel = getModel('module');
 							$module_info = $oModuleModel->getModuleInfoByDocumentSrl($document_srl);
 							$args->module_srl = $module_info->module_srl;
@@ -522,7 +523,7 @@ class ncenterliteController extends ncenterlite
 							{
 								$socialxe_comment_srl = $comment_srl;
 
-								unset($args);
+								$args = new stdClass();
 								$args->comment_srl = $comment_srl;
 								$oCommentModel = getModel('comment');
 								$oComment = $oCommentModel->getComment($comment_srl);
@@ -811,6 +812,7 @@ class ncenterliteController extends ncenterlite
 
 	function updateNotifyRead($notify, $member_srl)
 	{
+		$args = new stdClass();
 		$args->member_srl = $member_srl;
 		$args->notify = $notify;
 		$output = executeQuery('ncenterlite.updateNotifyReaded', $args);
@@ -821,6 +823,7 @@ class ncenterliteController extends ncenterlite
 
 	function updateNotifyReadiByTargetSrl($target_srl, $member_srl)
 	{
+		$args = new stdClass();
 		$args->member_srl = $member_srl;
 		$args->target_srl = $target_srl;
 		$output = executeQuery('ncenterlite.updateNotifyReadedByTargetSrl', $args);
@@ -831,6 +834,7 @@ class ncenterliteController extends ncenterlite
 
 	function updateNotifyReadAll($member_srl)
 	{
+		$args = new stdClass();
 		$args->member_srl = $member_srl;
 		$output = executeQuery('ncenterlite.updateNotifyReadedAll', $args);
 		//$output = executeQuery('ncenterlite.deleteNotifyByMemberSrl', $args);
