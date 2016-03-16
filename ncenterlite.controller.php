@@ -1027,7 +1027,7 @@ class ncenterliteController extends ncenterlite
 		{
 			foreach($nicks as $user_id)
 			{
-				$vars = null;
+				$vars = new stdClass();
 				$vars->user_id = $user_id;
 				$output = executeQuery('ncenterlite.getMemberSrlById', $vars);
 				if($output->data && $output->data->member_srl) $list[] = $output->data->member_srl;
@@ -1037,7 +1037,7 @@ class ncenterliteController extends ncenterlite
 		{
 			foreach($nicks as $nick_name)
 			{
-				$vars = null;
+				$vars = new stdClass();
 				$vars->nick_name = $nick_name;
 				$output = executeQuery('ncenterlite.getMemberSrlByNickName', $vars);
 				if($output->data && $output->data->member_srl) $list[] = $output->data->member_srl;
