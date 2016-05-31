@@ -15,6 +15,22 @@
 		<value xml:lang="en"><![CDATA[document]]></value>
 		<value xml:lang="jp"><![CDATA[書き込み]]></value>
 	</item>
+	<item name="ncenterlite_mention">
+		<value xml:lang="ko"><![CDATA[맨션]]></value>
+		<value xml:lang="en"><![CDATA[mention]]></value>
+	</item>
+	<item name="ncenterlite_comment_comment">
+		<value xml:lang="ko"><![CDATA[대댓글]]></value>
+		<value xml:lang="en"><![CDATA[comment comment]]></value>
+	</item>
+	<item name="ncenterlite_cmd_vote">
+		<value xml:lang="ko"><![CDATA[추천]]></value>
+		<value xml:lang="en"><![CDATA[vote]]></value>
+	</item>
+	<item name="ncenterlite_admin_content">
+		<value xml:lang="ko"><![CDATA[관리자알림]]></value>
+		<value xml:lang="en"><![CDATA[admin notify]]></value>
+	</item>
 	<item name="ncenterlite_comment">
 		<value xml:lang="ko"><![CDATA[댓글]]></value>
 		<value xml:lang="en"><![CDATA[comment]]></value>
@@ -22,7 +38,7 @@
 	</item>
 	<item name="ncenterlite_type_message">
 		<value xml:lang="ko"><![CDATA[쪽지]]></value>
-		<value xml:lang="en"><![CDATA[message]]></value>
+		<value xml:lang="en"><![CDATA[message]]></value> 
 		<value xml:lang="jp"><![CDATA[メッセージ]]></value>
 	</item>
 	<item name="ncenterlite_sender">

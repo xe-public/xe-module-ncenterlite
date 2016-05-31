@@ -70,7 +70,6 @@ class ncenterliteController extends ncenterlite
 
 		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
-		if($config->use != 'Y') return new Object();
 
 		$content = strip_tags($obj->title . ' ' . $obj->content);
 
@@ -143,39 +142,44 @@ class ncenterliteController extends ncenterlite
 		// 멘션
 		$mention_targets = $this->_getMentionTarget(strip_tags($obj->content));
 		// !TODO 공용 메소드로 분리
-		foreach($mention_targets as $mention_member_srl)
-		{
-			$target_member_config = $oNcenterliteModel->getMemberConfig($mention_member_srl);
-			$notify_member_config = $target_member_config->data;
-			if($notify_member_config->mention_notify == 'N')
-			{
-				continue;
-			}
 
-			$args = new stdClass();
-			$args->member_srl = $mention_member_srl;
-			$args->target_p_srl = $obj->comment_srl;
-			$args->srl = $obj->document_srl;
-			$args->target_srl = $obj->comment_srl;
-			$args->type = $this->_TYPE_COMMENT;
-			$args->target_type = $this->_TYPE_MENTION;
-			$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
-			$args->target_summary = cut_str(strip_tags($content), 50);
-			$args->target_nick_name = $obj->nick_name;
-			$args->target_email_address = $obj->email_address;
-			$args->regdate = date('YmdHis');
-			$args->target_browser = $module_info->browser_title;
-			$args->notify = $this->_getNotifyId($args);
-			$output = $this->_insertNotify($args, $is_anonymous);
-			$notify_member_srl[] = $mention_member_srl;
+		if(isset($config->use['mention']))
+		{
+			foreach($mention_targets as $mention_member_srl)
+			{
+				$target_member_config = $oNcenterliteModel->getMemberConfig($mention_member_srl);
+				$notify_member_config = $target_member_config->data;
+				if($notify_member_config->mention_notify == 'N')
+				{
+					continue;
+				}
+
+				$args = new stdClass();
+				$args->member_srl = $mention_member_srl;
+				$args->target_p_srl = $obj->comment_srl;
+				$args->srl = $obj->document_srl;
+				$args->target_srl = $obj->comment_srl;
+				$args->type = $this->_TYPE_COMMENT;
+				$args->target_type = $this->_TYPE_MENTION;
+				$args->target_url = getNotEncodedFullUrl('', 'document_srl', $document_srl, '_comment_srl', $comment_srl) . '#comment_'. $comment_srl;
+				$args->target_summary = cut_str(strip_tags($content), 50);
+				$args->target_nick_name = $obj->nick_name;
+				$args->target_email_address = $obj->email_address;
+				$args->regdate = date('YmdHis');
+				$args->target_browser = $module_info->browser_title;
+				$args->notify = $this->_getNotifyId($args);
+				$output = $this->_insertNotify($args, $is_anonymous);
+				$notify_member_srl[] = $mention_member_srl;
+			}
 		}
 
-		$admin_list = $oNcenterliteModel->getMemberAdmins();
-		$admins_list = $admin_list->data;
-		
-		foreach($admins_list as $admins)
+
+
+		if(isset($config->use['admin_content']) && is_array($config->admin_comment_module_srls) && in_array($module_info->module_srl, $config->admin_comment_module_srls))
 		{
-			if(is_array($config->admin_comment_module_srls) && in_array($module_info->module_srl, $config->admin_comment_module_srls))
+			$admin_list = $oNcenterliteModel->getMemberAdmins();
+			$admins_list = $admin_list->data;
+			foreach($admins_list as $admins)
 			{
 				$args = new stdClass();
 				$args->member_srl = $admins->member_srl;
@@ -194,6 +198,12 @@ class ncenterliteController extends ncenterlite
 				$output = $this->_insertNotify($args, $is_anonymous);
 			}
 		}
+
+		if(!isset($config->use['comment']))
+		{
+			return new Object();
+		}
+
 		// 대댓글
 		if($parent_srl)
 		{
@@ -204,7 +214,7 @@ class ncenterliteController extends ncenterlite
 			$parent_member_config = $comment_member_config->data;
 
 			// !TODO 공용 메소드로 분리
-			if(!in_array(abs($member_srl), $notify_member_srl) && (!$logged_info || ($member_srl != 0 && abs($member_srl) != $logged_info->member_srl)) && $parent_member_config->comment_notify != 'N')
+			if(isset($config->use['admin_content']) && !in_array(abs($member_srl), $notify_member_srl) && (!$logged_info || ($member_srl != 0 && abs($member_srl) != $logged_info->member_srl)) && $parent_member_config->comment_notify != 'N')
 			{
 				$args = new stdClass();
 				$args->member_srl = abs($member_srl);
@@ -225,7 +235,7 @@ class ncenterliteController extends ncenterlite
 			}
 		}
 		// 대댓글이 아니고, 게시글의 댓글을 남길 경우
-		if(!$parent_srl || ($parent_srl && $config->document_notify == 'all-comment'))
+		if(!$parent_srl || ($parent_srl && isset($config->use['comment_comment'])))
 		{
 			$oDocumentModel = getModel('document');
 			$oDocument = $oDocumentModel->getDocument($document_srl);
@@ -235,7 +245,7 @@ class ncenterliteController extends ncenterlite
 			$document_comment_member_config = $comment_member_config->data;
 
 			// !TODO 공용 메소드로 분리
-			if(!in_array(abs($member_srl), $notify_member_srl) && (!$logged_info || ($member_srl != 0 && abs($member_srl) != $logged_info->member_srl)) && $document_comment_member_config->comment_notify != 'N')
+			if(!in_array(abs($member_srl), $notify_member_srl) && isset($config->use['admin_content']) && (!$logged_info || ($member_srl != 0 && abs($member_srl) != $logged_info->member_srl)) && $document_comment_member_config->comment_notify != 'N')
 			{
 				$args = new stdClass();
 				$args->member_srl = abs($member_srl);
@@ -266,7 +276,10 @@ class ncenterliteController extends ncenterlite
 		}
 		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
-		if($config->use != 'Y') return new Object();
+		if(!isset($config->use['message']))
+		{
+			return new Object();
+		}
 
 		$vars = Context::getRequestVars();
 		$logged_info = Context::get('logged_info');
@@ -275,7 +288,7 @@ class ncenterliteController extends ncenterlite
 		$message_member_config = $messages_member_config->data;
 
 		// 쪽지 체크 및 유저 쪽지 알림 채크
-		if($config->message_notify == 'Y' && $message_member_config->message_notify != 'N')
+		if(isset($config->use['message']) && $message_member_config->message_notify != 'N')
 		{
 			$flag_path = './files/ncenterlite/new_message_flags/';
 
@@ -345,8 +358,7 @@ class ncenterliteController extends ncenterlite
 	{
 		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
-		if($config->use != 'Y') return new Object();
-		if($config->message_notify == 'N')
+		if(isset($config->use['message']))
 		{
 			return new Object();
 		}
@@ -393,8 +405,10 @@ class ncenterliteController extends ncenterlite
 
 		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
-		if($config->use != 'Y') return new Object();
-		if($config->voted_format != 'Y') return new Object();
+		if(!isset($config->use['vote']))
+		{
+			return new Object();
+		}
 		if($obj->point < 0) return new Object();
 
 		$args = new stdClass();
@@ -415,7 +429,10 @@ class ncenterliteController extends ncenterlite
 	{
 		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
-		if($config->use != 'Y') return new Object();
+		if(empty($config->use))
+		{
+			return new Object();
+		}
 
 		$args = new stdClass();
 		$args->srl = $obj->comment_srl;
@@ -427,7 +444,10 @@ class ncenterliteController extends ncenterlite
 	{
 		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
-		if($config->use != 'Y') return new Object();
+		if(empty($config->use))
+		{
+			return new Object();
+		}
 
 		$args = new stdClass();
 		$args->srl = $obj->document_srl;
@@ -445,7 +465,10 @@ class ncenterliteController extends ncenterlite
 
 		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
-		if($config->use != 'Y') return new Object();
+		if(empty($config->use))
+		{
+			return new Object();
+		}
 
 		$this->_hide_ncenterlite = false;
 		if($oModule->module == 'beluxe' && Context::get('is_modal'))
@@ -662,8 +685,11 @@ class ncenterliteController extends ncenterlite
 		$config = $oNcenterliteModel->getConfig();
 
 		// 알림센터가 비활성화 되어 있으면 중지
-		if($config->use != 'Y') return new Object();
-		if($config->display_use == 'N') return new Object();
+		if(empty($config->use))
+		{
+			return new Object();
+		}
+		if($config->display_use != 'Y') return new Object();
 
 		// 노티바 제외 페이지이면 중지
 		if(in_array($module_info->module_srl, $config->hide_module_srls)) return new Object();
@@ -840,7 +866,7 @@ class ncenterliteController extends ncenterlite
 		$output = executeQuery('ncenterlite.updateNotifyReadedAll', $args);
 		//$output = executeQuery('ncenterlite.deleteNotifyByMemberSrl', $args);
 
-		return $ouptut;
+		return $output;
 	}
 
 	function procNcenterliteNotifyRead()

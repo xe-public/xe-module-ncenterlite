@@ -23,15 +23,15 @@
 	<section class="section collapsed">
 		<h1>{$lang->ncenterlite_basic_settings} ({$lang->ncenterlite_click_to_open})</h1>
 		<div class="x_control-group">
-			<label class="x_control-label"><span class="x_label x_label-important">{$lang->ncenterlite_warning}</span> {$lang->ncenterlite_io}</label>
+			<label class="x_control-label">{$lang->ncenterlite_io}</label>
 			<div class="x_controls">
-				<label class="x_inline">
-					<input type="radio" id="use_y" name="use" value="Y" checked="checked"|cond="$config->use == 'Y'" /> {$lang->ncenterlite_on}
-				</label>
-				<label class="x_inline">
-					<input type="radio" id="use_n" name="use" value="N" checked="checked"|cond="$config->use == 'N'" /> {$lang->ncenterlite_off}
-				</label>
-				<p class="x_help-block"><span class="x_label x_label-important">{$lang->ncenterlite_warning}</span> {$lang->ncenterlite_io_about}</p>
+				<label for="notify_mention" class="x_inline"><input type="checkbox" name="use[mention]" id="notify_mention" value="1" checked="checked"|cond="isset($config->use['mention'])" /> {$lang->ncenterlite_mention}</label>
+				<label for="notify_comment" class="x_inline"><input type="checkbox" name="use[comment]" id="notify_comment" value="1" checked="checked"|cond="isset($config->use['comment'])" /> {$lang->ncenterlite_comment}</label>
+				<label for="notify_comment_comment" class="x_inline"><input type="checkbox" name="use[comment_comment]" id="notify_comment_comment" value="1" checked="checked"|cond="isset($config->use['comment_comment'])" /> {$lang->ncenterlite_comment_comment}</label>
+				<label for="notify_vote" class="x_inline"><input type="checkbox" name="use[vote]" id="notify_vote" value="1" checked="checked"|cond="isset($config->use['vote'])" /> {$lang->ncenterlite_cmd_vote}</label>
+				<label for="notify_message" class="x_inline"><input type="checkbox" name="use[message]" id="notify_message" value="1" checked="checked"|cond="isset($config->use['message'])" /> {$lang->ncenterlite_type_message}</label>
+				<label for="notify_admin_content" class="x_inline"><input type="checkbox" name="use[admin_content]" id="notify_admin_content" value="1" checked="checked"|cond="isset($config->use['admin_content'])" /> {$lang->ncenterlite_admin_content}</label>
+				<p class="x_help-block">{$lang->about_admin_content}</p>
 			</div>
 		</div>
 		<div class="x_control-group">
@@ -95,22 +95,6 @@
 				<p class="x_help-block">회원정보보기에서 메뉴 목록에 회원알림센터 설정 및 회원알림목록을 접근할 수잇는 페이지를 노출하거나 노출 시키지 않을 수 있습니다.</p>
 			</div>
 		</div>
-		<div class="x_control-group">
-			<label class="x_control-label">안드로이드알림 솔루션</label>
-			<div class="x_controls">
-				<label class="x_inline"><input type="radio" name="android_format" value="N" checked="checked"|cond="$config->android_format == 'N'" /> 안드로이드 알림을 사용하지 않음</label>
-				<label class="x_inline"><input type="radio" name="android_format" value="mobileplus" checked="checked"|cond="$config->android_format == 'mobileplus'" />MobilePlus</label>
-				<p>알림센터와 함께 안드로이드 모바일 알림 솔루션을 선택하여 사용할 수 있습니다. 각각의 안드로이드 어플리케이션 플레폼을 사용하시면 선택하여 사용하시기 바랍니다.</p>
-			</div>
-		</div>
-
-		<div class="x_control-group">
-			<label class="x_control-label">{$lang->ncenterlite_message_event}</label>
-			<div class="x_controls">
-				<label><input type="checkbox" name="message_notify" value="N" checked="checked"|cond="$config->message_notify == 'N'" /> {$lang->ncenterlite_message_event_about}</label>
-			</div>
-		</div>
-
 		<div class="x_control-group">
 			<label class="x_control-label">알림센터 사용여부</label>
 			<div class="x_controls">
