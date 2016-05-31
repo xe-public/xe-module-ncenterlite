@@ -123,7 +123,6 @@ class ncenterliteController extends ncenterlite
 
 		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
-		if($config->use != 'Y') return new Object();
 
 		$logged_info = Context::get('logged_info');
 		$notify_member_srl = array();
