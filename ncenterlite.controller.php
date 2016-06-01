@@ -275,10 +275,6 @@ class ncenterliteController extends ncenterlite
 		}
 		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
-		if(!isset($config->use['message']))
-		{
-			return new Object();
-		}
 
 		$vars = Context::getRequestVars();
 		$logged_info = Context::get('logged_info');
@@ -287,7 +283,7 @@ class ncenterliteController extends ncenterlite
 		$message_member_config = $messages_member_config->data;
 
 		// 쪽지 체크 및 유저 쪽지 알림 채크
-		if(isset($config->use['message']) && $message_member_config->message_notify != 'N')
+		if(!isset($config->use['message']) && $message_member_config->message_notify != 'N')
 		{
 			$flag_path = './files/ncenterlite/new_message_flags/';
 
@@ -355,12 +351,15 @@ class ncenterliteController extends ncenterlite
 
 	function triggerAfterSendMessage(&$trigger_obj)
 	{
+
 		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
-		if(isset($config->use['message']))
+
+		if(!isset($config->use['message']))
 		{
 			return new Object();
 		}
+
 		$messages_member_config = $oNcenterliteModel->getMemberConfig($trigger_obj->receiver_srl);
 		$message_member_config = $messages_member_config->data;
 
