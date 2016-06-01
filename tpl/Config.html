@@ -20,7 +20,7 @@
 	<input type="hidden" name="module" value="ncenterlite" />
 	<input type="hidden" name="act" value="procNcenterliteAdminInsertConfig" />
 
-	<section class="section collapsed">
+	<section class="section">
 		<h1>{$lang->ncenterlite_basic_settings} ({$lang->ncenterlite_click_to_open})</h1>
 		<div class="x_control-group">
 			<label class="x_control-label">{$lang->ncenterlite_io}</label>
@@ -31,7 +31,10 @@
 				<label for="notify_vote" class="x_inline"><input type="checkbox" name="use[vote]" id="notify_vote" value="1" checked="checked"|cond="isset($config->use['vote'])" /> {$lang->ncenterlite_cmd_vote}</label>
 				<label for="notify_message" class="x_inline"><input type="checkbox" name="use[message]" id="notify_message" value="1" checked="checked"|cond="isset($config->use['message'])" /> {$lang->ncenterlite_type_message}</label>
 				<label for="notify_admin_content" class="x_inline"><input type="checkbox" name="use[admin_content]" id="notify_admin_content" value="1" checked="checked"|cond="isset($config->use['admin_content'])" /> {$lang->ncenterlite_admin_content}</label>
-				<p class="x_help-block">{$lang->about_admin_content}</p>
+				<p class="x_help-block">각각 설정을 분리하여 저장하도록 합니다. 기존의 설정을 하나의 옵션으로 합쳤습니다.
+				대댓글은 기존의 댓글알림 설정과 동일합니다. 채크시 글쓴이에게 모든 댓글을 알려주고, 채크 해재시 대댓글은 알려주지 않습니다.
+				관리자 알림은 관리자에게 댓글에 대한 정보를 모두 알림을 추가해주는 기능입니다.
+				</p>
 			</div>
 		</div>
 		<div class="x_control-group">
@@ -121,16 +124,8 @@
 		</div>
 	</section>
 
-	<section class="section collapsed">
+	<section class="section">
 		<h1>{$lang->ncenterlite_document_event_settings} ({$lang->ncenterlite_click_to_open}) </h1>
-		<div class="x_control-group">
-			<label class="x_control-label">{$lang->ncenterlite_document_event_vote}</label>
-			<div class="x_controls">
-				<label class="x_inline"><input type="radio" name="voted_format" value="Y" checked="checked"|cond="$config->voted_format == 'Y'" /> {$lang->ncenterlite_activate}</label>
-				<label class="x_inline"><input type="radio" name="voted_format" value="N" checked="checked"|cond="$config->voted_format == 'N'" /> {$lang->ncenterlite_inactivate}</label>
-				<p>{$lang->ncenterlite_document_event_vote_about}</p>
-			</div>
-		</div>
 		<div class="x_control-group">
 			<label class="x_control-label">{$lang->ncenterlite_document_event_read}</label>
 			<div class="x_controls">
@@ -139,18 +134,11 @@
 				<p>{$lang->ncenterlite_document_event_read_about}</p>
 			</div>
 		</div>
-		<div class="x_control-group">
-			<label class="x_control-label">{$lang->ncenterlite_commnet_event}</label>
-			<div class="x_controls">
-				<label class="x_inline"><input type="radio" name="document_notify" value="all-comment" checked="checked"|cond="$config->document_notify == 'all-comment'" /> {$lang->ncenterlite_commnet_event_noti_all}</label>
-				<label class="x_inline"><input type="radio" name="document_notify" value="direct-comment" checked="checked"|cond="$config->document_notify == 'direct-comment'" /> {$lang->ncenterlite_commnet_event_noti_some}</label>
-			</div>
-		</div>
 	</section>
 
 
 
-	<section class="section collapsed">
+	<section class="section">
 		<h1>{$lang->cmd_layout_setup} ({$lang->ncenterlite_click_to_open})</h1>
 		<div class="x_control-group">
 			<label class="x_control-label" for="layout_srl">{$lang->layout}</label>
@@ -176,7 +164,7 @@
 		</div>
 	</section>
 
-	<section class="section collapsed">
+	<section class="section">
 		<h1>{$lang->ncenterlite_skin_settings} ({$lang->ncenterlite_click_to_open})</h1>
 		<div class="x_control-group">
 			<label class="x_control-label">{$lang->skin}</label>
