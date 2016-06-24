@@ -112,11 +112,6 @@ class ncenterlite extends ModuleObject
 			return true;
 		}
 
-		if(!$oDB->isIndexExists('ncenterlite_notify', 'idx_notify'))
-		{
-			return true;
-		}
-
 		if(!$oDB->isIndexExists('ncenterlite_notify', 'idx_target_member_srl'))
 		{
 			return true;
