@@ -213,7 +213,7 @@ class ncenterliteController extends ncenterlite
 			$parent_member_config = $comment_member_config->data;
 
 			// !TODO 공용 메소드로 분리
-			if(isset($config->use['admin_content']) && !in_array(abs($member_srl), $notify_member_srl) && (!$logged_info || ($member_srl != 0 && abs($member_srl) != $logged_info->member_srl)) && $parent_member_config->comment_notify != 'N')
+			if(isset($config->use['admin_content']) || !in_array(abs($member_srl), $notify_member_srl) && (!$logged_info || ($member_srl != 0 && abs($member_srl) != $logged_info->member_srl)) && $parent_member_config->comment_notify != 'N')
 			{
 				$args = new stdClass();
 				$args->member_srl = abs($member_srl);
