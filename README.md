@@ -55,6 +55,7 @@ Contributors
 [@SeungYeonYou](https://github.com/SeungYeonYou),
 [@YJSoft](https://github.com/YJSoft),
 [@misol](https://github.com/misol)
+[@kijin](https://github.com/kijin)
 
 Thanks to
 ---------

@@ -28,7 +28,8 @@ class ncenterlite extends ModuleObject
 	var $_TYPE_MESSAGE = 'E'; // 쪽지 mEssage
 	var $_TYPE_DOCUMENTS = 'P'; // 글 작성 알림
 	var $_TYPE_VOTED = 'V'; // 추천글 안내 알림
-	var $_TYPE_TEST = 'T';
+	var $_TYPE_TEST = 'T'; // Test Notify create.
+	var $_TYPE_ADMIN_DOCUMENT = 'B'; // Admin Document Alert
 	var $_TYPE_CUSTOM = 'U'; //Updated alert(uses type table)
 
 	var $triggers = array(
@@ -38,11 +39,14 @@ class ncenterlite extends ModuleObject
 		array('document.deleteDocument', 'ncenterlite', 'controller', 'triggerAfterDeleteDocument', 'after'),
 		array('display', 'ncenterlite', 'controller', 'triggerBeforeDisplay', 'before'),
 		array('moduleHandler.proc', 'ncenterlite', 'controller', 'triggerAfterModuleHandlerProc', 'after'),
-		array('moduleObject.proc', 'ncenterlite', 'controller', 'triggerBeforeModuleObjectProc', 'before'),
 		array('member.deleteMember', 'ncenterlite', 'controller', 'triggerAfterDeleteMember', 'after'),
 		array('communication.sendMessage', 'ncenterlite', 'controller', 'triggerAfterSendMessage', 'after'),
 		array('document.updateVotedCount', 'ncenterlite', 'controller', 'triggerAfterVotedupdate', 'after'),
 		array('moduleHandler.init', 'ncenterlite', 'controller', 'triggerAddMemberMenu', 'after'),
+		array('document.moveDocumentToTrash', 'ncenterlite', 'controller', 'triggerAfterMoveToTrash', 'after'),
+	);
+	private $delete_triggers = array(
+		array('moduleObject.proc', 'ncenterlite', 'controller', 'triggerBeforeModuleObjectProc', 'before')
 	);
 
 	function _isDisable()
@@ -70,6 +74,14 @@ class ncenterlite extends ModuleObject
 		foreach($this->triggers as $trigger)
 		{
 			if(!$oModuleModel->getTrigger($trigger[0], $trigger[1], $trigger[2], $trigger[3], $trigger[4])) return true;
+		}
+
+		foreach($this->delete_triggers as $trigger)
+		{
+			if($oModuleModel->getTrigger($trigger[0], $trigger[1], $trigger[2], $trigger[3], $trigger[4]))
+			{
+				return true;
+			}
 		}
 
 		if(!$oDB->isColumnExists('ncenterlite_notify', 'readed'))
@@ -112,6 +124,11 @@ class ncenterlite extends ModuleObject
 			return true;
 		}
 
+		if(!$oDB->isIndexExists('ncenterlite_notify', 'idx_notify'))
+		{
+			return true;
+		}
+
 		if(!$oDB->isIndexExists('ncenterlite_notify', 'idx_target_member_srl'))
 		{
 			return true;
@@ -131,6 +148,14 @@ class ncenterlite extends ModuleObject
 			if(!$oModuleModel->getTrigger($trigger[0], $trigger[1], $trigger[2], $trigger[3], $trigger[4]))
 			{
 				$oModuleController->insertTrigger($trigger[0], $trigger[1], $trigger[2], $trigger[3], $trigger[4]);
+			}
+		}
+
+		foreach($this->delete_triggers as $trigger)
+		{
+			if($oModuleModel->getTrigger($trigger[0], $trigger[1], $trigger[2], $trigger[3], $trigger[4]))
+			{
+				$oModuleController->deleteTrigger($trigger[0], $trigger[1], $trigger[2], $trigger[3], $trigger[4]);
 			}
 		}
 
