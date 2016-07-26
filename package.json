@@ -1,6 +1,6 @@
 {
   "name": "XE-Notification-Lite",
-  "version": "2.1.11",
+  "version": "3.0.0",
   "author": "XE Public",
   "contributors": [
     {
@@ -24,7 +24,7 @@
     }
   ],
   "keywords": ["Notification", "XpressEngine", "XE"],
-  "license": "GNU GPL",
+  "license": "GNU GPL v2",
   "repository": {
     "type": "git",
     "url": "git://github.com/xe-public/xe-module-ncenterlite.git"
