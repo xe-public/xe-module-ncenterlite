@@ -339,12 +339,6 @@ class ncenterliteController extends ncenterlite
 	{
 		$oNcenterliteModel = getModel('ncenterlite');
 		$config = $oNcenterliteModel->getConfig();
-		$communication_config = getModel('communication')->getConfig();
-
-		if($communication_config->enable_message != 'Y')
-		{
-			return new Object();
-		}
 
 		if(!isset($config->use['message']))
 		{
