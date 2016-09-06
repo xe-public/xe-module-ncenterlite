@@ -63,6 +63,15 @@ class ncenterliteController extends ncenterlite
 		{
 			return $output;
 		}
+		else
+		{
+			$flag_path = _XE_PATH_ . 'files/cache/ncenterlite/new_notify/' . getNumberingPath($args->member_srl) . $args->member_srl . '.php';
+			if(file_exists($flag_path))
+			{
+				//remove flag files
+				FileHandler::removeFile($flag_path);
+			}
+		}
 		return new Object();
 	}
 
