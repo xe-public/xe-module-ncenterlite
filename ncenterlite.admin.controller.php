@@ -36,7 +36,7 @@ class ncenterliteAdminController extends ncenterlite
 			}
 		}
 		
-		if ($obj->disp_act == 'dispNcenterliteAdminConfig')
+		if ($obj->disp_act == 'dispNcenterliteAdminIndexConfig')
 		{
 			if (!$obj->use)
 			{
