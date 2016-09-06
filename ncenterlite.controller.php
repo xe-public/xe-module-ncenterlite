@@ -408,6 +408,15 @@ class ncenterliteController extends ncenterlite
 		$args = new stdClass();
 		$args->srl = $obj->comment_srl;
 		$output = executeQuery('ncenterlite.deleteNotifyBySrl', $args);
+		if($output->toBool())
+		{
+			$flag_path = _XE_PATH_ . 'files/cache/ncenterlite/new_notify/' . getNumberingPath($args->member_srl) . $args->member_srl . '.php';
+			if(file_exists($flag_path))
+			{
+				//remove flag files
+				FileHandler::removeFile($flag_path);
+			}
+		}
 		return new Object();
 	}
 
@@ -423,6 +432,15 @@ class ncenterliteController extends ncenterlite
 		$args = new stdClass();
 		$args->srl = $obj->document_srl;
 		$output = executeQuery('ncenterlite.deleteNotifyBySrl', $args);
+		if($output->toBool())
+		{
+			$flag_path = _XE_PATH_ . 'files/cache/ncenterlite/new_notify/' . getNumberingPath($args->member_srl) . $args->member_srl . '.php';
+			if(file_exists($flag_path))
+			{
+				//remove flag files
+				FileHandler::removeFile($flag_path);
+			}
+		}
 		return new Object();
 	}
 
@@ -439,6 +457,15 @@ class ncenterliteController extends ncenterlite
 		$args = new stdClass();
 		$args->srl = $obj->document_srl;
 		$output = executeQuery('ncenterlite.deleteNotifyBySrl', $args);
+		if($output->toBool())
+		{
+			$flag_path = _XE_PATH_ . 'files/cache/ncenterlite/new_notify/' . getNumberingPath($args->member_srl) . $args->member_srl . '.php';
+			if(file_exists($flag_path))
+			{
+				//remove flag files
+				FileHandler::removeFile($flag_path);
+			}
+		}
 		return new Object();
 	}
 
