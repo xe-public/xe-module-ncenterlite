@@ -492,11 +492,25 @@ class ncenterliteController extends ncenterlite
 			$oDocument = Context::get('oDocument');
 			$logged_info = Context::get('logged_info');
 
-			if($document_srl && $logged_info && $config->document_read == 'Y')
+			if($document_srl && Context::get('is_logged') && $config->document_read == 'Y')
 			{
-				$args->srl = $document_srl;
-				$args->member_srl = $logged_info->member_srl;
-				$outputs = executeQuery('ncenterlite.updateNotifyReadedBySrl', $args);
+				$notify_count = getModel('ncenterlite')->_getNewCount();
+				if($notify_count > 0)
+				{
+					$args->srl = $document_srl;
+					$args->member_srl = $logged_info->member_srl;
+					$outputs = executeQuery('ncenterlite.updateNotifyReadedBySrl', $args);
+					// else 옵션을 주지 않은 이유는 실패시 동작에 오류를 나타나지 않도록 하기 위함.
+					if($outputs->toBool())
+					{
+						$flag_path = _XE_PATH_ . 'files/cache/ncenterlite/new_notify/' . getNumberingPath($args->member_srl) . $args->member_srl . '.php';
+						if(file_exists($flag_path))
+						{
+							//remove flag files
+							FileHandler::removeFile($flag_path);
+						}
+					}
+				}
 			}
 
 			if($comment_srl && $document_srl && $oDocument)
@@ -562,13 +576,21 @@ class ncenterliteController extends ncenterlite
 		elseif($oModule->act == 'dispCommunicationMessages')
 		{
 			$message_srl = Context::get('message_srl');
-			$logged_info = Context::get('logged_info');
 			if($message_srl)
 			{
 				$args = new stdClass();
 				$args->target_srl = $message_srl;
 				$args->member_srl = $logged_info->member_srl;
-				executeQuery('ncenterlite.updateNotifyReadedByTargetSrl', $args);
+				$update_output = executeQuery('ncenterlite.updateNotifyReadedByTargetSrl', $args);
+				if($update_output->toBool())
+				{
+					$flag_path = _XE_PATH_ . 'files/cache/ncenterlite/new_notify/' . getNumberingPath($args->member_srl) . $args->member_srl . '.php';
+					if(file_exists($flag_path))
+					{
+						//remove flag files
+						FileHandler::removeFile($flag_path);
+					}
+				}
 			}
 		}
 
@@ -625,6 +647,15 @@ class ncenterliteController extends ncenterlite
 				$args->srl = $vars->document_srl;
 				$args->type = $this->_TYPE_DOCUMENT;
 				$output = executeQuery('ncenterlite.updateNotifyReadedBySrl', $args);
+				if($output->toBool())
+				{
+					$flag_path = _XE_PATH_ . 'files/cache/ncenterlite/new_notify/' . getNumberingPath($args->member_srl) . $args->member_srl . '.php';
+					if(file_exists($flag_path))
+					{
+						//remove flag files
+						FileHandler::removeFile($flag_path);
+					}
+				}
 			}
 		}
 		else if($oModule->act == 'getKinComments')
@@ -634,6 +665,15 @@ class ncenterliteController extends ncenterlite
 			$args->member_srl = $logged_info->member_srl;
 			$args->target_srl = $vars->parent_srl;
 			$output = executeQuery('ncenterlite.updateNotifyReadedByTargetSrl', $args);
+			if($output->toBool())
+			{
+				$flag_path = _XE_PATH_ . 'files/cache/ncenterlite/new_notify/' . getNumberingPath($args->member_srl) . $args->member_srl . '.php';
+				if(file_exists($flag_path))
+				{
+					//remove flag files
+					FileHandler::removeFile($flag_path);
+				}
+			}
 		}
 
 		return new Object();
