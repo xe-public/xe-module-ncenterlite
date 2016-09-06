@@ -22,7 +22,7 @@
 			<label class="x_control-label">{$lang->mention_suffixes}</label>
 			<div class="x_controls">
 				<label class="x_inline">
-					<input type="text" name="mention_suffixes" value="{escape(implode(', ', $config->mention_suffixes), false)}" />
+					<input type="text" name="mention_suffixes" value="{htmlspecialchars(implode(', ', $config->mention_suffixes), defined('ENT_SUBSTITUTE') ? (ENT_QUOTES | ENT_SUBSTITUTE) : (ENT_QUOTES | ENT_IGNORE), 'UTF-8', false)}" />
 				</label>
 				<p class="x_help-block">{$lang->about_mention_suffixes}</p>
 			</div>
