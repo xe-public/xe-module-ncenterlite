@@ -1059,7 +1059,7 @@ class ncenterliteController extends ncenterlite
 			$args->target_nick_name = $member_info->nick_name;
 			$args->target_user_id = $member_info->user_id;
 			$args->target_email_address = $member_info->email_address;
-                }
+		}
 		else if(Context::get('is_logged'))
 		{
 			$logged_info = Context::get('logged_info');
