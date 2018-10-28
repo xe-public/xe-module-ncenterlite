@@ -965,9 +965,21 @@ class ncenterliteController extends ncenterlite
 	function procNcenterliteRedirect()
 	{
 		$logged_info = Context::get('logged_info');
+		if(!Context::get('is_logged') || $logged_info->member_srl)
+		{
+			return new Object(-1, 'msg_not_logged');
+		}
+
+
 		$url = Context::get('url');
 		$notify = Context::get('notify');
-		if(!$logged_info || !$url || !$notify)
+		if(!strlen($notify))
+		{
+			return new Object(-1, 'msg_invalid_request');
+		}
+
+		$notify_info = getModel('ncenterlite')->getNotification($notify, $logged_info->member_srl);
+		if (!$notify_info)
 		{
 			return new Object(-1, 'msg_invalid_request');
 		}
@@ -978,8 +990,7 @@ class ncenterliteController extends ncenterlite
 			return $output;
 		}
 
-		$url = str_replace('&amp;', '&', $url);
-		header('Location: ' . $url, TRUE, 302);
+		header('Location: ' . $notify_info->target_url, TRUE, 302);
 		Context::close();
 		exit;
 	}

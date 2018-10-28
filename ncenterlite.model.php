@@ -141,7 +141,7 @@ class ncenterliteModel extends ncenterlite
 		{
 			$v->text = $this->getNotificationText($v);
 			$v->ago = $this->getAgo($v->regdate);
-			$v->url = getUrl('','act','procNcenterliteRedirect', 'notify', $v->notify, 'url', $v->target_url);
+			$v->url = getUrl('','act','procNcenterliteRedirect', 'notify', $v->notify);
 			if($v->target_member_srl)
 			{
 				$profileImage = $oMemberModel->getProfileImage($v->target_member_srl);
@@ -456,5 +456,28 @@ class ncenterliteModel extends ncenterlite
 		}
 
 		return zdate($datetime, 'Y-m-d');
+	}
+
+	/**
+	 * Get information about a single notification.
+	 *
+	 * @param string $notify
+	 * @param int $member_srl
+	 * @return object|false
+	 */
+	public function getNotification($notify, $member_srl)
+	{
+		$args = new stdClass;
+		$args->notify = $notify;
+		$args->member_srl = $member_srl;
+		$output = executeQuery('ncenterlite.getNotify', $args);
+		if ($output->toBool() && $output->data)
+		{
+			return $output->data;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
