@@ -1079,10 +1079,9 @@ class ncenterliteController extends ncenterlite
 			$args->target_user_id = $logged_info->user_id;
 			$args->target_email_address = $logged_info->email_address;
 		}
-		
+		// 비회원
 		else
 		{
-			// 비회원
 			$args->target_member_srl = 0;
 			$args->target_user_id = '';
 		}
