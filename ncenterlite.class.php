@@ -256,7 +256,7 @@ class ncenterlite extends ModuleObject
 	 * @param $arg1, $arg2 ...
 	 * @return object
 	 */
-	public function createObject($status, $message /* $arg1, $arg2 ... */)
+	public function createObject($status = 0, $message = 'success' /* $arg1, $arg2 ... */)
 	{
 		$args = func_get_args();
 		if (count($args) > 2)
