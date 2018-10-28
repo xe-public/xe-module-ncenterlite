@@ -965,13 +965,11 @@ class ncenterliteController extends ncenterlite
 	function procNcenterliteRedirect()
 	{
 		$logged_info = Context::get('logged_info');
-		if(!Context::get('is_logged') || $logged_info->member_srl)
+		if(!Context::get('is_logged') || !$logged_info->member_srl)
 		{
 			return $this->createObject(-1, 'msg_not_logged');
 		}
 
-
-		$url = Context::get('url');
 		$notify = Context::get('notify');
 		if(!strlen($notify))
 		{
