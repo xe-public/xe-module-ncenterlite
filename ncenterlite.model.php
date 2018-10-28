@@ -164,7 +164,7 @@ class ncenterliteModel extends ncenterlite
 	function getMyNotifyListTpl()
 	{
 		$logged_info = Context::get('logged_info');
-		if(!$logged_info) return new Object(-1, 'msg_not_permitted');
+		if(!$logged_info) return $this->createObject(-1, 'msg_not_permitted');
 
 		$oMemberModel = getModel('member');
 		$memberConfig = $oMemberModel->getMemberConfig();

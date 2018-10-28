@@ -63,7 +63,7 @@ class ncenterlite extends ModuleObject
 
 	function moduleInstall()
 	{
-		return new Object();
+		return $this->createObject();
 	}
 
 	function checkUpdate()
@@ -226,12 +226,12 @@ class ncenterlite extends ModuleObject
 			$oDB->dropIndex('ncenterlite_notify', 'idx_notify');
 		}
 
-		return new Object(0, 'success_updated');
+		return $this->createObject(0, 'success_updated');
 	}
 
 	function recompileCache()
 	{
-		return new Object();
+		return $this->createObject();
 	}
 
 	function moduleUninstall()
@@ -242,6 +242,28 @@ class ncenterlite extends ModuleObject
 		{
 			$oModuleController->deleteTrigger($trigger[0], $trigger[1], $trigger[2], $trigger[3], $trigger[4]);
 		}
-		return new Object();
+		return $this->createObject();
+	}
+
+	/**
+	 * XE Object를 생성하여 반환한다. XE 1.8 이하, XE 1.9 이상, PHP 7.1 이하, PHP 7.2 이상 모두 호환된다.
+	 * 기본적인 사용법은 return new Object(-1, 'error'); 라고 쓸 자리에
+	 * return $this->createObject(-1, 'error'); 라고 쓰면 된다.
+	 * 
+	 * @from: 기진님 사이트 모듈생성기 https://www.poesis.org/tools/modulegen/
+	 *
+	 * @param string $message
+	 * @param $arg1, $arg2 ...
+	 * @return object
+	 */
+	public function createObject($status, $message /* $arg1, $arg2 ... */)
+	{
+		$args = func_get_args();
+		if (count($args) > 2)
+		{
+			global $lang;
+			$message = vsprintf($lang->$message, array_slice($args, 2));
+		}
+		return class_exists('BaseObject') ? new BaseObject($status, $message) : new Object($status, $message);
 	}
 }

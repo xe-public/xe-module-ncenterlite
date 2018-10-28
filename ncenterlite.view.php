@@ -44,7 +44,7 @@ class ncenterliteView extends ncenterlite
 		$oMemberModel = getModel('member');
 		$member_srl = Context::get('member_srl');
 		$logged_info = Context::get('logged_info');
-		if(!$logged_info) return new Object(-1, 'ncenterlite_stop_login_required');
+		if(!$logged_info) return $this->createObject(-1, 'ncenterlite_stop_login_required');
 
 		if($logged_info->is_admin == 'Y')
 		{
@@ -54,7 +54,7 @@ class ncenterliteView extends ncenterlite
 		{
 			if($member_srl != $logged_info->member_srl)
 			{
-				return new Object(-1, 'ncenterlite_stop_no_permission_other_user');
+				return $this->createObject(-1, 'ncenterlite_stop_no_permission_other_user');
 			}
 		}
 		$oNcenterliteModel = getModel('ncenterlite');

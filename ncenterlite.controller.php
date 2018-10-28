@@ -682,7 +682,7 @@ class ncenterliteController extends ncenterlite
 			}
 		}
 
-		return new Object();
+		return $this->createObject();
 	}
 
 	function triggerBeforeDisplay(&$output_display)
@@ -742,18 +742,18 @@ class ncenterliteController extends ncenterlite
 		// if the array is empty, dose not output the notification.
 		if(empty($config->use))
 		{
-			return new Object();
+			return $this->createObject();
 		}
 
 		if($config->display_use == 'mobile' && !Mobile::isFromMobilePhone() || $config->display_use == 'pc' && Mobile::isFromMobilePhone() || $config->display_use == 'none')
 		{
-			return new Object();
+			return $this->createObject();
 		}
 
 		// 노티바 제외 페이지이면 중지
 		if(in_array($module_info->module_srl, $config->hide_module_srls))
 		{
-			return new Object();
+			return $this->createObject();
 		}
 
 		Context::set('ncenterlite_config', $config);
@@ -827,7 +827,7 @@ class ncenterliteController extends ncenterlite
 			$logged_info = Context::get('logged_info');
 			if(!Context::get('is_logged'))
 			{
-				return new Object();
+				return $this->createObject();
 			}
 			$target_srl = Context::get('target_srl');
 
@@ -843,7 +843,7 @@ class ncenterliteController extends ncenterlite
 			}
 		}
 
-		return new Object();
+		return $this->createObject();
 	}
 
 	function _addFile()
@@ -955,7 +955,7 @@ class ncenterliteController extends ncenterlite
 		$logged_info = Context::get('logged_info');
 		if(!$logged_info)
 		{
-			return new Object(-1, 'msg_invalid_request');
+			return $this->createObject(-1, 'msg_invalid_request');
 		}
 
 		$output = $this->updateNotifyReadAll($logged_info->member_srl);
@@ -967,7 +967,7 @@ class ncenterliteController extends ncenterlite
 		$logged_info = Context::get('logged_info');
 		if(!Context::get('is_logged') || $logged_info->member_srl)
 		{
-			return new Object(-1, 'msg_not_logged');
+			return $this->createObject(-1, 'msg_not_logged');
 		}
 
 
@@ -975,13 +975,13 @@ class ncenterliteController extends ncenterlite
 		$notify = Context::get('notify');
 		if(!strlen($notify))
 		{
-			return new Object(-1, 'msg_invalid_request');
+			return $this->createObject(-1, 'msg_invalid_request');
 		}
 
 		$notify_info = getModel('ncenterlite')->getNotification($notify, $logged_info->member_srl);
 		if (!$notify_info)
 		{
-			return new Object(-1, 'msg_invalid_request');
+			return $this->createObject(-1, 'msg_invalid_request');
 		}
 
 		$output = $this->updateNotifyRead($notify, $logged_info->member_srl);
@@ -1041,7 +1041,7 @@ class ncenterliteController extends ncenterlite
 		// 비회원 노티 제거
 		if($args->member_srl <= 0)
 		{
-			return new Object();
+			return $this->createObject();
 		}
 
 		// 노티 ID가 없는 경우 자동 생성
