@@ -16,7 +16,7 @@ class ncenterliteController extends ncenterlite
 
 		if($logged_info->member_srl != $member_srl && $logged_info->is_admin != 'Y')
 		{
-			return new Object(-1, 'ncenterlite_stop_no_permission_other_user_settings');
+			return $this->createObject(-1, 'ncenterlite_stop_no_permission_other_user_settings');
 		}
 
 		$output = $oNcenterliteModel->getMemberConfig($member_srl);
@@ -53,7 +53,7 @@ class ncenterliteController extends ncenterlite
 		$member_srl = $obj->member_srl;
 		if(!$member_srl)
 		{
-			return new Object();
+			return $this->createObject();
 		}
 
 		$args = new stdClass();
@@ -72,7 +72,7 @@ class ncenterliteController extends ncenterlite
 				FileHandler::removeFile($flag_path);
 			}
 		}
-		return new Object();
+		return $this->createObject();
 	}
 
 	function triggerAfterInsertDocument(&$obj)
@@ -102,7 +102,7 @@ class ncenterliteController extends ncenterlite
 		{
 			if(!$mention_targets && !count($mention_targets) || !isset($config->use['mention']))
 			{
-				return new Object();
+				return $this->createObject();
 			}
 
 			// !TODO 공용 메소드로 분리
@@ -167,7 +167,7 @@ class ncenterliteController extends ncenterlite
 			}
 		}
 
-		return new Object();
+		return $this->createObject();
 	}
 
 	function triggerAfterInsertComment(&$obj)
@@ -268,7 +268,7 @@ class ncenterliteController extends ncenterlite
 
 		if(!isset($config->use['comment']))
 		{
-			return new Object();
+			return $this->createObject();
 		}
 
 		// 대댓글
@@ -281,7 +281,7 @@ class ncenterliteController extends ncenterlite
 			$parent_member_config = $comment_member_config->data;
 			if(is_array($admin_list) && in_array(abs($member_srl), $admin_list) && isset($config->use['admin_content']) && $admin_comment_notify == true)
 			{
-				return new Object();
+				return $this->createObject();
 			}
 
 			// !TODO 공용 메소드로 분리
@@ -315,7 +315,7 @@ class ncenterliteController extends ncenterlite
 
 			if(is_array($admin_list) && in_array(abs($member_srl), $admin_list) && isset($config->use['admin_content']) && $admin_comment_notify == true)
 			{
-				return new Object();
+				return $this->createObject();
 			}
 			$comment_member_config = $oNcenterliteModel->getMemberConfig($member_srl);
 			$document_comment_member_config = $comment_member_config->data;
@@ -341,7 +341,7 @@ class ncenterliteController extends ncenterlite
 			}
 		}
 
-		return new Object();
+		return $this->createObject();
 	}
 
 	function triggerAfterSendMessage(&$trigger_obj)
@@ -351,7 +351,7 @@ class ncenterliteController extends ncenterlite
 
 		if(!isset($config->use['message']))
 		{
-			return new Object();
+			return $this->createObject();
 		}
 
 		$messages_member_config = $oNcenterliteModel->getMemberConfig($trigger_obj->receiver_srl);
@@ -384,12 +384,12 @@ class ncenterliteController extends ncenterlite
 		$config = $oNcenterliteModel->getConfig();
 		if(!isset($config->use['vote']))
 		{
-			return new Object();
+			return $this->createObject();
 		}
 
 		if($obj->point < 0)
 		{
-			return new Object();
+			return $this->createObject();
 		}
 
 		$args = new stdClass();
@@ -412,7 +412,7 @@ class ncenterliteController extends ncenterlite
 		$config = $oNcenterliteModel->getConfig();
 		if(empty($config->use))
 		{
-			return new Object();
+			return $this->createObject();
 		}
 
 		$args = new stdClass();
@@ -427,7 +427,7 @@ class ncenterliteController extends ncenterlite
 				FileHandler::removeFile($flag_path);
 			}
 		}
-		return new Object();
+		return $this->createObject();
 	}
 
 	function triggerAfterDeleteDocument(&$obj)
@@ -436,7 +436,7 @@ class ncenterliteController extends ncenterlite
 		$config = $oNcenterliteModel->getConfig();
 		if(empty($config->use))
 		{
-			return new Object();
+			return $this->createObject();
 		}
 
 		$args = new stdClass();
@@ -451,7 +451,7 @@ class ncenterliteController extends ncenterlite
 				FileHandler::removeFile($flag_path);
 			}
 		}
-		return new Object();
+		return $this->createObject();
 	}
 
 	function triggerAfterMoveToTrash(&$obj)
@@ -461,7 +461,7 @@ class ncenterliteController extends ncenterlite
 
 		if(empty($config->use))
 		{
-			return new Object();
+			return $this->createObject();
 		}
 
 		$args = new stdClass();
@@ -476,7 +476,7 @@ class ncenterliteController extends ncenterlite
 				FileHandler::removeFile($flag_path);
 			}
 		}
-		return new Object();
+		return $this->createObject();
 	}
 
 	function triggerAfterModuleHandlerProc(&$oModule)
@@ -495,7 +495,7 @@ class ncenterliteController extends ncenterlite
 		// if the array is empty, lets return.
 		if(empty($config->use))
 		{
-			return new Object();
+			return $this->createObject();
 		}
 		$this->_hide_ncenterlite = false;
 		if($oModule->module == 'beluxe' && Context::get('is_modal'))
