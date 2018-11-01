@@ -537,4 +537,7 @@
 	<item name="dont_check_notify_delete">
 		<value xml:lang="ko"><![CDATA[회원이 확인하지 않은 알림도 삭제됩니다.]]></value>
 	</item>
+	<item name="msg_denger_rhymix_user">
+		<value xml:lang="ko"><![CDATA[<strong>경고!</strong> 이 사이트는 <a href="https://rhymix.org/">라이믹스</a>입니다. 라이믹스 사용자는 라이믹스 순정의 알림센터를 이용해야합니다. 라이믹스의 알림센터를 다시 설치해주시기 바랍니다.]]></value>
+	</item>
 </lang>
