@@ -521,7 +521,7 @@ class ncenterliteController extends ncenterlite
 				$output_update = executeQuery('ncenterlite.updateNotifyReadedByTargetSrl', $args);
 			}
 		}
-		else if($oModule->act == 'dispBoardContent')
+		else if(in_array($oModule->act, array('dispBoardContent', 'dispPointrushContent')))
 		{
 			$comment_srl = Context::get('_comment_srl');
 			$document_srl = Context::get('document_srl');
