@@ -1083,6 +1083,12 @@ class ncenterliteController extends ncenterlite
 			$args->target_user_id = '';
 		}
 
+		$trigger_output = ModuleHandler::triggerCall('ncenterlite._insertNotify', 'before', $args);
+		if(!$trigger_output->toBool() || $trigger_output->getMessage() === 'cancel')
+		{
+			return $trigger_output;
+		}
+
 		$output = executeQuery('ncenterlite.insertNotify', $args);
 		if(!$output->toBool())
 		{
@@ -1091,11 +1097,7 @@ class ncenterliteController extends ncenterlite
 
 		if($output->toBool())
 		{
-			$trigger_notify = ModuleHandler::triggerCall('ncenterlite._insertNotify', 'after', $args);
-			if(!$trigger_notify->toBool())
-			{
-				return $trigger_notify;
-			}
+			ModuleHandler::triggerCall('ncenterlite._insertNotify', 'after', $args);
 		}
 
 		$flag_path = _XE_PATH_ . 'files/cache/ncenterlite/new_notify/' . getNumberingPath($args->member_srl) . $args->member_srl . '.php';
