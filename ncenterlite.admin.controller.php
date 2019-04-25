@@ -100,11 +100,26 @@ class ncenterliteAdminController extends ncenterlite
 			$args->type = $this->_TYPE_TEST;
 			$args->target_type = $this->_TYPE_TEST;
 			$args->target_url = getUrl('');
-			$args->target_summary = Context::getLang('ncenterlite_thisistest') . rand();
+			$args->target_summary = Context::getLang('ncenterlite_thisistest');
 			$args->target_nick_name = $logged_info->nick_name;
 			$args->regdate = date('YmdHis');
 			$args->notify = $oNcenterliteController->_getNotifyId($args);
 			$output = $oNcenterliteController->_insertNotify($args);
+			if(!$output->toBool())
+			{
+				return $output;
+			}
+		}
+
+		$this->setMessage('msg_test_notifycation_success');
+
+		if (Context::get('success_return_url'))
+		{
+			$this->setRedirectUrl(Context::get('success_return_url'));
+		}
+		else
+		{
+			$this->setRedirectUrl(getNotEncodedUrl('', 'module', 'admin', 'act', 'dispNcenterliteAdminTest'));
 		}
 	}
 
@@ -128,6 +143,21 @@ class ncenterliteAdminController extends ncenterlite
 		$args->regdate = date('YmdHis');
 		$args->notify = $oNcenterliteController->_getNotifyId($args);
 		$output = $oNcenterliteController->_insertNotify($args);
+		if(!$output->toBool())
+		{
+			return $output;
+		}
+
+		$this->setMessage('msg_test_notifycation_success');
+
+		if (Context::get('success_return_url'))
+		{
+			$this->setRedirectUrl(Context::get('success_return_url'));
+		}
+		else
+		{
+			$this->setRedirectUrl(getNotEncodedUrl('', 'module', 'admin', 'act', 'dispNcenterliteAdminTest'));
+		}
 	}
 
 	function procNcenterliteAdminDeleteNofity()
